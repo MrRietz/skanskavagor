@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Skånska Vågor</title>
+  {%- if site.description -%}
+  <meta name="description" content="{{ site.description }}">
+  {%- endif -%}
+  <link rel="stylesheet" href="/assets/main.css">
+  <style>
+    body { background: #f8fafc; margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    main { min-height: 80vh; }
+  </style>
+</head>
+<body>
+  {% include nav.html %}
+  <main>
+    {{ content }}
+  </main>
+  {% include footer.html %}
+</body>
+</html>

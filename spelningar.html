@@ -1,0 +1,89 @@
+---
+layout: default
+title: Spelningar
+permalink: /spelningar.html
+---
+
+<style>
+.hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(120deg, #e0f7fa 0%, #f8fafc 100%);
+	padding: 2.5em 1em 2em 1em;
+	box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+.hero-title {
+	font-size: 2.2em;
+	font-weight: 700;
+	color: #009688;
+	margin-bottom: 0.7em;
+	letter-spacing: 0.03em;
+	text-align: center;
+}
+.gigs-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2em;
+	justify-content: center;
+	margin-top: 2em;
+}
+.gig-card {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+	padding: 1.5em 1.2em;
+	width: 320px;
+	height: 160px;
+	margin-bottom: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	box-sizing: border-box;
+}
+.gig-date {
+	font-size: 1.1em;
+	color: #009688;
+	font-weight: 600;
+	margin-bottom: 0.3em;
+}
+.gig-place {
+	font-size: 1.1em;
+	color: #333;
+	margin-bottom: 0.5em;
+}
+.gig-desc {
+	font-size: 1em;
+	color: #555;
+}
+</style>
+
+<div class="hero">
+  <div class="hero-title">Spelningar</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 3em; width: 100%; justify-content: center;">
+    <div style="min-width: 300px; max-width: 500px;">
+      <h2 style="color:#009688; font-size:1.3em; margin-bottom:1em; text-align:center;">Kommande spelningar</h2>
+      <div class="gigs-list">
+        <div style="width:100%;text-align:center;color:#888;font-size:1.1em;padding:2em 0;">Just nu finns inga kommande spelningar.<br>
+        <a href="bokning.html" style="color:#009688;text-decoration:underline;font-weight:600;">Boka oss här!</a></div>
+      </div>
+    </div>
+    <div style="min-width: 300px; max-width: 500px;">
+      <h2 style="color:#009688; font-size:1.3em; margin-bottom:1em; text-align:center;">Föregående spelningar</h2>
+      <div class="gigs-list">
+        <div class="gig-card">
+          <div class="gig-date">24 juli</div>
+          <div class="gig-place">Limhamnsfestivalen, Dragörkajen</div>
+          <div class="gig-desc">Spelning på Limhamnsfestivalen vid Dragörkajen</div>
+        </div>
+        <div class="gig-card">
+          <div class="gig-date">18 juni</div>
+          <div class="gig-place">Kollektivkrogen</div>
+          <div class="gig-desc">Spelning på Kollektivkrogen</div>
+        </div>
+        <!-- Lägg till fler föregående spelningar här -->
+      </div>
+    </div>
+  </div>
+</div>
