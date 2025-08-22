@@ -147,11 +147,11 @@ permalink: /galleri.html
   <div class="gallery-section-title">Bilder</div>
   <div class="gallery-list">
     <div class="gallery-card">
-      <img src="public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Spelning 1" onclick="openLightbox(this)">
+      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Spelning 1" onclick="openLightbox(this)">
       <div class="gallery-caption">Spelning på Limhamnsfestivalen</div>
     </div>
     <div class="gallery-card">
-      <img src="public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Spelning 2" onclick="openLightbox(this)">
+      <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Spelning 2" onclick="openLightbox(this)">
       <div class="gallery-caption">Spelning på Kollektivkrogen</div>
     </div>
     <!-- Lägg till fler bilder här -->
