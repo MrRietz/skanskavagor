@@ -89,6 +89,69 @@ title: Skånska Vågor
 	background: #fff;
 	padding: 0.3em;
 }
+.booking-widget {
+	margin-top: 2.5em;
+	max-width: 600px;
+	width: 100%;
+	background: #fff;
+	border-radius: 14px;
+	box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+	padding: 2em 1.5em 2.5em 1.5em;
+	text-align: center;
+}
+.booking-widget .widget-title {
+	font-size: 1.5em;
+	color: #009688;
+	margin-bottom: 0.7em;
+	font-weight: 700;
+}
+.booking-widget .widget-desc {
+	font-size: 1.1em;
+	color: #333;
+	margin-bottom: 1.5em;
+}
+.booking-widget a {
+	display: inline-block;
+	background: #009688;
+	color: #fff;
+	padding: 0.7em 1.3em;
+	border-radius: 8px;
+	font-size: 1.1em;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background 0.2s;
+	margin-bottom: 1.5em;
+}
+.booking-widget a:hover {
+	background: #26a69a;
+}
+.booking-widget form {
+	margin-top: 1.5em;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2em;
+}
+.booking-widget input,
+.booking-widget textarea {
+	width: 100%;
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 1em;
+	font-family: inherit;
+	box-sizing: border-box;
+}
+.booking-widget button {
+	background: #009688;
+	color: #fff;
+	border: none;
+	padding: 0.9em 1.5em;
+	border-radius: 8px;
+	font-size: 1.1em;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}
 </style>
 
 <div class="hero">
@@ -112,5 +175,17 @@ title: Skånska Vågor
   <div class="hero-gallery">
     <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Galleri 1">
     <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Galleri 2">
+  </div>
+  <div class="booking-widget">
+    <div class="widget-title">Boka oss</div>
+    <div class="widget-desc">
+      Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?<br>Kontakta oss gärna via formuläret nedan så återkommer vi så snart vi kan!
+    </div>
+    <form action="https://formspree.io/f/xwkgyyqg" method="POST">
+      <input type="text" name="namn" placeholder="Ditt namn" required>
+      <input type="email" name="email" placeholder="Din e-post" required>
+      <textarea name="meddelande" rows="5" placeholder="Meddelande" required></textarea>
+      <button type="submit">Skicka</button>
+    </form>
   </div>
 </div>
