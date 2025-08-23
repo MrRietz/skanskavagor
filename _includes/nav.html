@@ -196,7 +196,7 @@
       <div class="nav-links">
         <a
           href="{{ site.baseurl }}/index.html"
-          class="nav-link"
+          class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}"
         >
           <svg
             class="nav-icon"
