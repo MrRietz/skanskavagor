@@ -1,15 +1,189 @@
-<nav style="width:100%;background:#009688;padding:0.7em 0 0.7em 0;box-shadow:0 2px 12px rgba(0,0,0,0.10);">
-  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
-    <a href="{{ site.baseurl }}/" style="color:#fff;font-size:1.3em;font-weight:700;text-decoration:none;letter-spacing:0.03em;display:flex;align-items:center;gap:0.5em;">
-      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent.png" alt="Skånska Vågor Logo" style="height:4em;vertical-align:middle;">
-      Skånska Vågor
+<nav class="nav-bar">
+  <style>
+    .nav-bar {
+      width: 100%;
+      background: #009688;
+      padding: 0.7em 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding-left: 2vw;
+      padding-right: 2vw;
+    }
+    .nav-logo {
+      color: #fff;
+      font-size: 1.3em;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .nav-logo img {
+      height: 3em;
+      max-width: 420px;
+      vertical-align: middle;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5em;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      width: 100%;
+      padding: 1em 2.5em 1em 2.5em;
+      color: #fff;
+      text-decoration: none !important;
+      font-weight: 500;
+      font-size: 1em;
+      background: none;
+      border: none;
+      text-align: left;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      outline: none;
+      box-shadow: none;
+    }
+    .nav-link:focus,
+    .nav-link:active,
+    .nav-link:visited,
+    .nav-link:hover {
+      text-decoration: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      color: #fff !important;
+    }
+    button:focus,
+    button:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .nav-link .nav-icon {
+      width: 1.5em;
+      height: 1.5em;
+      margin-right: 0.5em;
+      display: inline-block;
+      vertical-align: middle;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+    .nav-link:visited,
+    .nav-link.selected:visited {
+      color: #fff !important;
+    }
+    .nav-link:visited {
+      color: #fff;
+    }
+    .nav-link:hover,
+    .nav-link.selected {
+      background: #00796b;
+      color: #e0f7fa;
+    }
+    .nav-toggle {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      width: 5em;
+      height: 5em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 1em;
+    }
+    .nav-toggle span {
+      display: none;
+    }
+    @media (max-width: 800px) {
+      .nav-container {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #009688;
+        flex-direction: column;
+        width: 100vw;
+        max-width: 320px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        padding: 1.2em 0.2em 1.2em 0.2em;
+        gap: 0.5em;
+        align-items: stretch;
+        display: none;
+        z-index: 99;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+    }
+  </style>
+  <div class="nav-container">
+    <a href="{{ site.baseurl }}/" class="nav-logo" style="margin-right:2em;">
+      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor Logo" />
     </a>
-    <div style="display:flex;gap:1.5em;">
-      <a href="{{ site.baseurl }}/index.html" style="color:#fff;text-decoration:none;font-weight:500;">Hem</a>  
-      <a href="{{ site.baseurl }}/spelningar.html" style="color:#fff;text-decoration:none;font-weight:500;">Spelningar</a>
-      <a href="{{ site.baseurl }}/bokning.html" style="color:#fff;text-decoration:none;font-weight:500;">Bokning</a>
-      <a href="{{ site.baseurl }}/medlemmar.html" style="color:#fff;text-decoration:none;font-weight:500;">Bandmedlemmar</a>    
-      <a href="{{ site.baseurl }}/galleri.html" style="color:#fff;text-decoration:none;font-weight:500;">Galleri</a>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <button
+        class="nav-toggle"
+        aria-label="Öppna meny"
+        onclick="document.querySelector('.nav-links').classList.toggle('open')"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          width="38"
+          height="38"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+          <path d="M20 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+          <path d="M20 17L4 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a
+          href="{{ site.baseurl }}/index.html"
+          class="nav-link{% if page.url == '/index.html' or page.url == '/' %} selected{% endif %}"
+          ><img
+            src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_icon.png"
+            alt="Hem"
+            class="nav-icon"
+          />Hem</a
+        >
+        <a
+          href="{{ site.baseurl }}/spelningar.html"
+          class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}"
+          ><span class="nav-icon">🎤</span>Spelningar</a
+        >
+        <a
+          href="{{ site.baseurl }}/bokning.html"
+          class="nav-link{% if page.url == '/bokning.html' %} selected{% endif %}"
+          ><span class="nav-icon">📩</span>Bokning</a
+        >
+        <a
+          href="{{ site.baseurl }}/medlemmar.html"
+          class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}"
+          ><span class="nav-icon">👤</span>Bandmedlemmar</a
+        >
+        <a
+          href="{{ site.baseurl }}/galleri.html"
+          class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}"
+          ><span class="nav-icon">🖼️</span>Galleri</a
+        >
     </div>
   </div>
 </nav>

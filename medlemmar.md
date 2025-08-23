@@ -52,6 +52,26 @@ permalink: /medlemmar.html
   color: #333;
   text-align: center;
 }
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 1.2em 0.3em 1.2em 0.3em;
+  }
+  .hero-title {
+    font-size: 1.3em;
+  }
+  .members-list {
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+  }
+  .member-card {
+    min-width: 0;
+    width: 98vw;
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
+}
 </style>
 
 <div class="hero">

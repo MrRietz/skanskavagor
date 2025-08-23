@@ -5,84 +5,116 @@ permalink: /bokning.html
 ---
 
 <style>
-.boka-oss-container {
-  max-width: 600px;
-  margin: 3em auto 2em auto;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  padding: 2.5em 2em 2.5em 2em;
-  text-align: center;
-  box-sizing: border-box;
-}
-.boka-oss-title {
-  font-size: 2em;
-  color: #009688;
-  margin-bottom: 1.1em;
-  font-weight: 700;
-}
-.boka-oss-desc {
-  font-size: 1.1em;
-  color: #333;
-  margin-bottom: 2em;
-  line-height: 1.6;
-}
-.boka-oss-email {
-  display: inline-block;
-  background: #009688;
-  color: #fff;
-  padding: 0.7em 1.3em;
-  border-radius: 8px;
-  font-size: 1.1em;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s;
-  margin-bottom: 1.5em;
-}
-.boka-oss-email:hover {
-  background: #26a69a;
-}
-.boka-oss-form {
-  margin-top: 1.5em;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-}
-.boka-oss-form input, .boka-oss-form textarea {
-  width: 100%;
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1em;
-  font-family: inherit;
-  box-sizing: border-box;
-}
-.boka-oss-form button {
-  background: #009688;
-  color: #fff;
-  border: none;
-  padding: 0.9em 1.5em;
-  border-radius: 8px;
-  font-size: 1.1em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.boka-oss-form button:hover {
-  background: #26a69a;
-}
+  .boka-oss-container {
+    max-width: 600px;
+    margin: 3em auto 2em auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    padding: 2.5em 2em 2.5em 2em;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .boka-oss-title {
+    font-size: 2em;
+    color: #009688;
+    margin-bottom: 1.1em;
+    font-weight: 700;
+  }
+  .boka-oss-desc {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 2em;
+    line-height: 1.6;
+  }
+  .boka-oss-email {
+    display: inline-block;
+    background: #009688;
+    color: #fff;
+    padding: 0.7em 1.3em;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-bottom: 1.5em;
+  }
+  .boka-oss-email:hover {
+    background: #26a69a;
+  }
+  .boka-oss-form {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+  }
+  .boka-oss-form input,
+  .boka-oss-form textarea {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+  .boka-oss-form button {
+    background: #009688;
+    color: #fff;
+    border: none;
+    padding: 0.9em 1.5em;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .boka-oss-form button:hover {
+    background: #26a69a;
+  }
+
+  @media (max-width: 700px) {
+    .boka-oss-container {
+      max-width: 98vw;
+      padding: 1.2em 0.5em 1.5em 0.5em;
+    }
+    .boka-oss-title {
+      font-size: 1.3em;
+    }
+    .boka-oss-desc {
+      font-size: 1em;
+    }
+    .boka-oss-form input,
+    .boka-oss-form textarea {
+      font-size: 1em;
+      padding: 0.7em;
+    }
+    .boka-oss-form button {
+      font-size: 1em;
+      padding: 0.7em 1em;
+    }
+  }
 </style>
 
 <div class="boka-oss-container">
   <div class="boka-oss-title">Bokning</div>
   <div class="boka-oss-desc">
-    Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?<br>
+    Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?<br />
     Kontakta oss gärna via formuläret nedan så återkommer vi så snart vi kan!
   </div>
-  <form class="boka-oss-form" action="https://formspree.io/f/xwkgyyqg" method="POST">
-    <input type="text" name="namn" placeholder="Ditt namn" required>
-    <input type="email" name="email" placeholder="Din e-post" required>
-    <textarea name="meddelande" rows="5" placeholder="Meddelande" required></textarea>
-    <button type="submit">Skicka</button>
+  <form
+    class="boka-oss-form"
+    action="https://formspree.io/f/xwkgyyqg"
+    method="POST"
+  >
+    <input type="text" name="namn" placeholder="Ditt namn" required />
+    <input type="email" name="email" placeholder="Din e-post" required />
+    <textarea
+      name="meddelande"
+      rows="5"
+      placeholder="Meddelande"
+      required
+    ></textarea>
+    <button type="submit">Skicka bokningsförfrågan</button>
   </form>
 </div>

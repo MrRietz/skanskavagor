@@ -1,35 +1,68 @@
-<footer style="text-align:center; margin:2em 0; color:#666; font-size:1.1em;">
-  <div>
+<footer
+  style="
+    text-align: center;
+    margin: 2em 0 1em 0;
+    color: #666;
+    font-size: 1.08em;
+  "
+>
+  <div style="margin-bottom: 0.5em">
     &copy; {{ site.time | date: '%Y' }} Skånska Vågor
   </div>
-  <div style="margin-top:0.5em; display: flex; justify-content: center; align-items: center; gap: 1.4em;">
-    <a href="https://www.facebook.com/profile.php?id=61576691256871" target="_blank" style="text-decoration:none; color:#4267B2; font-size:1.5em; display: flex; align-items: center;">
-      <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+  <div style="display: inline-flex; gap: 1.2em; align-items: center">
+    <a
+      href="https://www.facebook.com/profile.php?id=61576691256871"
+      target="_blank"
+      aria-label="Facebook"
+      style="color: #4267b2; font-size: 1.5em; text-decoration: none"
+    >
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        style="vertical-align: middle"
+      >
+        <path
+          d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"
+        />
+      </svg>
     </a>
-    <a href="https://www.instagram.com/skanskavagorofficial" target="_blank" style="text-decoration:none; font-size:1.5em; display: flex; align-items: center;">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="Instagram" role="img" viewBox="0 0 512 512" fill="#000000" width="1em" height="1em" style="display:block;">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-        <g id="SVGRepo_iconCarrier">
-          <rect width="512" height="512" rx="15%" id="b"></rect>
-          <use fill="url(#a)" xlink:href="#b"></use>
-          <use fill="url(#c)" xlink:href="#b"></use>
-          <radialGradient id="a" cx=".4" cy="1" r="1">
-            <stop offset=".1" stop-color="#fd5"></stop>
-            <stop offset=".5" stop-color="#ff543e"></stop>
-            <stop offset="1" stop-color="#c837ab"></stop>
-          </radialGradient>
-          <linearGradient id="c" x2=".2" y2="1">
-            <stop offset=".1" stop-color="#3771c8"></stop>
-            <stop offset=".5" stop-color="#60f" stop-opacity="0"></stop>
-          </linearGradient>
-          <g fill="none" stroke="#ffffff" stroke-width="30">
-            <rect width="308" height="308" x="102" y="102" rx="81"></rect>
-            <circle cx="256" cy="256" r="72"></circle>
-            <circle cx="347" cy="165" r="6"></circle>
-          </g>
+    <a
+      href="https://www.instagram.com/skanskavagorofficial"
+      target="_blank"
+      aria-label="Instagram"
+      style="color: #c837ab; font-size: 1.5em; text-decoration: none"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Instagram"
+        role="img"
+        viewBox="0 0 512 512"
+        fill="currentColor"
+        width="1em"
+        height="1em"
+        style="vertical-align: middle"
+      >
+        <rect width="512" height="512" rx="15%" fill="#fff" />
+        <radialGradient id="ig-gradient" cx="0.4" cy="1" r="1">
+          <stop offset="0.1" stop-color="#fd5" />
+          <stop offset="0.5" stop-color="#ff543e" />
+          <stop offset="1" stop-color="#c837ab" />
+        </radialGradient>
+        <rect width="512" height="512" rx="15%" fill="url(#ig-gradient)" />
+        <g fill="none" stroke="#fff" stroke-width="30">
+          <rect width="308" height="308" x="102" y="102" rx="81" />
+          <circle cx="256" cy="256" r="72" />
+          <circle cx="347" cy="165" r="6" />
         </g>
       </svg>
     </a>
+    <a
+      href="{{ site.baseurl }}/bokning.html"
+      aria-label="Boka oss"
+      style="color: #009688; font-size: 1.1em; text-decoration: none"
+      >📩 Boka oss</a
+    >
   </div>
 </footer>

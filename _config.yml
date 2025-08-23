@@ -22,8 +22,8 @@ title: Skånska Vågor
 email: skanskavagor@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Där country möter rock och pop i harmoni. Som en trio med tre röster och två gitarrer tar vi er på en resa genom decennierna, från folkrock-klassiker till mer moderna country-sound. Vi väver samman Fleetwood Macs legendariska melodier med The Cranberries distinkta sound, och förvandlar elektroniska hits till akustiska pärlor. Med Kal P. Dal som en av våra skånska favoriter visar vi att musiken inte känner några gränser – varken geografiska eller genremässiga.
-baseurl: "/skanskavagor" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # no subpath for custom domain
+url: "https://skanskavagor.se" # set to your custom domain
 instagram_username: skanskavagorofficial
 facebook_username: profile.php?id=61576691256871
 

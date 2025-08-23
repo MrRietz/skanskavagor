@@ -130,6 +130,33 @@ permalink: /galleri.html
   z-index: 10001;
   text-shadow: 0 2px 8px #000;
 }
+@media (max-width: 700px) {
+  .hero {
+    padding: 1.2em 0.3em 1.2em 0.3em;
+  }
+  .hero-title {
+    font-size: 1.3em;
+  }
+  .gallery-list, .video-list {
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+  }
+  .gallery-card, .video-card {
+    min-width: 0;
+    width: 98vw;
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
+  .gallery-card img {
+    max-width: 95vw;
+    max-height: 180px;
+  }
+  .video-card .video-wrapper {
+    padding-bottom: 56.25%;
+    min-height: 180px;
+  }
+}
 </style>
 
 <div class="hero">
