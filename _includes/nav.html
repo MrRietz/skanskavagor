@@ -117,7 +117,7 @@
       display: none;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 1200px) {
       .nav-container {
         flex-wrap: wrap;
       }
@@ -148,34 +148,88 @@
     }
   </style>
   <div class="nav-container">
-    <a href="{{ site.baseurl }}/" class="nav-logo" style="margin-right:2em;">
-      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor Logo" />
+    <a
+      href="{{ site.baseurl }}/"
+      class="nav-logo"
+      style="margin-right:2em;"
+    >
+      <img
+        src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png"
+        alt="Skånska Vågor Logo"
+      />
     </a>
     <div style="display:flex;align-items:center;justify-content:space-between;">
-      <button class="nav-toggle" aria-label="Öppna meny"
-        onclick="document.querySelector('.nav-links').classList.toggle('open')">
-        <svg viewBox="0 0 24 24" fill="none" width="38" height="38" xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true">
-          <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-          <path d="M20 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-          <path d="M20 17L4 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+      <button
+        class="nav-toggle"
+        aria-label="Öppna meny"
+        onclick="document.querySelector('.nav-links').classList.toggle('open')"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          width="38"
+          height="38"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M20 7L4 7"
+            stroke="#ffffff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          ></path>
+          <path
+            d="M20 12L4 12"
+            stroke="#ffffff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          ></path>
+          <path
+            d="M20 17L4 17"
+            stroke="#ffffff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          ></path>
         </svg>
       </button>
       <div class="nav-links">
-        <a href="{{ site.baseurl }}/index.html" class="nav-link">
-          <svg fill="#fff" width="22" height="22" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 495.398 495.398" xml:space="preserve">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <a
+          href="{{ site.baseurl }}/index.html"
+          class="nav-link"
+        >
+          <svg
+            class="nav-icon"
+            fill="#fff"
+            width="22"
+            height="22"
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 495.398 495.398"
+            xml:space="preserve"
+          >
+            <g
+              id="SVGRepo_bgCarrier"
+              stroke-width="0"
+            ></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
             <g id="SVGRepo_iconCarrier">
               <g>
                 <g>
                   <g>
                     <path
-                      d="M487.083,225.514l-75.08-75.08V63.704c0-15.682-12.708-28.391-28.413-28.391c-15.669,0-28.377,12.709-28.377,28.391 v29.941L299.31,37.74c-27.639-27.624-75.694-27.575-103.27,0.05L8.312,225.514c-11.082,11.104-11.082,29.071,0,40.158 c11.087,11.101,29.089,11.101,40.172,0l187.71-187.729c6.115-6.083,16.893-6.083,22.976-0.018l187.742,187.747 c5.567,5.551,12.825,8.312,20.081,8.312c7.271,0,14.541-2.764,20.091-8.312C498.17,254.586,498.17,236.619,487.083,225.514z">
+                      d="M487.083,225.514l-75.08-75.08V63.704c0-15.682-12.708-28.391-28.413-28.391c-15.669,0-28.377,12.709-28.377,28.391 v29.941L299.31,37.74c-27.639-27.624-75.694-27.575-103.27,0.05L8.312,225.514c-11.082,11.104-11.082,29.071,0,40.158 c11.087,11.101,29.089,11.101,40.172,0l187.71-187.729c6.115-6.083,16.893-6.083,22.976-0.018l187.742,187.747 c5.567,5.551,12.825,8.312,20.081,8.312c7.271,0,14.541-2.764,20.091-8.312C498.17,254.586,498.17,236.619,487.083,225.514z"
+                    >
                     </path>
                     <path
-                      d="M257.561,131.836c-5.454-5.451-14.285-5.451-19.723,0L72.712,296.913c-2.607,2.606-4.085,6.164-4.085,9.877v120.401 c0,28.253,22.908,51.16,51.16,51.16h81.754v-126.61h92.299v126.61h81.755c28.251,0,51.159-22.907,51.159-51.159V306.79 c0-3.713-1.465-7.271-4.085-9.877L257.561,131.836z">
+                      d="M257.561,131.836c-5.454-5.451-14.285-5.451-19.723,0L72.712,296.913c-2.607,2.606-4.085,6.164-4.085,9.877v120.401 c0,28.253,22.908,51.16,51.16,51.16h81.754v-126.61h92.299v126.61h81.755c28.251,0,51.159-22.907,51.159-51.159V306.79 c0-3.713-1.465-7.271-4.085-9.877L257.561,131.836z"
+                    >
                     </path>
                   </g>
                 </g>
@@ -183,12 +237,31 @@
             </g>
           </svg> Hem
         </a>
-        <a href="{{ site.baseurl }}/spelningar.html"
-          class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}"><svg fill="#fff" version="1.1"
-            width="22" height="22" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <a
+          href="{{ site.baseurl }}/spelningar.html"
+          class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}"
+        >
+          <svg
+            class="nav-icon"
+            fill="#fff"
+            version="1.1"
+            width="22"
+            height="22"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 24 24"
+            xml:space="preserve"
+          >
+            <g
+              id="SVGRepo_bgCarrier"
+              stroke-width="0"
+            ></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
             <g id="SVGRepo_iconCarrier">
               <style type="text/css">
                 .st0 {
@@ -196,35 +269,104 @@
                 }
               </style>
               <path
-                d="M6,2v2H5C3.9,4,3,4.9,3,6v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6z M5,9h14v11H5V9z">
+                d="M6,2v2H5C3.9,4,3,4.9,3,6v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6z M5,9h14v11H5V9z"
+              >
               </path>
               <path
                 d="M15.9,18.3l-2.4-1.5L11,18.3l0.6-2.7l-2.1-1.8l2.8-0.2l1.1-2.6l1.1,2.6l2.8,0.3l-2.1,1.8L15.9,18.3z">
               </path>
-              <rect class="st0" width="24" height="24"></rect>
+              <rect
+                class="st0"
+                width="24"
+                height="24"
+              ></rect>
             </g>
           </svg>Spelningar</a>
-        <a href="{{ site.baseurl }}/bokning.html"
-          class="nav-link{% if page.url == '/bokning.html' %} selected{% endif %}"><svg width="22" height="22"
-            viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
-            <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
+        <a
+          href="{{ site.baseurl }}/bokning.html"
+          class="nav-link{% if page.url == '/bokning.html' %} selected{% endif %}"
+        ><svg
+            class="nav-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            style="vertical-align: middle; margin-right: 0.5em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="3"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <path
+              d="M3 7l9 6 9-6"
+              stroke="#fff"
+              stroke-width="2"
+            />
           </svg>Bokning</a>
-        <a href="{{ site.baseurl }}/medlemmar.html"
-          class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}"><svg width="22" height="22"
-            viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2" />
-            <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" stroke-width="2" />
+        <a
+          href="{{ site.baseurl }}/medlemmar.html"
+          class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}"
+        ><svg
+            class="nav-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            style="vertical-align: middle; margin-right: 0.5em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="8"
+              r="4"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <path
+              d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6"
+              stroke="#fff"
+              stroke-width="2"
+            />
           </svg>Bandmedlemmar</a>
-        <a href="{{ site.baseurl }}/galleri.html"
-          class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}"><svg width="22" height="22"
-            viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="2" />
-            <circle cx="8" cy="10" r="2" stroke="#fff" stroke-width="2" />
-            <path d="M21 19l-5.5-7-4.5 6-3-4-4 5" stroke="#fff" stroke-width="2" />
+        <a
+          href="{{ site.baseurl }}/galleri.html"
+          class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}"
+        ><svg
+            class="nav-icon"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            style="vertical-align: middle; margin-right: 0.5em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <circle
+              cx="8"
+              cy="10"
+              r="2"
+              stroke="#fff"
+              stroke-width="2"
+            />
+            <path
+              d="M21 19l-5.5-7-4.5 6-3-4-4 5"
+              stroke="#fff"
+              stroke-width="2"
+            />
           </svg>Galleri</a>
       </div>
     </div>
