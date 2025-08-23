@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Skånska Vågor
+title: Hem
 ---
 
 <style>
@@ -16,7 +16,10 @@ title: Skånska Vågor
   .hero-logo {
     max-width: 320px;
     margin-bottom: 1.5em;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18),
+      0 1.5px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    background: #fff;
   }
   .hero-title {
     font-size: 2.5em;
@@ -74,25 +77,29 @@ title: Skånska Vågor
     color: #333;
     margin-bottom: 0.3em;
   }
-  .hero-gallery {
+  .hero-gallery-row {
     display: flex;
-    gap: 2.5em;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    margin-top: 2em;
+    gap: 2.5em;
+    margin-bottom: 1.5em;
+    flex-wrap: wrap;
   }
-  .hero-gallery img {
-    max-width: 180px;
-    max-height: 120px;
+  .hero-gallery-img {
+    height: 300px;
+    width: auto;
+    max-width: 400px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     background: #fff;
     padding: 0.3em;
+    object-fit: cover;
+    flex: 0 1 180px;
+    display: block;
   }
   .booking-widget {
     margin-top: 2.5em;
-    max-width: 600px;
-    width: 100%;
+    max-width: 98vw;
     background: #fff;
     border-radius: 14px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
@@ -152,74 +159,72 @@ title: Skånska Vågor
     cursor: pointer;
     transition: background 0.2s;
   }
-
+  @media (max-width: 900px) {
+    .hero-gallery-row {
+      flex-direction: column;
+      gap: 1.2em;
+    }
+    .hero-gallery-img {
+      max-width: 95vw;
+      max-height: 180px;
+      height: 180px;
+    }
+  }
   @media (max-width: 700px) {
     .hero {
       padding: 2em 3vw 2em 3vw;
     }
-    .hero-logo {
-      max-width: 95vw;
-      width: 100%;
-    }
-    .hero-title {
-      font-size: 1.5em;
-    }
-    .hero-desc {
-      font-size: 1em;
-      max-width: 98vw;
-    }
     .hero-links {
       flex-direction: column;
-      gap: 0.7em;
+      gap: 1em;
       width: 100%;
-      align-items: center;
     }
     .hero-links a {
+      display: block;
       width: 100%;
-      text-align: center;
       box-sizing: border-box;
-    }
-    .hero-band {
-      max-width: 98vw;
-      padding: 1.5em 3vw;
-    }
-    .hero-gallery {
-      flex-direction: column;
-      gap: 1.5em;
-      align-items: center;
-    }
-    .hero-gallery img {
-      max-width: 95vw;
-      max-height: 180px;
-    }
-    .booking-widget {
-      max-width: 98vw !important;
-      padding: 2em 3vw 2em 3vw !important;
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 </style>
 
 <div class="hero">
-  <img
-    src="{{ site.baseurl }}/public/img/skanska_profile_bild.png"
-    alt="Skånska Vågor"
-    class="hero-logo"
-    style="max-width: 100%; width: 800px"
-  />
+  <div class="hero-gallery-row">
+    <img
+      src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
+      alt="Galleri 1"
+      class="hero-gallery-img"
+    />
+    <img
+      src="{{ site.baseurl }}/public/img/skanska_profile_bild.png"
+      alt="Skånska Vågor"
+      class="hero-gallery-img"
+    />
+    <img
+      src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
+      alt="Galleri 2"
+      class="hero-gallery-img"
+    />
+  </div>
+  <h1>Om Skånska Vågor</h1>
   <div class="hero-desc">
-    Där country möter rock och pop i harmoni. Som en trio med tre röster och två
-    gitarrer tar vi er på en resa genom decennierna, från folkrock-klassiker
-    till mer moderna country-sound. Vi väver samman Fleetwood Macs legendariska
-    melodier med The Cranberries distinkta sound, och förvandlar elektroniska
-    hits till akustiska pärlor. Med Kal P. Dal som en av våra skånska favoriter
-    visar vi att musiken inte känner några gränser – varken geografiska eller
-    genremässiga.
+    Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
+    en unik blandning av country, rock och pop. Med passion och spelglädje tar
+    vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
+    och moderna countryhits till akustiska tolkningar av välkända låtar. Vi
+    hyllar både legendariska band som Fleetwood Mac och The Cranberries, och ger
+    nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal
+    P. Dal som skånska inspirationskällor visar vi att musik kan förena
+    människor över alla gränser – oavsett genre eller ursprung. Välkommen att
+    uppleva vår musik live!
   </div>
   <div class="hero-links">
     <a href="{{ site.baseurl }}/spelningar.html">🎤 Se våra spelningar</a>
     <a href="{{ site.baseurl }}/bokning.html">📩 Boka oss nu</a>
     <a href="{{ site.baseurl }}/medlemmar.html">👤 Läs om bandet</a>
-    <a href="{{ site.baseurl }}/galleri.html">🖼️ Se bilder</a>
+    <a href="{{ site.baseurl }}/galleri.html">🖼️ Se galleri</a>
   </div>
   <div class="hero-band">
     <h2>Bandet</h2>
@@ -229,16 +234,7 @@ title: Skånska Vågor
       <li><b>Andre</b> – gitarr/sång</li>
     </ul>
   </div>
-  <div class="hero-gallery">
-    <img
-      src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
-      alt="Galleri 1"
-    />
-    <img
-      src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
-      alt="Galleri 2"
-    />
-  </div>
+
   <div class="booking-widget">
     <div class="widget-title">Boka oss</div>
     <div class="widget-desc">
