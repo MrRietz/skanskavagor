@@ -14,6 +14,7 @@ permalink: /spelningar.html
     padding: 2.5em 1em 2em 1em;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
   }
+
   .hero-title {
     font-size: 2.2em;
     font-weight: 700;
@@ -22,6 +23,7 @@ permalink: /spelningar.html
     letter-spacing: 0.03em;
     text-align: center;
   }
+
   .gigs-list {
     display: flex;
     flex-wrap: wrap;
@@ -29,12 +31,13 @@ permalink: /spelningar.html
     justify-content: center;
     margin-top: 2em;
   }
+
   .gig-card {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.5em 1.2em;
-    width: 320px;
+    width: 500px;
     height: 160px;
     margin-bottom: 1em;
     display: flex;
@@ -42,17 +45,20 @@ permalink: /spelningar.html
     align-items: flex-start;
     box-sizing: border-box;
   }
+
   .gig-date {
     font-size: 1.1em;
     color: #009688;
     font-weight: 600;
     margin-bottom: 0.3em;
   }
+
   .gig-place {
     font-size: 1.1em;
     color: #333;
     margin-bottom: 0.5em;
   }
+
   .gig-desc {
     font-size: 1em;
     color: #555;
@@ -62,21 +68,25 @@ permalink: /spelningar.html
     .hero {
       padding: 1.2em 0.3em 1.2em 0.3em;
     }
+
     .hero-title {
       font-size: 1.3em;
     }
+
     .gigs-list {
       flex-direction: column;
       gap: 1em;
       align-items: center;
     }
+
     .gig-card {
       min-width: 0;
       width: 98vw;
       max-width: 98vw;
       padding: 1em 0.5em;
     }
-    .hero > div {
+
+    .hero>div {
       width: 100% !important;
       display: flex;
       flex-direction: column;
@@ -84,7 +94,8 @@ permalink: /spelningar.html
       justify-content: center;
       gap: 2em;
     }
-    .hero > div > div {
+
+    .hero>div>div {
       min-width: 0 !important;
       max-width: 100% !important;
       width: 100% !important;
@@ -95,54 +106,48 @@ permalink: /spelningar.html
 
 <div class="hero">
   <div class="hero-title">Spelningar</div>
-  <div
-    style="
+  <div style="
       display: flex;
       flex-wrap: wrap;
       gap: 3em;
       width: 100%;
       justify-content: center;
-    "
-  >
+    ">
     <div style="min-width: 300px; max-width: 500px">
-      <h2
-        style="
+      <h2 style="
           color: #009688;
           font-size: 1.3em;
           margin-bottom: 1em;
           text-align: center;
-        "
-      >
+        ">
         Kommande spelningar
       </h2>
       <div class="gigs-list">
-        <div
-          style="
-            width: 100%;
-            text-align: center;
-            color: #888;
-            font-size: 1.1em;
-            padding: 2em 0;
-          "
-        >
-          Just nu finns inga kommande spelningar.<br />
+        <div class="gig-card">
+          <div class="gig-date">8 oktober kl 19</div>
+          <div class="gig-place">Kollektivkrogen - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
+              target="_blank _noopener _noreferrer">Vägbeskrivning</a>
+          </div>
+          <div class="gig-desc">
+            Spelning på Kollektivkrogen i Malmö. Fri entré!
+          </div>
+        </div>
+        <!--Just nu finns inga kommande spelningar.<br />
           <a
             href="{{ site.baseurl }}/bokning.html"
             style="color: #009688; text-decoration: underline; font-weight: 600"
             >Boka oss här!</a
-          >
-        </div>
+          >-->
+
       </div>
     </div>
     <div style="min-width: 300px; max-width: 500px">
-      <h2
-        style="
+      <h2 style="
           color: #009688;
           font-size: 1.3em;
           margin-bottom: 1em;
           text-align: center;
-        "
-      >
+        ">
         Föregående spelningar
       </h2>
       <div class="gigs-list">
