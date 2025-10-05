@@ -86,7 +86,7 @@ permalink: /medlemmar.html
       </div>
     </div>
     <div class="member-card">
-      <img src="{{ site.baseurl }}/public/img/robin.png" alt="Robin" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12 px;" />
+      <img src="{{ site.baseurl }}/public/img/robin.png" alt="Robin" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12px;" />
       <div class="member-name">Robin</div>
       <div class="member-role">Gitarr &amp; sång</div>
       <div class="member-desc" style="margin-top:0.8em;color:#555;text-align:center;line-height:1.35;">
