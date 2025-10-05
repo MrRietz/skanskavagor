@@ -159,17 +159,68 @@ permalink: /galleri.html
 }
 </style>
 
+<!-- Carousel styles -->
+<style>
+/* Layout: buttons + track in one row, dots centered below */
+.video-carousel { display:flex; flex-direction:column; align-items:center; gap:12px; justify-content:center; margin-top:1em; }
+.controls-row { display:flex; align-items:center; gap:12px; width:100%; justify-content:center; }
+.carousel-track-wrapper { width: 640px; max-width: 90vw; overflow: hidden; }
+.carousel-track { list-style: none; display:flex; padding:0; margin:0; transition: transform 0.45s ease; }
+.carousel-slide { min-width: 100%; box-sizing: border-box; display:flex; justify-content:center; }
+.carousel-btn { background:#009688; color:#fff; border:0; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:1.1em; }
+.carousel-btn:disabled { opacity:0.5; cursor:default; }
+.carousel-dots { display:flex; gap:8px; justify-content:center; align-items:center; width:100%; margin-top:8px; }
+.carousel-dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; border:0; }
+.carousel-dot.active { background:#009688; }
+
+@media (max-width:700px) {
+  .video-carousel { gap:8px; }
+  .controls-row { flex-direction:row; }
+  .carousel-btn { padding:6px 10px; }
+  .carousel-track-wrapper { max-width: 95vw; }
+}
+</style>
+
 <div class="hero">
   <div class="hero-title">Galleri</div>
   <div class="gallery-section-title">Video</div>
-  <div class="video-list">
-    <div class="video-card">
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw" title="YouTube video" allowfullscreen></iframe>
+  <!-- Carousel for embedded YouTube videos -->
+  <div class="video-carousel" id="videoCarousel">
+    <div class="controls-row">
+      <button class="carousel-btn prev" aria-label="Föregående">◀</button>
+      <div class="carousel-track-wrapper">
+        <ul class="carousel-track">
+        <li class="carousel-slide">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/bhsHd3c4Spo?si=UjGOrbrzRnXhtMsn&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="gallery-caption">Liveklipp</div>
+          </div>
+        </li>
+        <li class="carousel-slide">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw?enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="gallery-caption">Video från Skånska Vågor</div>
+          </div>
+        </li>
+
+        <li class="carousel-slide">
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/3AZSVCrPNs8?si=6sGKvnAwxIVJ-nRm&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="gallery-caption">Liveklipp</div>
+          </div>
+        </li>
+      </ul>
       </div>
-      <div class="gallery-caption">Video från Skånska Vågor</div>
+      <button class="carousel-btn next" aria-label="Nästa">▶</button>
     </div>
-    <!-- Lägg till fler videos här -->
+    <div class="carousel-dots" aria-hidden="false"></div>
+
   </div>
   <div class="gallery-section-title">Bilder</div>
   <div class="gallery-list">
@@ -209,4 +260,110 @@ document.addEventListener('keydown', function(e) {
     document.getElementById('lightbox').classList.remove('active');
   }
 });
+</script>
+
+<!-- Carousel script -->
+<script>
+;(function(){
+  var track = document.querySelector('.carousel-track');
+  if (!track) return;
+  var slides = Array.from(track.children);
+  var prevBtn = document.querySelector('.carousel-btn.prev');
+  var nextBtn = document.querySelector('.carousel-btn.next');
+  var dotsContainer = document.querySelector('.carousel-dots');
+  var currentIndex = 0;
+  var wrap = document.querySelector('.carousel-track-wrapper');
+  // Touch / pointer drag state
+  var isDragging = false;
+  var startX = 0;
+  var dragDelta = 0;
+
+  // Create dots
+  slides.forEach(function(_, i){
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i===0? ' active':'');
+    dot.setAttribute('data-index', i);
+    dot.addEventListener('click', function(){ goToSlide(i); });
+    dotsContainer.appendChild(dot);
+  });
+
+  function update() {
+    var wrap = document.querySelector('.carousel-track-wrapper');
+    var width = wrap.clientWidth;
+    track.style.transform = 'translateX(' + (-currentIndex * width) + 'px)';
+    Array.from(dotsContainer.children).forEach(function(d, i){ d.classList.toggle('active', i===currentIndex); });
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === slides.length -1;
+  }
+
+  function goToSlide(i) {
+    // Pause all YouTube iframes before changing slide
+    track.querySelectorAll('iframe').forEach(function(iframe){
+      try {
+        // send postMessage to YT iframe to pause
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'pauseVideo',
+          args: []
+        }), '*');
+      } catch (e) {
+        // ignore
+      }
+    });
+
+    currentIndex = Math.max(0, Math.min(i, slides.length-1));
+    update();
+    resetAutoplay();
+  }
+
+  prevBtn.addEventListener('click', function(){ goToSlide(currentIndex-1); });
+  nextBtn.addEventListener('click', function(){ goToSlide(currentIndex+1); });
+
+  // Autoplay (advance every 7s)
+  var autoplayInterval = 300000, autoplayId = null;
+  function startAutoplay(){ autoplayId = setInterval(function(){
+    currentIndex = (currentIndex + 1) % slides.length; update();
+  }, autoplayInterval); }
+  function resetAutoplay(){ if (autoplayId) { clearInterval(autoplayId); } startAutoplay(); }
+  startAutoplay();
+
+  // Recalculate on resize
+  window.addEventListener('resize', update);
+  // Pointer / touch swipe support
+  if (wrap) {
+    wrap.style.touchAction = 'pan-y'; // allow vertical scrolling
+    wrap.addEventListener('pointerdown', function(e){
+      isDragging = true; startX = e.clientX; dragDelta = 0; if (autoplayId) clearInterval(autoplayId);
+      track.style.transition = 'none';
+      wrap.setPointerCapture(e.pointerId);
+    });
+    wrap.addEventListener('pointermove', function(e){
+      if (!isDragging) return;
+      dragDelta = e.clientX - startX;
+      var width = wrap.clientWidth;
+      track.style.transform = 'translateX(' + ((-currentIndex * width) + dragDelta) + 'px)';
+    });
+    function endDrag(e){
+      if (!isDragging) return; isDragging = false; track.style.transition = '';
+      var width = wrap.clientWidth;
+      // threshold at 20% of width
+      if (Math.abs(dragDelta) > width * 0.2) {
+        if (dragDelta < 0) { goToSlide(currentIndex + 1); } else { goToSlide(currentIndex - 1); }
+      } else {
+        // snap back
+        update();
+      }
+      try { wrap.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+    wrap.addEventListener('pointerup', endDrag);
+    wrap.addEventListener('pointercancel', endDrag);
+    wrap.addEventListener('pointerleave', endDrag);
+  }
+  // Pause autoplay when user focuses any iframe
+  track.querySelectorAll('iframe').forEach(function(frm){
+    frm.addEventListener('focus', function(){ if (autoplayId) clearInterval(autoplayId); });
+  });
+  // Initial layout
+  update();
+})();
 </script>

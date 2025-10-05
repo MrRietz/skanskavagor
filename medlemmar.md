@@ -78,16 +78,28 @@ permalink: /medlemmar.html
   <div class="hero-title">Bandmedlemmar</div>
   <div class="members-list">
     <div class="member-card">
+      <img src="{{ site.baseurl }}/public/img/mia.png" alt="Mia" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12px;" />
       <div class="member-name">Mia</div>
       <div class="member-role">Sång</div>
+      <div class="member-desc" style="margin-top:0.8em;color:#555;text-align:center;line-height:1.35;">
+        Musiken är inte bara något Mia gör – det är något hon är. Med sång, dans och rytm som livslånga följeslagare förmedlar hon känslor och närvaro på scenen. Hon tror på kraften i gemenskap, där varje medlem och publikens energi skapar ett flöde där musiken får tala.
+      </div>
     </div>
     <div class="member-card">
+      <img src="{{ site.baseurl }}/public/img/robin.png" alt="Robin" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12 px;" />
       <div class="member-name">Robin</div>
       <div class="member-role">Gitarr &amp; sång</div>
+      <div class="member-desc" style="margin-top:0.8em;color:#555;text-align:center;line-height:1.35;">
+        Robin är en energisk gitarrist som spelar med hjärtat först. Han är spontan och kreativ,  ofta med oväntade infall som ger musiken liv. Sången är intensiv och uttrycksfull – ibland vild, ibland sårbar.
+      </div>
     </div>
     <div class="member-card">
-      <div class="member-name">Andre</div>
+      <img src="{{ site.baseurl }}/public/img/andre.png" alt="André" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:12px;" />
+      <div class="member-name">André</div>
       <div class="member-role">Gitarr &amp; sång</div>
+      <div class="member-desc" style="margin-top:0.8em;color:#555;text-align:center;line-height:1.35;">
+        Andre är en trygg och eftertänksam gitarrist som utgör ett lugn i bandet. Han har ett säkert grepp om tempo och rytm, spelar med känsla snarare än ego, och bidrar ibland med sång. En stabil närvaro som håller ihop helheten.
+      </div>
     </div>
   </div>
 </div>
