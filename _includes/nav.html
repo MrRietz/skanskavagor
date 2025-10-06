@@ -117,6 +117,79 @@
       display: none;
     }
 
+    /* Mobile drawer styles */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 98;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .nav-overlay.open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 100vh;
+      background: #009688;
+      box-shadow: -6px 0 24px rgba(0, 0, 0, 0.2);
+      z-index: 99;
+      padding: 1.2em 0.6em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+      /* hide by translating fully to the right; use transform for smoother, more reliable animation */
+      /* use slightly more than 100% to avoid a visible sliver on some viewports */
+      transform: translateX(110%);
+      transition: transform 0.25s ease;
+      will-change: transform;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .nav-drawer.open {
+      transform: translateX(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .nav-close {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.6em;
+      text-align: right;
+      padding: 0.2em 0.4em;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .nav-drawer .nav-links {
+      position: static;
+      top: auto;
+      right: auto;
+      width: 100%;
+      max-width: none;
+      box-shadow: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-drawer .nav-link {
+      padding: 0.9em 1em;
+    }
+
     @media (max-width: 1200px) {
       .nav-container {
         flex-wrap: wrap;
@@ -151,8 +224,7 @@
       <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor Logo" />
     </a>
     <div style="display:flex;align-items:center;justify-content:space-between;">
-      <button class="nav-toggle" aria-label="Öppna meny"
-        onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <button class="nav-toggle" aria-label="Öppna meny">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" width="38" height="38" xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true">
           <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
@@ -230,4 +302,95 @@
           </svg>Galleri</a>
       </div>
     </div>
+
+    <!-- Drawer + overlay for mobile nav -->
+    <div class="nav-overlay" aria-hidden="true"></div>
+    <aside class="nav-drawer" aria-hidden="true">
+      <button class="nav-close" aria-label="Stäng meny">&times;</button>
+      <div class="nav-links">
+        <!-- links are duplicated here via CSS reflow (same markup but kept for simplicity) -->
+        <!-- existing .nav-links element will be used for desktop, this drawer copy is separate for mobile -->
+      </div>
+    </aside>
 </nav>
+
+<script>
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var overlay = document.querySelector('.nav-overlay');
+    var drawer = document.querySelector('.nav-drawer');
+    var closeBtn = document.querySelector('.nav-close');
+    // prefer the .nav-links that is inside .nav-container (desktop links)
+    var desktopLinks = document.querySelector('.nav-container .nav-links') || document.querySelector('.nav-links');
+    // We'll move the existing desktopLinks into the drawer when opening on mobile
+    var originalParent = desktopLinks ? desktopLinks.parentElement : null;
+    var originalNext = desktopLinks ? desktopLinks.nextSibling : null;
+    var linksMoved = false;
+    var lastFocused = null;
+
+    function open() {
+      overlay.classList.add('open');
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawer.setAttribute('role', 'dialog');
+      drawer.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-hidden', 'false');
+      if (toggle) toggle.setAttribute('aria-expanded', 'true');
+      // Move nav-links into drawer if not already moved
+      if (desktopLinks && !linksMoved) {
+        drawer.appendChild(desktopLinks);
+        // ensure clicking a link closes the drawer
+        Array.from(desktopLinks.querySelectorAll('.nav-link')).forEach(function (a) { a.addEventListener('click', close); });
+        linksMoved = true;
+      }
+      // save last focused element and move focus into the drawer
+      lastFocused = document.activeElement;
+      // focus the first focusable element inside drawer (prefer the close button then first link)
+      var focusTarget = drawer.querySelector('.nav-close') || drawer.querySelector('.nav-link');
+      if (focusTarget) focusTarget.focus();
+      // add keydown listener to trap focus
+      document.addEventListener('keydown', trapTabKey);
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      overlay.classList.remove('open');
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('aria-hidden', 'true');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      // move links back to original place if we moved them
+      if (desktopLinks && linksMoved && originalParent) {
+        originalParent.insertBefore(desktopLinks, originalNext);
+        linksMoved = false;
+      }
+      // remove focus trap listener and restore focus
+      document.removeEventListener('keydown', trapTabKey);
+      try { if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus(); } catch (e) { }
+      document.body.style.overflow = '';
+    }
+
+    // focus trap handler: keep Tab/Shift+Tab inside the drawer when open
+    function trapTabKey(e) {
+      if (!drawer.classList.contains('open')) return;
+      if (e.key !== 'Tab') return;
+      var focusable = Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      if (focusable.length === 0) { e.preventDefault(); return; }
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        if (drawer.classList.contains('open')) close(); else open();
+      });
+    }
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+</script>

@@ -173,11 +173,42 @@ permalink: /galleri.html
 .carousel-dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; border:0; }
 .carousel-dot.active { background:#009688; }
 
+  .controls-bottom { display:flex; align-items:center; gap:12px; justify-content:center; margin-top:8px; }
+.controls-bottom .carousel-btn { padding:6px 10px; }
+
 @media (max-width:700px) {
   .video-carousel { gap:8px; }
   .controls-row { flex-direction:row; }
   .carousel-btn { padding:6px 10px; }
   .carousel-track-wrapper { max-width: 95vw; }
+  /* Side buttons removed; bottom controls are always visible */
+}
+</style>
+
+<!-- Swipe overlay styles -->
+<style>
+.video-swipe-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.05));
+  color: #fff;
+  z-index: 3;
+  cursor: grab;
+}
+.video-swipe-overlay:active { cursor: grabbing; }
+.swipe-label {
+  background: rgba(0,0,0,0.55);
+  padding: 0.35em 0.6em;
+  border-radius: 999px;
+  font-size: 0.95em;
+  color: #fff;
+}
+@media (min-width: 900px) {
+  /* Hide overlay on desktop where clicking the iframe is okay */
+  .video-swipe-overlay { display: none; }
 }
 </style>
 
@@ -187,12 +218,12 @@ permalink: /galleri.html
   <!-- Carousel for embedded YouTube videos -->
   <div class="video-carousel" id="videoCarousel">
     <div class="controls-row">
-      <button class="carousel-btn prev" aria-label="Föregående">◀</button>
       <div class="carousel-track-wrapper">
         <ul class="carousel-track">
         <li class="carousel-slide">
           <div class="video-card">
             <div class="video-wrapper">
+              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
               <iframe src="https://www.youtube.com/embed/bhsHd3c4Spo?si=UjGOrbrzRnXhtMsn&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="gallery-caption">Liveklipp</div>
@@ -201,25 +232,29 @@ permalink: /galleri.html
         <li class="carousel-slide">
           <div class="video-card">
             <div class="video-wrapper">
+              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
               <iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw?enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="gallery-caption">Video från Skånska Vågor</div>
           </div>
         </li>
-
         <li class="carousel-slide">
           <div class="video-card">
             <div class="video-wrapper">
+              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
               <iframe src="https://www.youtube.com/embed/3AZSVCrPNs8?si=6sGKvnAwxIVJ-nRm&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="gallery-caption">Liveklipp</div>
           </div>
         </li>
       </ul>
-      </div>
+      </div>  
+    </div>
+    <div class="controls-bottom">
+      <button class="carousel-btn prev" aria-label="Föregående">◀</button>
+      <div class="carousel-dots" aria-hidden="false"></div>
       <button class="carousel-btn next" aria-label="Nästa">▶</button>
     </div>
-    <div class="carousel-dots" aria-hidden="false"></div>
 
   </div>
   <div class="gallery-section-title">Bilder</div>
@@ -268,8 +303,8 @@ document.addEventListener('keydown', function(e) {
   var track = document.querySelector('.carousel-track');
   if (!track) return;
   var slides = Array.from(track.children);
-  var prevBtn = document.querySelector('.carousel-btn.prev');
-  var nextBtn = document.querySelector('.carousel-btn.next');
+  var prevBtns = document.querySelectorAll('.carousel-btn.prev');
+  var nextBtns = document.querySelectorAll('.carousel-btn.next');
   var dotsContainer = document.querySelector('.carousel-dots');
   var currentIndex = 0;
   var wrap = document.querySelector('.carousel-track-wrapper');
@@ -292,8 +327,9 @@ document.addEventListener('keydown', function(e) {
     var width = wrap.clientWidth;
     track.style.transform = 'translateX(' + (-currentIndex * width) + 'px)';
     Array.from(dotsContainer.children).forEach(function(d, i){ d.classList.toggle('active', i===currentIndex); });
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex === slides.length -1;
+  // enable/disable all prev/next buttons depending on current index
+  prevBtns.forEach(function(b){ b.disabled = currentIndex === 0; });
+  nextBtns.forEach(function(b){ b.disabled = currentIndex === slides.length - 1; });
   }
 
   function goToSlide(i) {
@@ -316,8 +352,8 @@ document.addEventListener('keydown', function(e) {
     resetAutoplay();
   }
 
-  prevBtn.addEventListener('click', function(){ goToSlide(currentIndex-1); });
-  nextBtn.addEventListener('click', function(){ goToSlide(currentIndex+1); });
+  prevBtns.forEach(function(b){ b.addEventListener('click', function(){ goToSlide(currentIndex-1); }); });
+  nextBtns.forEach(function(b){ b.addEventListener('click', function(){ goToSlide(currentIndex+1); }); });
 
   // Autoplay (advance every 7s)
   var autoplayInterval = 300000, autoplayId = null;
@@ -329,36 +365,49 @@ document.addEventListener('keydown', function(e) {
 
   // Recalculate on resize
   window.addEventListener('resize', update);
-  // Pointer / touch swipe support
-  if (wrap) {
-    wrap.style.touchAction = 'pan-y'; // allow vertical scrolling
-    wrap.addEventListener('pointerdown', function(e){
+  // Pointer / touch swipe support attached to overlay elements so iframe won't block gestures
+  var overlays = document.querySelectorAll('.video-swipe-overlay');
+  overlays.forEach(function(overlay){
+    overlay.style.touchAction = 'pan-y';
+    overlay.addEventListener('pointerdown', function(e){
       isDragging = true; startX = e.clientX; dragDelta = 0; if (autoplayId) clearInterval(autoplayId);
       track.style.transition = 'none';
-      wrap.setPointerCapture(e.pointerId);
+      overlay.setPointerCapture(e.pointerId);
     });
-    wrap.addEventListener('pointermove', function(e){
+    overlay.addEventListener('pointermove', function(e){
       if (!isDragging) return;
       dragDelta = e.clientX - startX;
       var width = wrap.clientWidth;
       track.style.transform = 'translateX(' + ((-currentIndex * width) + dragDelta) + 'px)';
     });
-    function endDrag(e){
+    function endDragOverlay(e){
       if (!isDragging) return; isDragging = false; track.style.transition = '';
       var width = wrap.clientWidth;
+      // If it's a tap (small move), treat as tap-to-reveal overlay
+      if (Math.abs(dragDelta) < 6) {
+        // hide overlay so user can interact with iframe
+        overlay.style.display = 'none';
+        // focus iframe if present
+        var iframe = overlay.parentElement.querySelector('iframe');
+        try { iframe && iframe.focus(); } catch (err) {}
+        // pause autoplay while user interacts
+        if (autoplayId) clearInterval(autoplayId);
+        return;
+      }
       // threshold at 20% of width
       if (Math.abs(dragDelta) > width * 0.2) {
         if (dragDelta < 0) { goToSlide(currentIndex + 1); } else { goToSlide(currentIndex - 1); }
       } else {
         // snap back
         update();
+        resetAutoplay();
       }
-      try { wrap.releasePointerCapture(e.pointerId); } catch (err) {}
+      try { overlay.releasePointerCapture(e.pointerId); } catch (err) {}
     }
-    wrap.addEventListener('pointerup', endDrag);
-    wrap.addEventListener('pointercancel', endDrag);
-    wrap.addEventListener('pointerleave', endDrag);
-  }
+    overlay.addEventListener('pointerup', endDragOverlay);
+    overlay.addEventListener('pointercancel', endDragOverlay);
+    overlay.addEventListener('pointerleave', endDragOverlay);
+  });
   // Pause autoplay when user focuses any iframe
   track.querySelectorAll('iframe').forEach(function(frm){
     frm.addEventListener('focus', function(){ if (autoplayId) clearInterval(autoplayId); });

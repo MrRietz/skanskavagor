@@ -5,6 +5,13 @@ title: Hem
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+  /* Make box sizing consistent so widths include padding */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   .hero {
     display: flex;
     flex-direction: column;
@@ -94,7 +101,9 @@ title: Hem
 
   .card {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-    max-width: 98vw;
+    max-width: 650px;
+    /* unified card max width */
+    width: 100%;
     border-radius: 12px;
     background: #fff;
     padding: 1.5em;
@@ -123,7 +132,8 @@ title: Hem
 
   .booking-widget {
     margin-top: 2.5em;
-    max-width: 98vw;
+    max-width: 650px;
+    width: 100%;
     background: #fff;
     border-radius: 14px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
@@ -186,10 +196,14 @@ title: Hem
     gap: 2em;
     justify-content: center;
     margin-top: 1em;
+    width: 100%;
   }
 
   .gig-card {
-    width: 500px;
+    /* Use flex-basis with max-width so cards are uniform but responsive */
+    flex: 0 1 400px;
+    width: 100%;
+    max-width: 400px;
     margin-bottom: 1em;
     display: flex;
     flex-direction: column;
@@ -260,6 +274,19 @@ title: Hem
       text-align: center;
       padding-left: 0;
       padding-right: 0;
+    }
+
+    /* Make all cards take full width on small screens */
+    .card,
+    .booking-widget {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .gig-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+      width: 100%;
     }
   }
 </style>
