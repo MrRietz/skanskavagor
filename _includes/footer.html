@@ -1,68 +1,103 @@
-<footer
-  style="
-    text-align: center;
-    margin: 2em 0 1em 0;
-    color: #666;
-    font-size: 1.08em;
-  "
->
-  <div style="margin-bottom: 0.5em">
-    &copy; {{ site.time | date: '%Y' }} Skånska Vågor
-  </div>
-  <div style="display: inline-flex; gap: 1.2em; align-items: center">
-    <a
-      href="https://www.facebook.com/profile.php?id=61576691256871"
-      target="_blank"
-      aria-label="Facebook"
-      style="color: #4267b2; font-size: 1.5em; text-decoration: none"
-    >
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        style="vertical-align: middle"
-      >
-        <path
-          d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"
-        />
-      </svg>
-    </a>
-    <a
-      href="https://www.instagram.com/skanskavagorofficial"
-      target="_blank"
-      aria-label="Instagram"
-      style="color: #c837ab; font-size: 1.5em; text-decoration: none"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Instagram"
-        role="img"
-        viewBox="0 0 512 512"
-        fill="currentColor"
-        width="1em"
-        height="1em"
-        style="vertical-align: middle"
-      >
-        <rect width="512" height="512" rx="15%" fill="#fff" />
-        <radialGradient id="ig-gradient" cx="0.4" cy="1" r="1">
-          <stop offset="0.1" stop-color="#fd5" />
-          <stop offset="0.5" stop-color="#ff543e" />
-          <stop offset="1" stop-color="#c837ab" />
-        </radialGradient>
-        <rect width="512" height="512" rx="15%" fill="url(#ig-gradient)" />
-        <g fill="none" stroke="#fff" stroke-width="30">
-          <rect width="308" height="308" x="102" y="102" rx="81" />
-          <circle cx="256" cy="256" r="72" />
-          <circle cx="347" cy="165" r="6" />
-        </g>
-      </svg>
-    </a>
-    <a
-      href="{{ site.baseurl }}/bokning.html"
-      aria-label="Boka oss"
-      style="color: #009688; font-size: 1.1em; text-decoration: none"
-      >📩 Boka oss</a
-    >
+<footer class="site-footer">
+  <style>
+    .site-footer {
+      text-align: center;
+      color: #666;
+      font-size: 1.08em;
+    }
+
+    .site-footer .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2em;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .site-footer .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6em;
+      flex: 1 1 60%;
+      min-width: 220px;
+    }
+
+    .site-footer .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width:700px) {
+      .site-footer .footer-row {
+        /* stack items vertically on mobile */
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .site-footer .footer-left {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .site-footer .footer-right {
+        flex: 1 1 100%;
+        margin-top: 0.6em;
+        justify-content: center;
+      }
+    }
+  </style>
+  <div style="margin-bottom: 0.5em">&copy; {{ site.time | date: '%Y' }} Skånska Vågor</div>
+  <div class="footer-row">
+
+    <div class="footer-left">
+
+      <div style="display: inline-flex; gap: 1.2em; align-items: center">
+        <a href="https://www.facebook.com/profile.php?id=61576691256871" target="_blank" aria-label="Facebook"
+          style="color: #4267b2; font-size: 1.5em; text-decoration: none">
+          <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle">
+            <path
+              d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/skanskavagorofficial" target="_blank" aria-label="Instagram"
+          style="color: #c837ab; font-size: 1.5em; text-decoration: none">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Instagram" role="img" viewBox="0 0 512 512"
+            fill="currentColor" width="1em" height="1em" style="vertical-align: middle">
+            <rect width="512" height="512" rx="15%" fill="#fff" />
+            <radialGradient id="ig-gradient" cx="0.4" cy="1" r="1">
+              <stop offset="0.1" stop-color="#fd5" />
+              <stop offset="0.5" stop-color="#ff543e" />
+              <stop offset="1" stop-color="#c837ab" />
+            </radialGradient>
+            <rect width="512" height="512" rx="15%" fill="url(#ig-gradient)" />
+            <g fill="none" stroke="#fff" stroke-width="30">
+              <rect width="308" height="308" x="102" y="102" rx="81" />
+              <circle cx="256" cy="256" r="72" />
+              <circle cx="347" cy="165" r="6" />
+            </g>
+          </svg>
+        </a>
+        <a href="{{ site.baseurl }}/bokning.html" aria-label="Boka oss"
+          style="color: #009688; font-size: 1.1em; text-decoration: none">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#009688"
+            style="vertical-align: middle; margin-right: 0.5em" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
+            <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
+          </svg>Boka oss</a>
+      </div>
+    </div>
+    <div class="footer-right">
+      <span style="color:#444; font-size:0.98em;">Vår samarbetspartner:</span>
+      <a href="https://kryddafesten.se/artist/" target="_blank" rel="noopener noreferrer"
+        style="display:inline-flex;align-items:center;gap:0.6em;text-decoration:none;">
+        <img src="{{ site.baseurl }}/public/img/kryddafesten.png" alt="Krydda Festen - partner"
+          style="height:44px; max-height:6vh; width:auto; display:block; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.12);" />
+      </a>
+    </div>
   </div>
 </footer>
