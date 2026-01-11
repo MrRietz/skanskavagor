@@ -38,7 +38,7 @@ permalink: /spelningar.html
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
     padding: 1.5em 1.2em;
     width: 500px;
-    height: 160px;
+    height: 100%;
     margin-bottom: 1em;
     display: flex;
     flex-direction: column;
@@ -122,14 +122,44 @@ permalink: /spelningar.html
         ">
         Kommande spelningar
       </h2>
-      <div class="gigs-list">
+      <div class="gigs-list" role="list">
+        <article class="gig-card" role="listitem" aria-labelledby="gig-1-title">
+          <time id="gig-1-title" class="gig-date" datetime="2026-02-18">18 februari kl 19</time>
+
+          <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
+
+          <img src="/public/img/logga-kollektivkrogen.png" alt="Robin"
+            style="width:170px;height:170px;object-fit:cover;margin-bottom:12px;">
+          <p class="gig-desc" style="margin-top:.4rem;">
+            <strong style="color:#009688">Fri entré</strong>! Kom i tid — platsen fylls
+            snabbt.
+          </p>
+
+          <div class="gig-actions"
+            style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap; justify-content:center;">
+            <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
+              aria-label="Anmäl dig på Facebook"
+              style="background:#009688; color:#fff; padding:.6rem 1rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:.5rem;">
+              Anmäl dig på Facebook
+            </a>
+
+            <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
+              aria-label="Öppna vägbeskrivning"
+              style="background:transparent; border:2px solid #009688; color:#009688; padding:.5rem .9rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center;">
+              Vägbeskrivning
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!--<div class="gigs-list">
         <div class="gig-card">
           Just nu finns inga kommande spelningar.<br />
           <a href="{{ site.baseurl }}/bokning.html"
             style="color: #009688; text-decoration: underline; font-weight: 600">Boka oss här!</a>
 
         </div>
-      </div>
+      </div>-->
     </div>
     <div style="min-width: 300px; max-width: 500px">
       <h2 style="
