@@ -44,6 +44,7 @@ permalink: /spelningar.html
     flex-direction: column;
     align-items: flex-start;
     box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .gig-date {
@@ -85,11 +86,62 @@ permalink: /spelningar.html
     border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
-    transition: background 0.2s;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .no-gigs-btn:hover {
+  .no-gigs-btn:hover,
+  .no-gigs-btn:focus-visible {
     background: #009688;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 121, 107, 0.35);
+  }
+
+  .no-gigs-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
+  }
+
+  /* Textlänkar i spelningskorten: animerad understrykning */
+  .gig-place a,
+  .gig-desc a {
+    color: #00796b;
+    font-weight: 600;
+    text-decoration: none;
+    background-image: linear-gradient(#00796b, #00796b);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.25s ease, color 0.2s ease;
+  }
+
+  .gig-place a:hover,
+  .gig-desc a:hover,
+  .gig-place a:focus-visible,
+  .gig-desc a:focus-visible {
+    color: #009688;
+    background-image: linear-gradient(#009688, #009688);
+    background-size: 100% 2px;
+  }
+
+  /* Korten lyfter mjukt vid hover */
+  .gig-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 121, 107, 0.16);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .no-gigs-btn,
+    .gig-card,
+    .gig-place a,
+    .gig-desc a {
+      transition: none;
+    }
+
+    .no-gigs-btn:hover,
+    .gig-card:hover {
+      transform: none;
+    }
   }
 
   @media (max-width: 700px) {
@@ -178,7 +230,7 @@ permalink: /spelningar.html
           </div>
         </div>
         <div class="gig-card">
-          <div class="gig-date">18 februari kl 19</div>
+          <div class="gig-date">18 februari 2026 kl 19</div>
           <div class="gig-place">Kollektivkrogen, Malmö - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
               target="_blank" rel="noopener noreferrer"
               style="color: #00796b; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
@@ -193,7 +245,7 @@ permalink: /spelningar.html
           </div>
         </div>
         <div class="gig-card">
-          <div class="gig-date">8 oktober kl 19 2025</div>
+          <div class="gig-date">8 oktober 2025 kl 19</div>
           <div class="gig-place">Kollektivkrogen - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
               target="_blank _noopener _noreferrer"
               style="color: #009688; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
@@ -215,7 +267,7 @@ permalink: /spelningar.html
           </div>
         </div>
         <div class="gig-card">
-          <div class="gig-date">18 juni</div>
+          <div class="gig-date">18 juni 2025</div>
           <div class="gig-place">Kollektivkrogen</div>
           <div class="gig-desc">Spelning på Kollektivkrogen</div>
         </div>
