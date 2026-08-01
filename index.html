@@ -24,12 +24,16 @@ title: Hem
   .stage-banner {
     position: relative;
     width: 100%;
-    min-height: clamp(340px, 58vh, 620px);
+    /* Follow the photo's own 4:3 shape (capped) so cover() crops as little as
+       possible — a short, wide box cut the heads off the outer musicians. */
+    aspect-ratio: 16 / 9;
+    max-height: 78vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     overflow: hidden;
     isolation: isolate;
+    background: #0d2b2d;
   }
 
   .stage-banner__img {
@@ -38,7 +42,8 @@ title: Hem
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 38%;
+    /* Bias toward the top: heads matter more than the stage floor. */
+    object-position: center 22%;
     z-index: -2;
   }
 
@@ -401,6 +406,26 @@ title: Hem
     color: var(--brand-dark);
   }
 
+  .no-gigs {
+    text-align: center;
+    padding: 0.5em 0 0.2em 0;
+  }
+
+  .no-gigs__text {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 auto 1.4em auto;
+  }
+
+  .no-gigs__actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   @media (max-width: 900px) {
     .photo-strip {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -422,11 +447,27 @@ title: Hem
 
   @media (max-width: 700px) {
     .stage-banner {
-      min-height: 62vh;
+      /* Taller than the photo's 4:3 so the band sits in the upper half and the
+         text below it, instead of the wordmark covering the singer. */
+      aspect-ratio: 3 / 4;
+      max-height: none;
+    }
+
+    .stage-banner__img {
+      /* Anchor the band near the top; the empty stage floor takes the overlay. */
+      object-position: center 12%;
+    }
+
+    .stage-banner::after {
+      background: linear-gradient(180deg,
+          rgba(0, 40, 42, 0.45) 0%,
+          rgba(0, 40, 42, 0.1) 22%,
+          rgba(0, 30, 32, 0.6) 52%,
+          rgba(0, 25, 27, 0.93) 78%);
     }
 
     .stage-banner__inner {
-      padding: 3em 6vw 2.2em 6vw;
+      padding: 2.4em 6vw 2em 6vw;
     }
 
     .hero {
@@ -541,30 +582,20 @@ title: Hem
       Kommande spelningar
     </h2>
 
-    <ul class="gigs-list">
-      <li class="gig-card gig-card--centered" aria-labelledby="gig-1-title">
-        <time id="gig-1-title" class="gig-date" datetime="2026-02-18">18 februari kl 19</time>
-
-        <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
-        <img src="{{ site.baseurl }}/public/img/logga-kollektivkrogen.png" alt="Kollektivkrogen" class="gig-card__logo"
-          loading="lazy">
-        <p class="gig-desc">
-          <strong class="gig-free">Fri entré</strong>! Kom i tid — platsen fylls snabbt.
-        </p>
-
-        <div class="gig-actions">
-          <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
-            aria-label="Anmäl dig på Facebook" class="gig-btn gig-btn--primary">
-            Anmäl dig på Facebook
-          </a>
-
-          <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
-            aria-label="Öppna vägbeskrivning" class="gig-btn gig-btn--ghost">
-            Vägbeskrivning
-          </a>
-        </div>
-      </li>
-    </ul>
+    <div class="no-gigs">
+      <p class="no-gigs__text">
+        Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
+        Vill du ha oss till din fest, krog eller ditt evenemang?
+      </p>
+      <div class="no-gigs__actions">
+        <a href="{{ site.baseurl }}/bokning.html" class="gig-btn gig-btn--primary">
+          Boka oss
+        </a>
+        <a href="{{ site.baseurl }}/spelningar.html" class="gig-btn gig-btn--ghost">
+          Se tidigare spelningar
+        </a>
+      </div>
+    </div>
   </div>
 
 

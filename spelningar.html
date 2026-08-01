@@ -64,6 +64,34 @@ permalink: /spelningar.html
     color: #555;
   }
 
+  .no-gigs-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .no-gigs-text {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 1.2em 0;
+  }
+
+  .no-gigs-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #00796b;
+    color: #fff;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .no-gigs-btn:hover {
+    background: #009688;
+  }
+
   @media (max-width: 700px) {
     .hero {
       padding: 1.2em 0.3em 1.2em 0.3em;
@@ -122,44 +150,15 @@ permalink: /spelningar.html
         ">
         Kommande spelningar
       </h2>
-      <div class="gigs-list" role="list">
-        <article class="gig-card" role="listitem" aria-labelledby="gig-1-title">
-          <time id="gig-1-title" class="gig-date" datetime="2026-02-18">18 februari kl 19</time>
-
-          <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
-
-          <img src="/public/img/logga-kollektivkrogen.png" alt="Robin"
-            style="width:170px;height:170px;object-fit:cover;margin-bottom:12px;">
-          <p class="gig-desc" style="margin-top:.4rem;">
-            <strong style="color:#009688">Fri entré</strong>! Kom i tid — platsen fylls
-            snabbt.
+      <div class="gigs-list">
+        <div class="gig-card no-gigs-card">
+          <p class="no-gigs-text">
+            Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
+            Vill du ha oss till din fest, krog eller ditt evenemang?
           </p>
-
-          <div class="gig-actions"
-            style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap; justify-content:center;">
-            <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
-              aria-label="Anmäl dig på Facebook"
-              style="background:#009688; color:#fff; padding:.6rem 1rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:.5rem;">
-              Anmäl dig på Facebook
-            </a>
-
-            <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
-              aria-label="Öppna vägbeskrivning"
-              style="background:transparent; border:2px solid #009688; color:#009688; padding:.5rem .9rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center;">
-              Vägbeskrivning
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!--<div class="gigs-list">
-        <div class="gig-card">
-          Just nu finns inga kommande spelningar.<br />
-          <a href="{{ site.baseurl }}/bokning.html"
-            style="color: #009688; text-decoration: underline; font-weight: 600">Boka oss här!</a>
-
+          <a href="{{ site.baseurl }}/bokning.html" class="no-gigs-btn">Boka oss här</a>
         </div>
-      </div>-->
+      </div>
     </div>
     <div style="min-width: 300px; max-width: 500px">
       <h2 style="
@@ -172,7 +171,29 @@ permalink: /spelningar.html
       </h2>
       <div class="gigs-list">
         <div class="gig-card">
-          <div class="gig-date">8 oktober kl 19</div>
+          <div class="gig-date">23 juli 2026</div>
+          <div class="gig-place">Limhamnsfestivalen, Dragörkajen</div>
+          <div class="gig-desc">
+            Spelning på Limhamnsfestivalen vid Dragörkajen
+          </div>
+        </div>
+        <div class="gig-card">
+          <div class="gig-date">18 februari kl 19</div>
+          <div class="gig-place">Kollektivkrogen, Malmö - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
+              target="_blank" rel="noopener noreferrer"
+              style="color: #00796b; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
+          </div>
+          <div class="gig-desc">
+            Spelning på Kollektivkrogen i Malmö. Fri entré!
+            <br>
+            <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
+              style="color: #00796b; text-decoration: underline; font-weight: 600;">
+              Facebook-event
+            </a>
+          </div>
+        </div>
+        <div class="gig-card">
+          <div class="gig-date">8 oktober kl 19 2025</div>
           <div class="gig-place">Kollektivkrogen - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
               target="_blank _noopener _noreferrer"
               style="color: #009688; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
@@ -187,7 +208,7 @@ permalink: /spelningar.html
           </div>
         </div>
         <div class="gig-card">
-          <div class="gig-date">24 juli</div>
+          <div class="gig-date">24 juli 2025</div>
           <div class="gig-place">Limhamnsfestivalen, Dragörkajen</div>
           <div class="gig-desc">
             Spelning på Limhamnsfestivalen vid Dragörkajen
