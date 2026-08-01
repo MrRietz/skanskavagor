@@ -12,62 +12,145 @@ title: Hem
     box-sizing: border-box;
   }
 
+  :root {
+    --brand: #009688;
+    --brand-dark: #00796b;
+    --brand-light: #26a69a;
+    --ink: #2b3338;
+    --ink-soft: #555f66;
+  }
+
+  /* ---------- Stage banner ---------- */
+  .stage-banner {
+    position: relative;
+    width: 100%;
+    min-height: clamp(340px, 58vh, 620px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .stage-banner__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    z-index: -2;
+  }
+
+  .stage-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg,
+        rgba(0, 40, 42, 0.55) 0%,
+        rgba(0, 40, 42, 0.15) 35%,
+        rgba(0, 30, 32, 0.55) 72%,
+        rgba(0, 25, 27, 0.88) 100%);
+  }
+
+  .stage-banner__inner {
+    width: 100%;
+    max-width: 1100px;
+    padding: 4em 5vw 2.6em 5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .stage-banner__logo {
+    width: clamp(180px, 34vw, 320px);
+    height: auto;
+    margin: 0 auto 1em auto;
+    display: block;
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55));
+  }
+
+  .stage-banner__tagline {
+    font-size: clamp(1.05em, 2.4vw, 1.45em);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    margin: 0 auto 1.4em auto;
+    max-width: 40ch;
+  }
+
+  .stage-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--brand-dark);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05em;
+    padding: 0.85em 1.8em;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    transition: transform 0.18s ease, background 0.18s ease;
+  }
+
+  .stage-banner__cta:hover,
+  .stage-banner__cta:focus-visible {
+    background: var(--brand);
+    transform: translateY(-2px);
+  }
+
   .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: linear-gradient(120deg, #e0f7fa 0%, #f8fafc 100%);
-    padding: 3em 4vw 2.5em 4vw;
+    padding: 3em 4vw 3.5em 4vw;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
-  }
-
-  .hero-logo {
-    max-width: 320px;
-    margin-bottom: 1.5em;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18),
-      0 1.5px 8px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 18px;
-    background: #fff;
   }
 
   .hero-title {
     font-size: 2.5em;
     font-weight: 700;
-    color: #009688;
+    color: var(--brand);
     margin-bottom: 0.5em;
     letter-spacing: 0.03em;
     text-align: center;
   }
 
   .hero-desc {
-    font-size: 1.2em;
-    color: #333;
-    max-width: 600px;
-    text-align: center;
-    margin-bottom: 1.5em;
+    font-size: 1.08em;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 62ch;
+    margin: 0 auto;
   }
 
   .hero-links {
     display: flex;
-    gap: 1.5em;
+    gap: 1.2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
   }
 
   .hero-links a {
-    background: #009688;
+    background: var(--brand-dark);
     color: #fff;
     border-radius: 8px;
     font-weight: 600;
-    transition: 0.2s;
+    transition: background 0.2s, transform 0.2s;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1.2rem;
   }
 
   .hero-links a:hover {
-    background: #26a69a;
+    background: var(--brand);
+    transform: translateY(-2px);
   }
 
   .hero-links svg {
@@ -77,26 +160,35 @@ title: Hem
     vertical-align: initial !important;
   }
 
-  .hero-gallery-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5em;
-    margin-bottom: 1.5em;
-    flex-wrap: wrap;
+  /* ---------- Photo strip ---------- */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2em;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 2.5em auto;
   }
 
-  .hero-gallery-img {
-    height: 300px;
-    width: auto;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  .photo-strip figure {
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
     background: #fff;
-    padding: 0.3em;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    flex: 0 1 180px;
     display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .photo-strip figure:hover img {
+    transform: scale(1.05);
   }
 
   .card {
@@ -106,18 +198,18 @@ title: Hem
     width: 100%;
     border-radius: 12px;
     background: #fff;
-    padding: 1.5em;
-    margin-bottom: 1.5em;
+    padding: 1.8em;
+    margin-bottom: 2em;
     margin-left: auto;
     margin-right: auto;
   }
 
   .card h1 {
     margin-top: 0;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.6em;
     font-size: 1.8em;
     font-weight: 700;
-    color: #009688;
+    color: var(--brand);
     text-align: center;
   }
 
@@ -126,7 +218,7 @@ title: Hem
     margin-bottom: 0.5em;
     font-size: 1.4em;
     font-weight: 700;
-    color: #009688;
+    color: var(--brand);
     text-align: center;
   }
 
@@ -141,18 +233,16 @@ title: Hem
     text-align: center;
   }
 
-
-
   .booking-widget .widget-title {
     font-size: 1.5em;
-    color: #009688;
+    color: var(--brand);
     margin-bottom: 0.7em;
     font-weight: 700;
   }
 
   .booking-widget .widget-desc {
     font-size: 1.1em;
-    color: #333;
+    color: var(--ink);
     margin-bottom: 1.5em;
   }
 
@@ -161,6 +251,19 @@ title: Hem
     display: flex;
     flex-direction: column;
     gap: 1.2em;
+  }
+
+  .booking-widget .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    text-align: left;
+  }
+
+  .booking-widget label {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--ink);
   }
 
   .booking-widget input,
@@ -174,8 +277,15 @@ title: Hem
     box-sizing: border-box;
   }
 
+  .booking-widget input:focus,
+  .booking-widget textarea:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+    border-color: var(--brand);
+  }
+
   .booking-widget button {
-    background: #009688;
+    background: var(--brand-dark);
     color: #fff;
     border: none;
     padding: 0.9em 1.5em;
@@ -187,7 +297,7 @@ title: Hem
   }
 
   .booking-widget button:hover {
-    background: #26a69a;
+    background: var(--brand);
   }
 
   .gigs-list {
@@ -197,6 +307,13 @@ title: Hem
     justify-content: center;
     margin-top: 1em;
     width: 100%;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .gig-card--centered {
+    align-items: center;
+    text-align: center;
   }
 
   .gig-card {
@@ -213,32 +330,81 @@ title: Hem
 
   .gig-date {
     font-size: 1.1em;
-    color: #009688;
+    color: var(--brand);
     font-weight: 600;
     margin-bottom: 0.3em;
   }
 
   .gig-place {
     font-size: 1.1em;
-    color: #333;
+    color: var(--ink);
     margin-bottom: 0.5em;
   }
 
   .gig-desc {
     font-size: 1em;
-    color: #555;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+
+  .gig-card__logo {
+    width: 170px;
+    max-width: 60vw;
+    height: 170px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .gig-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .gig-btn {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .gig-btn--primary {
+    background: var(--brand-dark);
+    color: #fff;
+  }
+
+  .gig-btn--primary:hover {
+    background: var(--brand);
+  }
+
+  .gig-btn--ghost {
+    background: transparent;
+    border: 2px solid var(--brand-dark);
+    color: var(--brand-dark);
+    padding: 0.5rem 0.9rem;
+  }
+
+  .gig-btn--ghost:hover {
+    background: var(--brand-dark);
+    color: #fff;
+  }
+
+  .gig-free {
+    color: var(--brand-dark);
   }
 
   @media (max-width: 900px) {
-    .hero-gallery-row {
-      flex-direction: column;
-      gap: 1.2em;
-    }
-
-    .hero-gallery-img {
-      max-width: 95vw;
-      max-height: 180px;
-      height: 180px;
+    .photo-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1em;
     }
 
     /* Förbättra nav-bar i medium-läge */
@@ -255,8 +421,24 @@ title: Hem
   }
 
   @media (max-width: 700px) {
+    .stage-banner {
+      min-height: 62vh;
+    }
+
+    .stage-banner__inner {
+      padding: 3em 6vw 2.2em 6vw;
+    }
+
     .hero {
-      padding: 2em 3vw 2em 3vw;
+      padding: 2em 3vw 2.5em 3vw;
+    }
+
+    .photo-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-strip figure {
+      aspect-ratio: 16 / 10;
     }
 
     .hero-links {
@@ -289,19 +471,56 @@ title: Hem
       width: 100%;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .hero-links a,
+    .stage-banner__cta,
+    .photo-strip img {
+      transition: none;
+    }
+
+    .photo-strip figure:hover img {
+      transform: none;
+    }
+  }
 </style>
 
+<section class="stage-banner">
+  <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
+    alt="Skånska Vågor live på scen – tre sångare med två gitarrer" class="stage-banner__img" />
+  <div class="stage-banner__inner">
+    <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
+      class="stage-banner__logo" />
+    <p class="stage-banner__tagline">Musiker som vågar – country, rock och pop med tre röster och två gitarrer.</p>
+    <a href="{{ site.baseurl }}/bokning.html" class="stage-banner__cta">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
+        <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
+      </svg>
+      Boka oss
+    </a>
+  </div>
+</section>
+
 <div class="hero">
-  <div class="hero-gallery-row">
-    <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Galleri 1"
-      class="hero-gallery-img" />
-    <img src="{{ site.baseurl }}/public/img/skanska_profile_bild.png" alt="Skånska Vågor" class="hero-gallery-img" />
-    <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Galleri 2"
-      class="hero-gallery-img" />
+  <div class="photo-strip">
+    <figure>
+      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
+        alt="Skånska Vågor på scen" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
+        alt="Skånska Vågor spelar live utomhus" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
+        alt="Skånska Vågor under en spelning" loading="lazy" />
+    </figure>
   </div>
   <div class="card">
     <h1>Skånska Vågor - Musiker som vågar</h1>
-    <div class=" hero-desc">
+    <div class="hero-desc">
       Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
       en unik blandning av country, rock och pop. Med passion och spelglädje tar
       vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
@@ -322,38 +541,30 @@ title: Hem
       Kommande spelningar
     </h2>
 
-    <div class="gigs-list" role="list">
-      <article class="gig-card" role="listitem" aria-labelledby="gig-1-title"
-        style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+    <ul class="gigs-list">
+      <li class="gig-card gig-card--centered" aria-labelledby="gig-1-title">
         <time id="gig-1-title" class="gig-date" datetime="2026-02-18">18 februari kl 19</time>
 
         <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
-        <img src="/public/img/logga-kollektivkrogen.png" alt="Robin"
-          style="width:170px; max-width:60vw; height:170px; object-fit:cover; margin-bottom:12px; border-radius:8px;">
-        <p class="gig-desc" style="margin-top:.4rem;">
-          <strong style="color:#009688">Fri entré</strong>! Kom i tid — platsen fylls snabbt.
+        <img src="{{ site.baseurl }}/public/img/logga-kollektivkrogen.png" alt="Kollektivkrogen" class="gig-card__logo"
+          loading="lazy">
+        <p class="gig-desc">
+          <strong class="gig-free">Fri entré</strong>! Kom i tid — platsen fylls snabbt.
         </p>
 
-        <div class="gig-actions"
-          style="display:flex; gap:.6rem; margin-top:1rem; flex-wrap:wrap; justify-content:center; width:100%;">
+        <div class="gig-actions">
           <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
-            aria-label="Anmäl dig på Facebook"
-            style="background:#009688; color:#fff; padding:.6rem 1rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:.5rem;">
+            aria-label="Anmäl dig på Facebook" class="gig-btn gig-btn--primary">
             Anmäl dig på Facebook
           </a>
 
           <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
-            aria-label="Öppna vägbeskrivning"
-            style="background:transparent; border:2px solid #009688; color:#009688; padding:.5rem .9rem; border-radius:8px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center;">
+            aria-label="Öppna vägbeskrivning" class="gig-btn gig-btn--ghost">
             Vägbeskrivning
           </a>
         </div>
-      </article>
-    </div>
-    <!--Just nu finns inga kommande spelningar.<br />
-        <a href="{{ site.baseurl }}/bokning.html"
-          style="color: #009688; text-decoration: underline; font-weight: 600">Boka oss här!</a>
-      </div>-->
+      </li>
+    </ul>
   </div>
 
 
@@ -414,9 +625,19 @@ title: Hem
       oss gärna via formuläret nedan så återkommer vi så snart vi kan!
     </div>
     <form action="https://formspree.io/f/xnnzegyr" method="POST">
-      <input type="text" name="namn" placeholder="Ditt namn" required />
-      <input type="email" name="email" placeholder="Din e-post" required />
-      <textarea name="meddelande" rows="5" placeholder="Meddelande" required></textarea>
+      <div class="field">
+        <label for="booking-namn">Ditt namn</label>
+        <input id="booking-namn" type="text" name="namn" placeholder="Ditt namn" required />
+      </div>
+      <div class="field">
+        <label for="booking-email">Din e-post</label>
+        <input id="booking-email" type="email" name="email" placeholder="Din e-post" required />
+      </div>
+      <div class="field">
+        <label for="booking-meddelande">Meddelande</label>
+        <textarea id="booking-meddelande" name="meddelande" rows="5" placeholder="Berätta om ditt evenemang"
+          required></textarea>
+      </div>
       <button type="submit">Skicka bokningsförfrågan</button>
     </form>
   </div>
