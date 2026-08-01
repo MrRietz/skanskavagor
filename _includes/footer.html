@@ -32,6 +32,15 @@
       flex: 0 0 auto;
     }
 
+    /* Temat (minima) sätter underline på alla a:hover — ikon- och
+       knapplänkarna i sidfoten ska inte understrykas. */
+    .site-footer a,
+    .site-footer a:hover,
+    .site-footer a:focus,
+    .site-footer a:visited {
+      text-decoration: none;
+    }
+
     @media (max-width:700px) {
       .site-footer .footer-row {
         /* stack items vertically on mobile */

@@ -29,18 +29,34 @@ permalink: /bokning.html
   }
   .boka-oss-email {
     display: inline-block;
-    background: #009688;
+    background: #00796b;
     color: #fff;
     padding: 0.7em 1.3em;
     border-radius: 8px;
     font-size: 1.1em;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     margin-bottom: 1.5em;
   }
-  .boka-oss-email:hover {
-    background: #26a69a;
+  /* Temat (minima) sätter underline + mörk textfärg på alla a:hover.
+     Knappar ska aldrig få det. */
+  .boka-oss-email,
+  .boka-oss-email:hover,
+  .boka-oss-email:focus,
+  .boka-oss-email:visited {
+    color: #fff;
+    text-decoration: none;
+  }
+  .boka-oss-email:hover,
+  .boka-oss-email:focus-visible {
+    background: #009688;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 121, 107, 0.35);
+  }
+  .boka-oss-email:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
   }
   .boka-oss-form {
     margin-top: 1.5em;
@@ -58,8 +74,14 @@ permalink: /bokning.html
     font-family: inherit;
     box-sizing: border-box;
   }
+  .boka-oss-form input:focus,
+  .boka-oss-form textarea:focus {
+    outline: 2px solid #009688;
+    outline-offset: 1px;
+    border-color: #009688;
+  }
   .boka-oss-form button {
-    background: #009688;
+    background: #00796b;
     color: #fff;
     border: none;
     padding: 0.9em 1.5em;
@@ -67,10 +89,28 @@ permalink: /bokning.html
     font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .boka-oss-form button:hover {
-    background: #26a69a;
+  .boka-oss-form button:hover,
+  .boka-oss-form button:focus-visible {
+    background: #009688;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 121, 107, 0.35);
+  }
+  .boka-oss-form button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 121, 107, 0.3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .boka-oss-email,
+    .boka-oss-form button {
+      transition: none;
+    }
+    .boka-oss-email:hover,
+    .boka-oss-form button:hover {
+      transform: none;
+    }
   }
 
   @media (max-width: 700px) {

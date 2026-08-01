@@ -89,6 +89,16 @@ permalink: /spelningar.html
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
+  /* Temat (minima) sätter underline + mörk textfärg på alla a:hover.
+     Knappar ska aldrig få det. */
+  .no-gigs-btn,
+  .no-gigs-btn:hover,
+  .no-gigs-btn:focus,
+  .no-gigs-btn:visited {
+    color: #fff;
+    text-decoration: none;
+  }
+
   .no-gigs-btn:hover,
   .no-gigs-btn:focus-visible {
     background: #009688;
@@ -118,6 +128,9 @@ permalink: /spelningar.html
   .gig-desc a:hover,
   .gig-place a:focus-visible,
   .gig-desc a:focus-visible {
+    /* Egen animerad understrykning används — stäng av temats text-decoration
+       så vi inte får två streck ovanpå varandra. */
+    text-decoration: none;
     color: #009688;
     background-image: linear-gradient(#009688, #009688);
     background-size: 100% 2px;
@@ -233,13 +246,13 @@ permalink: /spelningar.html
           <div class="gig-date">18 februari 2026 kl 19</div>
           <div class="gig-place">Kollektivkrogen, Malmö - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
               target="_blank" rel="noopener noreferrer"
-              style="color: #00796b; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
+              >Vägbeskrivning</a>
           </div>
           <div class="gig-desc">
             Spelning på Kollektivkrogen i Malmö. Fri entré!
             <br>
             <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
-              style="color: #00796b; text-decoration: underline; font-weight: 600;">
+              >
               Facebook-event
             </a>
           </div>
@@ -248,13 +261,13 @@ permalink: /spelningar.html
           <div class="gig-date">8 oktober 2025 kl 19</div>
           <div class="gig-place">Kollektivkrogen - <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8"
               target="_blank _noopener _noreferrer"
-              style="color: #009688; text-decoration: underline; font-weight: 600;">Vägbeskrivning</a>
+              >Vägbeskrivning</a>
           </div>
           <div class="gig-desc">
             Spelning på Kollektivkrogen i Malmö. Fri entré!
             <br>
             <a href="https://www.facebook.com/events/2214161255756309" target="_blank" rel="noopener noreferrer"
-              style="color: #009688; text-decoration: underline; font-weight: 600;">
+              >
               Facebook-event
             </a>
           </div>
