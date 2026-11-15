@@ -8,94 +8,58 @@ permalink: /bokning.html
   .booking-page-grid {
     display: grid;
     grid-template-columns: 0.92fr 1.08fr;
-    gap: clamp(1.6rem, 4vw, 2.8rem);
+    gap: clamp(2rem, 5vw, 3.8rem);
     align-items: start;
   }
 
-  .booking-aside {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .booking-editorial__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 3vw, 2.15rem);
+    font-weight: 600;
+    margin: 0 0 0.85rem 0;
+    color: var(--ink);
   }
 
-  .booking-aside__intro {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    padding: 1.65rem;
-  }
-
-  .booking-aside__intro h2 {
-    margin: 0 0 0.65rem 0;
-    font-size: 1.45rem;
-    font-weight: 700;
-  }
-
-  .booking-aside__intro p {
-    margin: 0;
+  .booking-editorial__intro {
+    font-size: 1.03rem;
+    line-height: 1.72;
     color: var(--ink-soft);
-    line-height: 1.65;
+    margin: 0 0 1.8rem 0;
   }
 
-  .booking-occasions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+  .occasion-list {
+    border-top: 1px solid var(--rule-strong);
   }
 
-  .occasion-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.95rem;
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    padding: 1.15rem 1.25rem;
+  .occasion-item {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .occasion-card__icon {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: rgba(0, 137, 123, 0.11);
-    color: var(--brand-dark);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .occasion-item h3 {
+    margin: 0 0 0.3rem 0;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
   }
 
-  .occasion-card h3 {
-    margin: 0 0 0.2rem 0;
-    font-size: 1.05rem;
-    font-weight: 700;
-  }
-
-  .occasion-card p {
+  .occasion-item p {
     margin: 0;
-    font-size: 0.94rem;
+    font-size: 0.96rem;
+    line-height: 1.62;
     color: var(--ink-soft);
-    line-height: 1.55;
-  }
-
-  .booking-form-card {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    padding: clamp(1.6rem, 3.8vw, 2.5rem);
   }
 
   .booking-form-card__title {
     margin: 0 0 0.45rem 0;
-    font-size: 1.55rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 600;
   }
 
   .booking-form-card__sub {
-    margin: 0 0 1.4rem 0;
+    margin: 0 0 1.45rem 0;
     font-size: 0.98rem;
     color: var(--ink-soft);
   }
@@ -109,7 +73,7 @@ permalink: /bokning.html
 
 <section class="page-hero">
   <div class="page-hero__inner">
-    <span class="page-hero__badge">Förfrågan</span>
+    <span class="page-hero__kicker">Förfrågan</span>
     <h1 class="page-hero__title">Boka Skånska Vågor</h1>
     <p class="page-hero__lead">
       Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?
@@ -118,62 +82,34 @@ permalink: /bokning.html
   </div>
 </section>
 
-<section class="page-section page-section--soft">
+<section class="page-section page-section--warm">
   <div class="section-container">
     <div class="booking-page-grid">
-      <div class="booking-aside">
-        <div class="booking-aside__intro">
-          <h2>Levande musik som lyfter kvällen</h2>
-          <p>
-            Som trio med tre röster och två gitarrer anpassar vi repertoar och energi efter både lokal och publik – från stämningsfull akustisk start till allsång och dansvänliga klassiker.
-          </p>
-        </div>
+      <div>
+        <h2 class="booking-editorial__heading">Levande musik som lyfter kvällen</h2>
+        <p class="booking-editorial__intro">
+          Som trio med tre röster och två gitarrer anpassar vi repertoar och energi efter både lokal och publik – från stämningsfull akustisk start till allsång och dansvänliga klassiker.
+        </p>
 
-        <div class="booking-occasions">
-          <div class="occasion-card">
-            <span class="occasion-card__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 18V5l12-2v13" />
-                <circle cx="6" cy="18" r="3" />
-                <circle cx="18" cy="16" r="3" />
-              </svg>
-            </span>
-            <div>
-              <h3>Krog, pub &amp; restaurang</h3>
-              <p>Beprövad livemusik med bred igenkänning som får gästerna att stanna kvar längre.</p>
-            </div>
+        <div class="occasion-list">
+          <div class="occasion-item">
+            <h3>Krog &amp; pub</h3>
+            <p>Akustisk livemusik med bred igenkänning som skapar värme och får gästerna att stanna kvar längre.</p>
           </div>
 
-          <div class="occasion-card">
-            <span class="occasion-card__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-            </span>
-            <div>
-              <h3>Privatfest &amp; bröllop</h3>
-              <p>Personlig akustisk värme till mingel, middag och firande med gäster i alla åldrar.</p>
-            </div>
+          <div class="occasion-item">
+            <h3>Privatfest &amp; bröllop</h3>
+            <p>Personlig närvaro till mingel, middag och firande – anpassat för sällskap i alla åldrar.</p>
           </div>
 
-          <div class="occasion-card">
-            <span class="occasion-card__icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg>
-            </span>
-            <div>
-              <h3>Festival &amp; företagsevent</h3>
-              <p>Säkert scenvana från stadsfestivaler och evenemang runt om i Skåne.</p>
-            </div>
+          <div class="occasion-item">
+            <h3>Festival &amp; evenemang</h3>
+            <p>Trygg scenvana från stadsfestivaler och företagsarrangemang runt om i Skåne.</p>
           </div>
         </div>
       </div>
 
-      <div class="booking-form-card">
+      <div class="paper-panel">
         <h2 class="booking-form-card__title">Skicka din förfrågan</h2>
         <p class="booking-form-card__sub">
           Berätta gärna om datum, plats och ungefärligt upplägg – vi svarar snabbt!

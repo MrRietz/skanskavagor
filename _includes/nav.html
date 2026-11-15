@@ -5,160 +5,151 @@
       top: 0;
       z-index: 1000;
       width: 100%;
-      background: rgba(11, 34, 40, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      background: rgba(12, 33, 40, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(223, 160, 98, 0.22);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0.65rem clamp(1rem, 3vw, 2rem);
+      padding: 0.72rem clamp(1.2rem, 4vw, 2.5rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .nav-brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.72rem;
+      gap: 0.65rem;
       flex-shrink: 0;
-      padding: 0.2rem 0;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      padding: 0.15rem 0;
+      transition: opacity 0.2s ease;
     }
 
     .nav-brand:hover,
     .nav-brand:focus-visible {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
-    .nav-brand__icon-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 36px;
-      padding: 4px 5px;
-      border-radius: 10px;
-      background: rgba(244, 248, 248, 0.96);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+      opacity: 0.9;
+      outline: none;
     }
 
     .nav-brand__icon {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: 32px;
+      width: auto;
       display: block;
+      filter: brightness(2.2) saturate(0.8);
     }
 
     .nav-brand__wordmark {
-      height: 28px;
+      height: 24px;
       width: auto;
       display: block;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 1.55rem;
     }
 
     .nav-link {
       position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 0.48rem;
-      padding: 0.56rem 0.95rem;
-      border-radius: 999px;
-      font-family: var(--font-display, 'Outfit', sans-serif);
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.86) !important;
-      background: transparent;
+      padding: 0.35rem 0;
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: rgba(246, 241, 232, 0.84) !important;
       white-space: nowrap;
-      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      transition: color 0.2s ease;
     }
 
-    .nav-link .nav-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      opacity: 0.9;
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background: #dfa062;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .nav-link:hover,
-    .nav-link:focus-visible {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff !important;
+    .nav-link:focus-visible,
+    .nav-link.selected {
+      color: #fcfaf5 !important;
       outline: none;
     }
 
-    .nav-link.selected {
-      background: rgba(38, 166, 154, 0.22);
-      color: #ffffff !important;
-      box-shadow: inset 0 0 0 1px rgba(38, 166, 154, 0.55);
-      font-weight: 600;
-    }
-
-    .nav-link.selected .nav-icon {
-      color: #80cbc4;
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after,
+    .nav-link.selected::after {
+      transform: scaleX(1);
     }
 
     .nav-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-left: 0.55rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 999px;
-      font-family: var(--font-display, 'Outfit', sans-serif);
-      font-size: 0.95rem;
+      justify-content: center;
+      margin-left: 0.45rem;
+      padding: 0.58rem 1.25rem;
+      border-radius: 6px;
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.84rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       white-space: nowrap;
-      color: #0b2228 !important;
-      background: linear-gradient(135deg, #e59849 0%, #d47e28 100%);
-      box-shadow: 0 4px 14px rgba(212, 126, 40, 0.34);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      color: #0c2128 !important;
+      background: #dfa062;
+      border: 1.5px solid #dfa062;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-cta:hover,
     .nav-cta:focus-visible {
+      background: #e9b178;
+      border-color: #e9b178;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(229, 152, 73, 0.42);
-      filter: brightness(1.06);
-      color: #0b2228 !important;
+      color: #0c2128 !important;
       outline: none;
     }
 
     .nav-cta.selected {
-      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45), 0 6px 18px rgba(212, 126, 40, 0.4);
+      background: transparent;
+      color: #dfa062 !important;
+      border-color: #dfa062;
     }
 
     .nav-toggle {
       display: none;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       padding: 0;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
+      border-radius: 6px;
+      border: 1px solid rgba(246, 241, 232, 0.24);
+      background: transparent;
+      color: #f6f1e8;
       cursor: pointer;
       transition: background 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-toggle:hover,
     .nav-toggle:focus-visible {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(246, 241, 232, 0.1);
+      border-color: rgba(223, 160, 98, 0.7);
       outline: none;
     }
 
@@ -166,9 +157,7 @@
     .nav-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(6, 18, 22, 0.68);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      background: rgba(7, 20, 24, 0.72);
       z-index: 1090;
       opacity: 0;
       visibility: hidden;
@@ -186,15 +175,13 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: min(330px, 86vw);
+      width: min(320px, 86vw);
       height: 100dvh;
-      background: linear-gradient(180deg, rgba(11, 34, 40, 0.98) 0%, rgba(16, 51, 60, 0.98) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-left: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: -12px 0 36px rgba(0, 0, 0, 0.35);
+      background: #0c2128;
+      border-left: 1px solid rgba(223, 160, 98, 0.22);
+      box-shadow: -12px 0 36px rgba(0, 0, 0, 0.38);
       z-index: 1100;
-      padding: 1.25rem;
+      padding: 1.4rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -215,67 +202,67 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(246, 241, 232, 0.12);
     }
 
     .nav-drawer__title {
-      font-family: var(--font-display, 'Outfit', sans-serif);
-      font-size: 0.9rem;
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #80cbc4;
+      letter-spacing: 0.16em;
+      color: #dfa062;
     }
 
     .nav-close {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      font-size: 1.5rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      border: 1px solid rgba(246, 241, 232, 0.22);
+      background: transparent;
+      color: #f6f1e8;
+      font-size: 1.45rem;
       line-height: 1;
       cursor: pointer;
-      transition: background 0.2s ease;
     }
 
     .nav-close:hover,
     .nav-close:focus-visible {
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(246, 241, 232, 0.1);
       outline: none;
     }
 
     .nav-drawer__links {
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.2rem;
       margin-top: 1.2rem;
     }
 
     .nav-drawer__links .nav-link {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      font-size: 1.05rem;
-      border-radius: 12px;
+      padding: 0.8rem 0;
+      font-size: 0.96rem;
+      border-bottom: 1px solid rgba(246, 241, 232, 0.08);
+    }
+
+    .nav-drawer__links .nav-link::after {
+      bottom: -1px;
     }
 
     .nav-drawer__cta {
-      margin-top: 0.85rem;
+      margin-top: 1.3rem;
       margin-left: 0;
       width: 100%;
-      justify-content: center;
-      padding: 0.9rem 1.2rem;
-      font-size: 1.02rem;
-      border-radius: 14px;
+      padding: 0.88rem 1.2rem;
+      font-size: 0.9rem;
     }
 
     .nav-drawer__footer {
       padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(246, 241, 232, 0.12);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -283,8 +270,10 @@
     }
 
     .nav-drawer__social-label {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(246, 241, 232, 0.6);
     }
 
     .nav-drawer__socials {
@@ -297,17 +286,18 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff !important;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid rgba(246, 241, 232, 0.2);
+      color: #f6f1e8 !important;
       text-decoration: none !important;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
     .nav-drawer__social-btn:hover {
-      background: rgba(38, 166, 154, 0.35);
+      background: rgba(223, 160, 98, 0.18);
+      border-color: #dfa062;
     }
 
     @media (max-width: 900px) {
@@ -319,19 +309,19 @@
         display: inline-flex;
       }
 
-      .nav-brand__wordmark {
-        height: 24px;
+      .nav-brand__icon {
+        height: 28px;
       }
 
-      .nav-brand__icon-wrap {
-        width: 40px;
-        height: 32px;
+      .nav-brand__wordmark {
+        height: 21px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .nav-brand,
       .nav-link,
+      .nav-link::after,
       .nav-cta,
       .nav-overlay,
       .nav-drawer {
@@ -342,69 +332,28 @@
 
   <div class="nav-container">
     <a href="{{ site.baseurl }}/" class="nav-brand" aria-label="Skånska Vågor – Startsida">
-      <span class="nav-brand__icon-wrap">
-        <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_icon.png" alt="" aria-hidden="true"
-          class="nav-brand__icon" />
-      </span>
+      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_icon.png" alt="" aria-hidden="true"
+        class="nav-brand__icon" />
       <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
         class="nav-brand__wordmark" />
     </a>
 
     <nav class="nav-menu" aria-label="Huvudmeny">
       <a href="{{ site.baseurl }}/index.html"
-        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 10.5L12 3l9 7.5" />
-          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
-        </svg>
-        <span>Hem</span>
-      </a>
+        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">Hem</a>
       <a href="{{ site.baseurl }}/spelningar.html"
-        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="17" rx="2.5" />
-          <path d="M16 2v4M8 2v4M3 10h18" />
-          <path d="M12 13.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3 1-2z" />
-        </svg>
-        <span>Spelningar</span>
-      </a>
+        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">Spelningar</a>
       <a href="{{ site.baseurl }}/medlemmar.html"
-        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="3.5" />
-          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a3.5 3.5 0 0 1 0 6.74" />
-        </svg>
-        <span>Bandmedlemmar</span>
-      </a>
+        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">Bandmedlemmar</a>
       <a href="{{ site.baseurl }}/galleri.html"
-        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="16" rx="2.5" />
-          <circle cx="8.5" cy="9.5" r="1.5" />
-          <path d="M21 16l-5-5-4.5 5-2.5-2.5L4 19" />
-        </svg>
-        <span>Galleri</span>
-      </a>
+        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">Galleri</a>
       <a href="{{ site.baseurl }}/bokning.html"
-        class="nav-cta{% if page.url == '/bokning.html' %} selected{% endif %}">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2.5" />
-          <path d="M3 7l9 6 9-6" />
-        </svg>
-        <span>Boka oss</span>
-      </a>
+        class="nav-cta{% if page.url == '/bokning.html' %} selected{% endif %}">Boka oss</a>
     </nav>
 
     <button class="nav-toggle" type="button" aria-label="Öppna meny" aria-expanded="false"
       aria-controls="mobile-nav-drawer">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" aria-hidden="true">
         <path d="M4 7h16M4 12h16M4 17h16" />
       </svg>
@@ -416,58 +365,21 @@
 <aside class="nav-drawer" id="mobile-nav-drawer" aria-hidden="true" aria-label="Mobilmeny">
   <div>
     <div class="nav-drawer__top">
-      <span class="nav-drawer__title">Meny · Skånska Vågor</span>
+      <span class="nav-drawer__title">Skånska Vågor</span>
       <button class="nav-close" type="button" aria-label="Stäng meny">&times;</button>
     </div>
 
     <nav class="nav-drawer__links" aria-label="Mobilnavigering">
       <a href="{{ site.baseurl }}/index.html"
-        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 10.5L12 3l9 7.5" />
-          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
-        </svg>
-        <span>Hem</span>
-      </a>
+        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">Hem</a>
       <a href="{{ site.baseurl }}/spelningar.html"
-        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="17" rx="2.5" />
-          <path d="M16 2v4M8 2v4M3 10h18" />
-        </svg>
-        <span>Spelningar</span>
-      </a>
+        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">Spelningar</a>
       <a href="{{ site.baseurl }}/medlemmar.html"
-        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="3.5" />
-          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        </svg>
-        <span>Bandmedlemmar</span>
-      </a>
+        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">Bandmedlemmar</a>
       <a href="{{ site.baseurl }}/galleri.html"
-        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="16" rx="2.5" />
-          <circle cx="8.5" cy="9.5" r="1.5" />
-          <path d="M21 16l-5-5-4.5 5-2.5-2.5L4 19" />
-        </svg>
-        <span>Galleri</span>
-      </a>
+        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">Galleri</a>
       <a href="{{ site.baseurl }}/bokning.html"
-        class="nav-cta nav-drawer__cta{% if page.url == '/bokning.html' %} selected{% endif %}">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2.5" />
-          <path d="M3 7l9 6 9-6" />
-        </svg>
-        <span>Boka oss</span>
-      </a>
+        class="nav-cta nav-drawer__cta{% if page.url == '/bokning.html' %} selected{% endif %}">Boka oss</a>
     </nav>
   </div>
 

@@ -6,154 +6,61 @@ permalink: /spelningar.html
 
 <style>
   .gigs-section-block {
-    margin-bottom: clamp(2.5rem, 5vw, 3.8rem);
+    margin-bottom: clamp(2.8rem, 6vw, 4.2rem);
   }
 
   .gigs-section-block:last-child {
     margin-bottom: 0;
   }
 
-  .upcoming-card {
-    max-width: 760px;
+  .upcoming-ledger-box {
+    max-width: 780px;
     margin: 0 auto;
-    text-align: center;
-    background: linear-gradient(135deg, #ffffff 0%, #f1f8f7 100%);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: clamp(1.8rem, 4vw, 2.6rem);
-  }
-
-  .upcoming-card__status {
-    display: inline-flex;
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+    background: var(--surface-card);
+    border: 1px solid var(--rule-strong);
+    border-left: 4px solid var(--accent-warm);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-display);
-    font-size: 0.84rem;
-    font-weight: 700;
-    color: var(--brand-dark);
-    background: rgba(0, 137, 123, 0.12);
-    padding: 0.35rem 0.9rem;
-    border-radius: 999px;
-    margin-bottom: 0.9rem;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
   }
 
-  .upcoming-card__text {
-    font-size: 1.06rem;
-    color: var(--ink-soft);
-    max-width: 50ch;
-    margin: 0 auto 1.45rem auto;
+  .upcoming-ledger-box__label {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent-warm);
+    margin-bottom: 0.35rem;
+  }
+
+  .upcoming-ledger-box__text {
+    margin: 0;
+    font-size: 1.02rem;
+    color: var(--ink);
+    max-width: 48ch;
     line-height: 1.65;
   }
 
-  .gigs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
+  .tour-ledger-wrap {
+    max-width: 920px;
+    margin: 0 auto;
   }
 
-  .gig-card {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    padding: 1.55rem 1.65rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-  }
-
-  .gig-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-strong);
-  }
-
-  .gig-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    align-self: flex-start;
-    padding: 0.34rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(0, 137, 123, 0.11);
-    color: var(--brand-dark);
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-
-  .gig-place {
-    margin: 0 0 0.45rem 0;
-    font-family: var(--font-display);
-    font-size: 1.24rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .gig-desc {
-    margin: 0;
-    font-size: 0.98rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-  }
-
-  .gig-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    padding-top: 0.35rem;
-  }
-
-  .gig-chip-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.42rem;
-    padding: 0.46rem 0.95rem;
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none !important;
-    border: 1.5px solid rgba(0, 137, 123, 0.3);
-    color: var(--brand-dark) !important;
-    background: rgba(0, 137, 123, 0.05);
-    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-  }
-
-  .gig-chip-link:hover,
-  .gig-chip-link:focus-visible {
-    background: rgba(0, 137, 123, 0.14);
-    border-color: var(--brand);
-    transform: translateY(-1px);
-    outline: none;
-  }
-
-  @media (max-width: 800px) {
-    .gigs-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .gig-card,
-    .gig-chip-link {
-      transition: none;
-    }
-
-    .gig-card:hover,
-    .gig-chip-link:hover {
-      transform: none;
+  @media (max-width: 680px) {
+    .upcoming-ledger-box .btn {
+      width: 100%;
     }
   }
 </style>
 
 <section class="page-hero">
   <div class="page-hero__inner">
-    <span class="page-hero__badge">Livekalender</span>
+    <span class="page-hero__kicker">Livekalender</span>
     <h1 class="page-hero__title">Spelningar</h1>
     <p class="page-hero__lead">
       Upplev Skånska Vågor live i Skåne – från intima krogkvällar på Kollektivkrogen till sommarens scener på Limhamnsfestivalen.
@@ -161,134 +68,93 @@ permalink: /spelningar.html
   </div>
 </section>
 
-<section class="page-section page-section--soft">
+<section class="page-section page-section--warm">
   <div class="section-container">
     <div class="gigs-section-block">
       <div class="section-header">
-        <span class="section-eyebrow">Aktuellt</span>
+        <span class="section-kicker">Aktuellt</span>
         <h2 class="section-title">Kommande spelningar</h2>
       </div>
-      <div class="upcoming-card">
-        <span class="upcoming-card__status">Öppna för nya datum</span>
-        <p class="upcoming-card__text">
-          Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
-          Vill du ha oss till din fest, krog eller ditt evenemang?
-        </p>
+      <div class="upcoming-ledger-box">
+        <div>
+          <span class="upcoming-ledger-box__label">Öppna för bokning</span>
+          <p class="upcoming-ledger-box__text">
+            Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
+            Vill du ha oss till din fest, krog eller ditt evenemang?
+          </p>
+        </div>
         <a href="{{ site.baseurl }}/bokning.html" class="btn btn--primary">Boka oss här</a>
       </div>
     </div>
 
-    <div class="gigs-section-block">
+    <div class="gigs-section-block tour-ledger-wrap">
       <div class="section-header">
-        <span class="section-eyebrow">Arkiv</span>
+        <span class="section-kicker">Konsertarkiv</span>
         <h2 class="section-title">Föregående spelningar</h2>
         <p class="section-subtitle">
-          Ett urval av de scener, krogar och festivaler där vi spelat tillsammans.
+          Ett urval av scener, krogar och festivaler där vi spelat tillsammans.
         </p>
       </div>
 
-      <div class="gigs-grid">
-        <article class="gig-card">
+      <div class="tour-ledger" role="list" aria-label="Föregående spelningar">
+        <article class="tour-row" role="listitem">
+          <time class="tour-row__date" datetime="2026-07-23">23 juli 2026</time>
           <div>
-            <span class="gig-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="17" rx="2.5" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
-              </svg>
-              23 juli 2026
-            </span>
-            <h3 class="gig-place">Limhamnsfestivalen, Dragörkajen</h3>
-            <p class="gig-desc">Spelning på Limhamnsfestivalen vid Dragörkajen.</p>
+            <h3 class="tour-row__venue">Limhamnsfestivalen, Dragörkajen</h3>
+            <p class="tour-row__desc">Spelning på Limhamnsfestivalen vid Dragörkajen.</p>
+          </div>
+          <div class="tour-row__links">
+            <span style="font-size: 0.88rem; color: var(--ink-muted);">Limhamn</span>
           </div>
         </article>
 
-        <article class="gig-card">
+        <article class="tour-row" role="listitem">
+          <time class="tour-row__date" datetime="2026-02-18">18 februari 2026 kl 19</time>
           <div>
-            <span class="gig-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="17" rx="2.5" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
-              </svg>
-              18 februari 2026 kl 19
-            </span>
-            <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
-            <p class="gig-desc">Spelning på Kollektivkrogen i Malmö. Fri entré!</p>
+            <h3 class="tour-row__venue">Kollektivkrogen, Malmö</h3>
+            <p class="tour-row__desc">Spelning på Kollektivkrogen i Malmö. Fri entré!</p>
           </div>
-          <div class="gig-actions">
+          <div class="tour-row__links">
             <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
-              class="gig-chip-link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Vägbeskrivning
-            </a>
-            <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer" class="gig-chip-link">
-              Facebook-event &rarr;
-            </a>
+              class="tour-action-link">Vägbeskrivning</a>
+            <a href="https://fb.me/e/bTwYwvACK" target="_blank" rel="noopener noreferrer"
+              class="tour-action-link">Facebook-event &rarr;</a>
           </div>
         </article>
 
-        <article class="gig-card">
+        <article class="tour-row" role="listitem">
+          <time class="tour-row__date" datetime="2025-10-08">8 oktober 2025 kl 19</time>
           <div>
-            <span class="gig-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="17" rx="2.5" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
-              </svg>
-              8 oktober 2025 kl 19
-            </span>
-            <h3 class="gig-place">Kollektivkrogen, Malmö</h3>
-            <p class="gig-desc">Spelning på Kollektivkrogen i Malmö. Fri entré!</p>
+            <h3 class="tour-row__venue">Kollektivkrogen, Malmö</h3>
+            <p class="tour-row__desc">Spelning på Kollektivkrogen i Malmö. Fri entré!</p>
           </div>
-          <div class="gig-actions">
+          <div class="tour-row__links">
             <a href="https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8" target="_blank" rel="noopener noreferrer"
-              class="gig-chip-link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Vägbeskrivning
-            </a>
+              class="tour-action-link">Vägbeskrivning</a>
             <a href="https://www.facebook.com/events/2214161255756309" target="_blank" rel="noopener noreferrer"
-              class="gig-chip-link">
-              Facebook-event &rarr;
-            </a>
+              class="tour-action-link">Facebook-event &rarr;</a>
           </div>
         </article>
 
-        <article class="gig-card">
+        <article class="tour-row" role="listitem">
+          <time class="tour-row__date" datetime="2025-07-24">24 juli 2025</time>
           <div>
-            <span class="gig-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="17" rx="2.5" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
-              </svg>
-              24 juli 2025
-            </span>
-            <h3 class="gig-place">Limhamnsfestivalen, Dragörkajen</h3>
-            <p class="gig-desc">Spelning på Limhamnsfestivalen vid Dragörkajen.</p>
+            <h3 class="tour-row__venue">Limhamnsfestivalen, Dragörkajen</h3>
+            <p class="tour-row__desc">Spelning på Limhamnsfestivalen vid Dragörkajen.</p>
+          </div>
+          <div class="tour-row__links">
+            <span style="font-size: 0.88rem; color: var(--ink-muted);">Limhamn</span>
           </div>
         </article>
 
-        <article class="gig-card">
+        <article class="tour-row" role="listitem">
+          <time class="tour-row__date" datetime="2025-06-18">18 juni 2025</time>
           <div>
-            <span class="gig-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="17" rx="2.5" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
-              </svg>
-              18 juni 2025
-            </span>
-            <h3 class="gig-place">Kollektivkrogen</h3>
-            <p class="gig-desc">Spelning på Kollektivkrogen.</p>
+            <h3 class="tour-row__venue">Kollektivkrogen</h3>
+            <p class="tour-row__desc">Spelning på Kollektivkrogen.</p>
+          </div>
+          <div class="tour-row__links">
+            <span style="font-size: 0.88rem; color: var(--ink-muted);">Malmö</span>
           </div>
         </article>
         <!-- Lägg till fler föregående spelningar här -->

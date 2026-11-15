@@ -6,7 +6,7 @@ permalink: /galleri.html
 
 <style>
   .gallery-block {
-    margin-bottom: clamp(2.8rem, 6vw, 4rem);
+    margin-bottom: clamp(3rem, 6.5vw, 4.4rem);
   }
   .gallery-block:last-child {
     margin-bottom: 0;
@@ -14,8 +14,8 @@ permalink: /galleri.html
   .video-stage {
     max-width: 780px;
     margin: 0 auto;
-    background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-coastal) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--bg-deep);
+    border: 1px solid rgba(223, 160, 98, 0.28);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     padding: clamp(1rem, 3vw, 1.8rem);
@@ -35,7 +35,7 @@ permalink: /galleri.html
   .carousel-track-wrapper {
     width: 100%;
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
   }
   .carousel-track {
     list-style: none;
@@ -62,7 +62,7 @@ permalink: /galleri.html
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     background: #000;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
     margin-bottom: 0.9rem;
@@ -74,13 +74,14 @@ permalink: /galleri.html
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
   }
   .video-caption {
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    color: #e0f2f1;
+    font-style: italic;
+    font-size: 1.02rem;
+    font-weight: 400;
+    color: #efe7d8;
     text-align: center;
   }
   .controls-bottom {
@@ -94,24 +95,24 @@ permalink: /galleri.html
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background: rgba(246, 241, 232, 0.1);
+    color: #f6f1e8;
+    border: 1px solid rgba(246, 241, 232, 0.24);
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background var(--transition-fast), transform var(--transition-fast);
+    font-size: 0.95rem;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
   }
   .carousel-btn:hover:not(:disabled),
   .carousel-btn:focus-visible:not(:disabled) {
     background: var(--brand);
-    transform: translateY(-1px);
+    border-color: var(--accent-warm-light);
     outline: none;
   }
   .carousel-btn:disabled {
-    opacity: 0.38;
+    opacity: 0.35;
     cursor: default;
   }
   .carousel-dots {
@@ -121,10 +122,10 @@ permalink: /galleri.html
     align-items: center;
   }
   .carousel-dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.28);
+    background: rgba(246, 241, 232, 0.28);
     cursor: pointer;
     border: 0;
     padding: 0;
@@ -132,7 +133,7 @@ permalink: /galleri.html
   }
   .carousel-dot.active {
     width: 24px;
-    background: var(--accent-warm);
+    background: var(--accent-warm-light);
   }
   .video-swipe-overlay {
     position: absolute;
@@ -149,13 +150,13 @@ permalink: /galleri.html
     cursor: grabbing;
   }
   .swipe-label {
-    background: rgba(11, 34, 40, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(12, 33, 40, 0.85);
+    border: 1px solid rgba(223, 160, 98, 0.35);
     padding: 0.42rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.9rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
     font-weight: 500;
-    color: #fff;
+    color: #f6f1e8;
   }
   @media (min-width: 900px) {
     .video-swipe-overlay {
@@ -168,23 +169,23 @@ permalink: /galleri.html
     gap: 1.5rem;
   }
   .gallery-card {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
+    padding: 9px 9px 14px 9px;
     display: flex;
     flex-direction: column;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   }
   .gallery-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
   }
   .gallery-thumb-btn {
     padding: 0;
     border: 0;
+    border-radius: 2px;
     background: var(--bg-deep);
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -197,21 +198,20 @@ permalink: /galleri.html
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .gallery-thumb-btn--portrait img {
     object-position: center 20%;
   }
   .gallery-card:hover .gallery-thumb-btn img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
   .gallery-caption {
-    padding: 1rem 1.2rem;
+    padding: 0.8rem 0.25rem 0;
     font-family: var(--font-display);
-    font-size: 0.98rem;
-    font-weight: 600;
+    font-style: italic;
+    font-size: 0.96rem;
     color: var(--ink);
-    text-align: center;
   }
   .lightbox {
     display: none;
@@ -219,9 +219,7 @@ permalink: /galleri.html
     z-index: 9999;
     inset: 0;
     padding: 1.5rem;
-    background: rgba(6, 18, 22, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(7, 20, 24, 0.94);
     align-items: center;
     justify-content: center;
   }
@@ -231,19 +229,20 @@ permalink: /galleri.html
   .lightbox img {
     max-width: 92vw;
     max-height: 88vh;
-    border-radius: var(--radius-md);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    border: 8px solid var(--surface-warm);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
   }
   .lightbox-close {
     position: absolute;
     top: 1.2rem;
     right: 1.4rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    border: 1px solid rgba(246, 241, 232, 0.28);
+    background: rgba(12, 33, 40, 0.7);
+    color: #f6f1e8;
     font-size: 1.6rem;
     line-height: 1;
     display: inline-flex;
@@ -252,7 +251,7 @@ permalink: /galleri.html
     cursor: pointer;
   }
   .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(223, 160, 98, 0.25);
   }
   @media (max-width: 900px) {
     .gallery-grid {
@@ -281,7 +280,7 @@ permalink: /galleri.html
 
 <section class="page-hero">
   <div class="page-hero__inner">
-    <span class="page-hero__badge">Video &amp; Foto</span>
+    <span class="page-hero__kicker">Video &amp; Foto</span>
     <h1 class="page-hero__title">Galleri</h1>
     <p class="page-hero__lead">
       Upplev vår scennärvaro – lyssna på liveklipp från YouTube och klicka på bilderna för att se dem i full storlek.
@@ -289,11 +288,11 @@ permalink: /galleri.html
   </div>
 </section>
 
-<section class="page-section page-section--soft">
+<section class="page-section page-section--warm">
   <div class="section-container">
     <div class="gallery-block">
       <div class="section-header">
-        <span class="section-eyebrow">YouTube</span>
+        <span class="section-kicker">YouTube</span>
         <h2 class="section-title">Liveklipp &amp; Video</h2>
         <p class="section-subtitle">Bläddra mellan våra inspelade framträdanden.</p>
       </div>
@@ -342,7 +341,7 @@ permalink: /galleri.html
     </div>
     <div class="gallery-block">
       <div class="section-header">
-        <span class="section-eyebrow">Fotografier</span>
+        <span class="section-kicker">Fotografier</span>
         <h2 class="section-title">Bilder från scen &amp; sessioner</h2>
         <p class="section-subtitle">Klicka på valfri bild för att öppna den i större format.</p>
       </div>

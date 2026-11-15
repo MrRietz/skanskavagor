@@ -4,27 +4,24 @@ title: Hem
 ---
 
 <style>
-  /* ---------- Stage Banner (Split-Hero) ---------- */
+  /* ---------- Editorial Band Hero ---------- */
   .stage-banner {
     position: relative;
     width: 100%;
     overflow: hidden;
-    background:
-      radial-gradient(circle at 18% 22%, rgba(38, 166, 154, 0.24) 0%, transparent 48%),
-      radial-gradient(circle at 86% 78%, rgba(229, 152, 73, 0.16) 0%, transparent 45%),
-      linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-coastal) 55%, #0f4648 100%);
-    padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(3rem, 5.5vw, 4.6rem) 0;
+    isolation: isolate;
+    background: linear-gradient(135deg, #0b1f26 0%, #112f38 58%, #164049 100%);
+    padding: clamp(2.6rem, 5.5vw, 4.4rem) 0;
+    border-bottom: 3px solid rgba(223, 160, 98, 0.35);
   }
 
-  .stage-banner::after {
+  .stage-banner::before {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 28px;
-    background: var(--surface-soft);
-    clip-path: ellipse(58% 100% at 50% 100%);
+    inset: 0;
+    z-index: -1;
+    background: url("{{ site.baseurl }}/public/img/skanska_profile_bild.png") center center / cover no-repeat;
+    opacity: 0.16;
     pointer-events: none;
   }
 
@@ -32,88 +29,99 @@ title: Hem
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 1140px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 0 clamp(1.1rem, 4vw, 2.4rem);
+    padding: 0 clamp(1.2rem, 4vw, 2.5rem);
     display: grid;
     grid-template-columns: 1.08fr 0.92fr;
     align-items: center;
-    gap: clamp(1.8rem, 4vw, 3.2rem);
-    color: #fff;
+    gap: clamp(2rem, 4.5vw, 3.8rem);
+    color: #f6f1e8;
   }
 
   .stage-banner__content {
     text-align: left;
   }
 
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.55rem;
-    margin-bottom: 1.1rem;
-  }
-
-  .hero-badge {
+  .hero-kicker {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.36rem 0.9rem;
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: #e0f2f1;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    gap: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-warm-light);
+    margin-bottom: 1.15rem;
+  }
+
+  .hero-kicker::before {
+    content: "";
+    width: 28px;
+    height: 1.5px;
+    background: var(--accent-warm-light);
   }
 
   .stage-banner__logo {
-    width: clamp(200px, 26vw, 310px);
+    width: clamp(190px, 24vw, 275px);
     height: auto;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.85rem 0;
     display: block;
-    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+  }
+
+  .stage-banner__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.4vw, 2.65rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: #fcfaf5;
+    margin: 0 0 1rem 0;
+    max-width: 20ch;
   }
 
   .stage-banner__tagline {
     font-family: var(--font-body);
-    font-size: clamp(1.02rem, 1.9vw, 1.22rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: #d8ecea;
-    margin: 0 0 1.65rem 0;
-    max-width: 46ch;
+    font-size: clamp(1rem, 1.7vw, 1.12rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: #cfe1e0;
+    margin: 0 0 1.85rem 0;
+    max-width: 44ch;
   }
 
   .stage-banner__actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 0.85rem;
+    gap: 0.9rem;
   }
 
+  /* Analogt pressfoto-ram */
   .stage-banner__media {
     width: 100%;
   }
 
-  .stage-banner__frame {
-    position: relative;
-    max-width: 500px;
+  .press-photo {
+    max-width: 470px;
     width: 100%;
     margin: 0 auto;
+    padding: 10px 10px 14px 10px;
+    background: var(--surface-warm);
+    border-radius: 4px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  }
+
+  .press-photo__viewport {
     aspect-ratio: 4 / 3;
-    border-radius: 20px;
+    width: 100%;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    border-radius: 2px;
     background: var(--bg-deep);
   }
 
-  .stage-banner__img {
+  .press-photo__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -121,133 +129,157 @@ title: Hem
     display: block;
   }
 
-  .stage-banner__caption {
-    position: absolute;
-    left: 0.9rem;
-    bottom: 0.9rem;
-    padding: 0.42rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(11, 34, 40, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #effaf9;
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+  .press-photo__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 0.25rem 0.1rem;
+    color: var(--ink);
   }
 
-  /* ---------- Story & Highlights ---------- */
-  .story-grid {
+  .press-photo__caption {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.98rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .press-photo__tag {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ---------- Band Story & Influences Poster ---------- */
+  .band-story-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(1.5rem, 3.5vw, 2.5rem);
-    align-items: stretch;
-    margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
-  .story-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .story-card h1 {
-    font-size: clamp(1.7rem, 3vw, 2.25rem);
-    font-weight: 800;
-    color: var(--ink);
-    margin: 0 0 1rem 0;
-  }
-
-  .story-card__text {
-    font-size: 1.04rem;
-    line-height: 1.75;
-    color: var(--ink-soft);
-    margin: 0 0 1.4rem 0;
-  }
-
-  .story-quote {
-    margin: 0;
-    padding: 1rem 1.2rem;
-    border-left: 4px solid var(--accent-warm);
-    border-radius: 0 12px 12px 0;
-    background: var(--accent-sand);
-    color: var(--ink);
+  .band-story__heading {
     font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 2.5rem);
     font-weight: 600;
-    font-size: 0.98rem;
-    line-height: 1.55;
-  }
-
-  .highlights-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .highlight-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem 1.35rem;
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-  }
-
-  .highlight-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-strong);
-  }
-
-  .highlight-item__icon {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(0, 137, 123, 0.1);
-    color: var(--brand-dark);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .highlight-item__title {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.08rem;
-    font-weight: 700;
+    margin: 0 0 1.2rem 0;
     color: var(--ink);
   }
 
-  .highlight-item__desc {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.55;
+  .band-story__text {
+    font-size: 1.05rem;
+    line-height: 1.78;
     color: var(--ink-soft);
+    margin: 0 0 1.6rem 0;
   }
 
-  /* ---------- Photo Strip (3 unika bilder) ---------- */
-  .photo-strip {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.3rem;
+  .band-story__text::first-letter {
+    font-family: var(--font-display);
+    font-size: 3.35rem;
+    font-weight: 600;
+    line-height: 0.86;
+    float: left;
+    padding: 0.08em 0.18em 0 0;
+    color: var(--brand-dark);
   }
 
-  .photo-card {
-    position: relative;
+  .band-story__quote {
     margin: 0;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: var(--bg-deep);
-    box-shadow: var(--shadow-md);
-    aspect-ratio: 4 / 3;
+    padding: 1.1rem 0 1.1rem 1.35rem;
+    border-left: 3px solid var(--accent-warm);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.12rem;
+    line-height: 1.55;
+    color: var(--ink);
   }
 
-  .photo-card img {
+  .influences-board {
+    background: var(--surface-card);
+    border: 1px solid var(--rule-strong);
+    border-top: 4px solid var(--brand-dark);
+    border-radius: var(--radius-md);
+    padding: clamp(1.5rem, 3.5vw, 2.2rem);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .influences-board__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 1.15rem 0;
+    color: var(--ink);
+  }
+
+  .influence-list {
+    border-top: 1px solid var(--rule);
+    margin-bottom: 1.35rem;
+  }
+
+  .influence-row {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .influence-row__label {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent-warm);
+    margin-bottom: 0.25rem;
+  }
+
+  .influence-row__names {
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- Editorial Gallery ---------- */
+  .editorial-gallery {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr 0.9fr;
+    gap: 1.4rem;
+    align-items: stretch;
+  }
+
+  .editorial-frame {
+    margin: 0;
+    padding: 9px 9px 13px 9px;
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .editorial-frame:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .editorial-frame__media {
+    width: 100%;
+    flex: 1;
+    min-height: 230px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--bg-deep);
+  }
+
+  .editorial-frame__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -255,199 +287,108 @@ title: Hem
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .photo-card--portrait img {
+  .editorial-frame--portrait img {
     object-position: center 20%;
   }
 
-  .photo-card--mia img {
+  .editorial-frame--mia img {
     object-position: center 14%;
   }
 
-  .photo-card:hover img {
-    transform: scale(1.05);
+  .editorial-frame:hover img {
+    transform: scale(1.03);
   }
 
-  .photo-card__caption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 2rem 1.1rem 0.9rem;
-    background: linear-gradient(180deg, transparent 0%, rgba(11, 34, 40, 0.86) 100%);
-    color: #fff;
+  .editorial-frame__caption {
+    padding: 0.75rem 0.25rem 0;
     font-family: var(--font-display);
+    font-style: italic;
     font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-
-  /* ---------- Spelningar & Snabbnavigering ---------- */
-  .gigs-spotlight {
-    background: linear-gradient(135deg, #ffffff 0%, #f2f9f8 100%);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: clamp(1.8rem, 4vw, 2.8rem);
-    text-align: center;
-    margin-bottom: clamp(2rem, 4vw, 2.8rem);
-  }
-
-  .gigs-spotlight__title {
-    font-size: clamp(1.45rem, 3vw, 1.9rem);
-    font-weight: 700;
     color: var(--ink);
-    margin: 0 0 0.7rem 0;
   }
 
-  .gigs-spotlight__text {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    max-width: 52ch;
-    margin: 0 auto 1.5rem auto;
-    line-height: 1.65;
+  .editorial-gallery__footer {
+    margin-top: 2rem;
+    text-align: center;
   }
 
-  .gigs-spotlight__actions {
+  /* ---------- Tour Ledger Preview ---------- */
+  .tour-status-strip {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.85rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.8rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    background: var(--surface-warm);
+    border: 1px solid var(--rule-strong);
+    border-left: 4px solid var(--accent-warm);
+    border-radius: var(--radius-sm);
   }
 
-  .feature-links {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+  .tour-status-strip__text {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--ink);
+    max-width: 62ch;
   }
 
-  .feature-card {
+  .tour-footer-links {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.6rem;
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    color: var(--ink);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    margin-top: 1.6rem;
   }
 
-  .feature-card:hover,
-  .feature-card:focus-visible {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--brand);
-    outline: none;
-  }
-
-  .feature-card__icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(0, 105, 92, 0.22);
-  }
-
-  .feature-card__title {
-    margin: 0 0 0.35rem 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .feature-card__desc {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    line-height: 1.55;
-  }
-
-  .feature-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.94rem;
-    color: var(--brand-dark);
-  }
-
-  .feature-card:hover .feature-card__cta {
-    color: var(--brand);
-  }
-
-  /* ---------- Direkt Bokningswidget ---------- */
+  /* ---------- Booking Split ---------- */
   .booking-split {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: clamp(1.6rem, 4vw, 3rem);
-    align-items: center;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: clamp(2rem, 5vw, 3.8rem);
+    align-items: start;
   }
 
-  .booking-info h2 {
-    font-size: clamp(1.7rem, 3.3vw, 2.3rem);
-    font-weight: 800;
-    margin: 0 0 0.8rem 0;
+  .booking-info__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.4vw, 2.45rem);
+    font-weight: 600;
+    margin: 0 0 0.95rem 0;
     color: var(--ink);
   }
 
-  .booking-info p {
+  .booking-info__lead {
     font-size: 1.04rem;
+    line-height: 1.72;
     color: var(--ink-soft);
-    margin: 0 0 1.4rem 0;
-    line-height: 1.68;
+    margin: 0 0 1.5rem 0;
   }
 
-  .booking-perks {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .booking-perks li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.98rem;
-    font-weight: 500;
-    color: var(--ink);
-  }
-
-  .booking-perks__check {
-    flex-shrink: 0;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: rgba(0, 137, 123, 0.14);
+  .booking-info__note {
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--rule-strong);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     color: var(--brand-dark);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .booking-card {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    padding: clamp(1.5rem, 3.5vw, 2.3rem);
-  }
+  @media (max-width: 900px) {
 
-  @media (max-width: 920px) {
-    .story-grid,
+    .band-story-grid,
     .booking-split {
       grid-template-columns: 1fr;
     }
 
-    .feature-links {
+    .editorial-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .editorial-gallery .editorial-frame:first-child {
+      grid-column: 1 / -1;
     }
   }
 
@@ -461,39 +402,42 @@ title: Hem
       text-align: center;
     }
 
-    .hero-badges,
+    .hero-kicker,
     .stage-banner__actions {
       justify-content: center;
     }
 
     .stage-banner__logo,
+    .stage-banner__heading,
     .stage-banner__tagline {
       margin-left: auto;
       margin-right: auto;
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 640px) {
     .stage-banner__actions .btn {
       width: 100%;
     }
 
-    .photo-strip,
-    .feature-links {
+    .editorial-gallery {
       grid-template-columns: 1fr;
+    }
+
+    .editorial-gallery .editorial-frame:first-child {
+      grid-column: auto;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .highlight-item,
-    .photo-card img,
-    .feature-card {
+
+    .editorial-frame,
+    .editorial-frame__media img {
       transition: none;
     }
 
-    .highlight-item:hover,
-    .photo-card:hover img,
-    .feature-card:hover {
+    .editorial-frame:hover,
+    .editorial-frame:hover img {
       transform: none;
     }
   }
@@ -502,250 +446,204 @@ title: Hem
 <section class="stage-banner">
   <div class="stage-banner__inner">
     <div class="stage-banner__content">
-      <div class="hero-badges">
-        <span class="hero-badge">Country · Rock · Pop</span>
-        <span class="hero-badge">3 Röster &amp; 2 Gitarrer</span>
-        <span class="hero-badge">Live i Skåne</span>
-      </div>
+      <div class="hero-kicker">Tre röster &amp; två gitarrer · Skåne</div>
       <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
         class="stage-banner__logo" />
+      <h1 class="stage-banner__heading">
+        Där country möter rock och pop i akustisk harmoni
+      </h1>
       <p class="stage-banner__tagline">
-        Musiker som vågar – stämsång, akustisk energi och tidlösa låtar från Fleetwood Mac till Kal P. Dal.
+        Från Fleetwood Mac och The Cranberries till Mikael Wiehe och Kal P. Dal – levande musik med närvaro, stämsång
+        och spelglädje.
       </p>
       <div class="stage-banner__actions">
-        <a href="{{ site.baseurl }}/bokning.html" class="btn btn--accent">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2.5" />
-            <path d="M3 7l9 6 9-6" />
-          </svg>
-          Boka oss till ert event
-        </a>
-        <a href="{{ site.baseurl }}/galleri.html" class="btn btn--glass">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="6 4 20 12 6 20 6 4" />
-          </svg>
-          Lyssna &amp; se klipp
-        </a>
+        <a href="{{ site.baseurl }}/bokning.html" class="btn btn--accent">Boka bandet</a>
+        <a href="{{ site.baseurl }}/galleri.html" class="btn btn--outline-light">Lyssna i galleriet</a>
       </div>
     </div>
 
     <div class="stage-banner__media">
-      <figure class="stage-banner__frame">
-        <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
-          alt="Skånska Vågor – Robin, Mia och André med akustiska gitarrer" class="stage-banner__img" />
-        <figcaption class="stage-banner__caption">Robin, Mia &amp; André · Akustisk trio</figcaption>
+      <figure class="press-photo">
+        <div class="press-photo__viewport">
+          <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
+            alt="Skånska Vågor – Robin, Mia och André med akustiska gitarrer" class="press-photo__img" />
+        </div>
+        <figcaption class="press-photo__meta">
+          <span class="press-photo__caption">Robin, Mia &amp; André</span>
+          <span class="press-photo__tag">Akustisk trio</span>
+        </figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<section class="page-section page-section--soft">
+<section class="page-section page-section--warm">
   <div class="section-container">
-    <div class="story-grid">
-      <article class="surface-card story-card">
-        <div>
-          <span class="section-eyebrow">Upplev Skånska Vågor</span>
-          <h1>Skånska Vågor – Musiker som vågar</h1>
-          <p class="story-card__text">
-            Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
-            en unik blandning av country, rock och pop. Med passion och spelglädje tar
-            vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
-            och moderna countryhits till akustiska tolkningar av välkända låtar. Vi
-            hyllar både legendariska band som Fleetwood Mac och The Cranberries, och ger
-            nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal
-            P. Dal som skånska inspirationskällor visar vi att musik kan förena
-            människor över alla gränser – oavsett genre eller ursprung. Välkommen att
-            uppleva vår musik live!
-          </p>
-        </div>
-        <blockquote class="story-quote">
-          ”Tre röster, två gitarrer och en spelglädje som lyfter allt från intima krogkvällar till sommarens festivalscener.”
+    <div class="band-story-grid">
+      <div>
+        <span class="section-kicker">Om bandet</span>
+        <h2 class="band-story__heading">Musiker som vågar</h2>
+        <p class="band-story__text">
+          Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
+          en unik blandning av country, rock och pop. Med passion och spelglädje tar
+          vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
+          och moderna countryhits till akustiska tolkningar av välkända låtar. Vi
+          hyllar både legendariska band som Fleetwood Mac och The Cranberries, och ger
+          nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal
+          P. Dal som skånska inspirationskällor visar vi att musik kan förena
+          människor över alla gränser – oavsett genre eller ursprung. Välkommen att
+          uppleva vår musik live!
+        </p>
+        <blockquote class="band-story__quote">
+          ”Musik känner inga gränser – mellan decennier, genrer eller publik och scen.”
         </blockquote>
+      </div>
+
+      <aside class="influences-board" aria-label="Våra influenser och musikaliska uttryck">
+        <h3 class="influences-board__title">Våra influenser &amp; uttryck</h3>
+        <div class="influence-list">
+          <div class="influence-row">
+            <span class="influence-row__label">Rötter &amp; legender</span>
+            <span class="influence-row__names">Fleetwood Mac &middot; The Cranberries</span>
+          </div>
+          <div class="influence-row">
+            <span class="influence-row__label">Skånskt hjärta</span>
+            <span class="influence-row__names">Kal P. Dal &middot; Mikael Wiehe</span>
+          </div>
+          <div class="influence-row">
+            <span class="influence-row__label">Akustiska tolkningar</span>
+            <span class="influence-row__names">Moderna countryhits &middot; Elektroniska klassiker i ny kostym</span>
+          </div>
+        </div>
+        <a href="{{ site.baseurl }}/medlemmar.html" class="editorial-link">
+          Lär känna Mia, Robin &amp; André &rarr;
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="page-section page-section--alt">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-kicker">På &amp; bakom scenen</span>
+      <h2 class="section-title">Ögonblick från spelningar</h2>
+      <p class="section-subtitle">
+        Tre bilder som fångar stämningen från våra framträdanden runt om i Skåne.
+      </p>
+    </div>
+
+    <div class="editorial-gallery">
+      <figure class="editorial-frame">
+        <div class="editorial-frame__media">
+          <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
+            alt="Skånska Vågor live på Limhamnsfestivalen" loading="lazy" />
+        </div>
+        <figcaption class="editorial-frame__caption">Live på Limhamnsfestivalen, Dragörkajen</figcaption>
+      </figure>
+
+      <figure class="editorial-frame editorial-frame--portrait">
+        <div class="editorial-frame__media">
+          <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
+            alt="Skånska Vågor med akustiska gitarrer utomhus" loading="lazy" />
+        </div>
+        <figcaption class="editorial-frame__caption">Akustisk session i det gröna</figcaption>
+      </figure>
+
+      <figure class="editorial-frame editorial-frame--mia">
+        <div class="editorial-frame__media">
+          <img src="{{ site.baseurl }}/public/img/mia.png" alt="Mia från Skånska Vågor med gitarr och mikrofon på scen"
+            loading="lazy" />
+        </div>
+        <figcaption class="editorial-frame__caption">Närvaro och stämsång på scen</figcaption>
+      </figure>
+    </div>
+
+    <div class="editorial-gallery__footer">
+      <a href="{{ site.baseurl }}/galleri.html" class="editorial-link">
+        Se våra liveklipp på YouTube &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="page-section page-section--paper">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-kicker">Spelningar</span>
+      <h2 class="section-title">Senast på scenen &amp; kommande datum</h2>
+    </div>
+
+    <div class="tour-status-strip">
+      <p class="tour-status-strip__text">
+        Just nu har vi inga inbokade kommande spelningar — men kalendern är öppen för krogar, fester och festivaler.
+      </p>
+      <a href="{{ site.baseurl }}/bokning.html" class="btn btn--primary">Boka ett datum</a>
+    </div>
+
+    <div class="tour-ledger" role="list" aria-label="Senaste spelningar">
+      <article class="tour-row" role="listitem">
+        <time class="tour-row__date" datetime="2026-07-23">23 juli 2026</time>
+        <div>
+          <h3 class="tour-row__venue">Limhamnsfestivalen, Dragörkajen</h3>
+          <p class="tour-row__desc">Sommarspelning på festivalscenen vid kajen.</p>
+        </div>
+        <div class="tour-row__links">
+          <span style="font-size: 0.88rem; color: var(--ink-muted);">Limhamn</span>
+        </div>
       </article>
 
-      <div class="highlights-stack" aria-label="Därför bokar arrangörer oss">
-        <div class="highlight-item">
-          <span class="highlight-item__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-              <line x1="12" y1="19" x2="12" y2="22" />
-            </svg>
-          </span>
-          <div>
-            <h2 class="highlight-item__title">Tre röster i harmoni</h2>
-            <p class="highlight-item__desc">Stämsång och stark scennärvaro som skapar både gåshud och feststämning.</p>
-          </div>
-        </div>
-
-        <div class="highlight-item">
-          <span class="highlight-item__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 18V5l12-2v13" />
-              <circle cx="6" cy="18" r="3" />
-              <circle cx="18" cy="16" r="3" />
-            </svg>
-          </span>
-          <div>
-            <h2 class="highlight-item__title">Bred repertoar som engagerar</h2>
-            <p class="highlight-item__desc">Från country och folkrock till akustiska pophits och skånska klassiker.</p>
-          </div>
-        </div>
-
-        <div class="highlight-item">
-          <span class="highlight-item__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </span>
-          <div>
-            <h2 class="highlight-item__title">Krog, festival &amp; privatfest</h2>
-            <p class="highlight-item__desc">Vi anpassar energi och låtval efter publiken – från mingel till full allsång.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="photo-strip">
-      <figure class="photo-card">
-        <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
-          alt="Skånska Vågor spelar live på Limhamnsfestivalen" loading="lazy" />
-        <figcaption class="photo-card__caption">Live på Limhamnsfestivalen</figcaption>
-      </figure>
-      <figure class="photo-card photo-card--portrait">
-        <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
-          alt="Skånska Vågor med akustiska gitarrer utomhus" loading="lazy" />
-        <figcaption class="photo-card__caption">Akustisk spelglädje</figcaption>
-      </figure>
-      <figure class="photo-card photo-card--mia">
-        <img src="{{ site.baseurl }}/public/img/mia.png"
-          alt="Mia från Skånska Vågor med gitarr och mikrofon på scen" loading="lazy" />
-        <figcaption class="photo-card__caption">Närvaro på scen</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="page-section page-section--white">
-  <div class="section-container">
-    <div class="gigs-spotlight">
-      <span class="section-eyebrow">Livekalender</span>
-      <h2 class="gigs-spotlight__title">Kommande spelningar</h2>
-      <p class="gigs-spotlight__text">
-        Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
-        Vill du ha oss till din fest, krog eller ditt evenemang?
-      </p>
-      <div class="gigs-spotlight__actions">
-        <a href="{{ site.baseurl }}/bokning.html" class="btn btn--primary">Boka oss</a>
-        <a href="{{ site.baseurl }}/spelningar.html" class="btn btn--ghost">Se tidigare spelningar</a>
-      </div>
-    </div>
-
-    <div class="feature-links">
-      <a href="{{ site.baseurl }}/spelningar.html" class="feature-card">
+      <article class="tour-row" role="listitem">
+        <time class="tour-row__date" datetime="2026-02-18">18 februari 2026</time>
         <div>
-          <span class="feature-card__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="17" rx="2.5" />
-              <path d="M16 2v4M8 2v4M3 10h18" />
-            </svg>
-          </span>
-          <h3 class="feature-card__title" style="margin-top: 1rem;">Se våra spelningar</h3>
-          <p class="feature-card__desc">
-            Utforska tidigare spelningar på bland annat Limhamnsfestivalen och Kollektivkrogen i Malmö.
-          </p>
+          <h3 class="tour-row__venue">Kollektivkrogen</h3>
+          <p class="tour-row__desc">Helkväll med akustisk livemusik och fri entré.</p>
         </div>
-        <span class="feature-card__cta">Gå till spelningar &rarr;</span>
+        <div class="tour-row__links">
+          <span style="font-size: 0.88rem; color: var(--ink-muted);">Malmö</span>
+        </div>
+      </article>
+
+      <article class="tour-row" role="listitem">
+        <time class="tour-row__date" datetime="2025-10-08">8 oktober 2025</time>
+        <div>
+          <h3 class="tour-row__venue">Kollektivkrogen</h3>
+          <p class="tour-row__desc">Höstspelning i intim krogmiljö med fri entré.</p>
+        </div>
+        <div class="tour-row__links">
+          <span style="font-size: 0.88rem; color: var(--ink-muted);">Malmö</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="tour-footer-links">
+      <a href="{{ site.baseurl }}/spelningar.html" class="editorial-link">
+        Se hela spelningsarkivet &rarr;
       </a>
-
-      <a href="{{ site.baseurl }}/medlemmar.html" class="feature-card">
-        <div>
-          <span class="feature-card__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="3.5" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-            </svg>
-          </span>
-          <h3 class="feature-card__title" style="margin-top: 1rem;">Läs om bandet</h3>
-          <p class="feature-card__desc">
-            Möt Mia, Robin och André – de tre rösterna och två akustiska gitarrerna bakom Skånska Vågor.
-          </p>
-        </div>
-        <span class="feature-card__cta">Möt medlemmarna &rarr;</span>
-      </a>
-
-      <a href="{{ site.baseurl }}/galleri.html" class="feature-card">
-        <div>
-          <span class="feature-card__icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="6 4 20 12 6 20 6 4" />
-            </svg>
-          </span>
-          <h3 class="feature-card__title" style="margin-top: 1rem;">Se galleri &amp; klipp</h3>
-          <p class="feature-card__desc">
-            Lyssna på liveklipp direkt från YouTube och se fler foton från våra konserter och pressbilder.
-          </p>
-        </div>
-        <span class="feature-card__cta">Öppna galleriet &rarr;</span>
+      <a href="{{ site.baseurl }}/bokning.html" class="editorial-link">
+        Boka till ert nästa evenemang &rarr;
       </a>
     </div>
   </div>
 </section>
 
-<section class="page-section page-section--sand" id="boka">
+<section class="page-section page-section--warm" id="boka">
   <div class="section-container">
     <div class="booking-split">
-      <div class="booking-info">
-        <span class="section-eyebrow">Snabb bokningsförfrågan</span>
-        <h2>Boka Skånska Vågor</h2>
-        <p>
-          Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?
-          Kontakta oss gärna via formuläret så återkommer vi så snart vi kan!
+      <div>
+        <span class="section-kicker">Kontakt &amp; Bokning</span>
+        <h2 class="booking-info__heading">Vill du boka Skånska Vågor?</h2>
+        <p class="booking-info__lead">
+          Oavsett om det handlar om en intim krogkväll, ett bröllop, en företagsfest eller en
+          sommarfestival anpassar vi både låtval och energi efter er publik. Skriv några rader
+          om datum och plats så återkommer vi så snart vi kan.
         </p>
-        <ul class="booking-perks">
-          <li>
-            <span class="booking-perks__check" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </span>
-            Vi svarar normalt inom 24–48 timmar
-          </li>
-          <li>
-            <span class="booking-perks__check" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </span>
-            Perfekt för krogkvällar, festivaler, företagsevent &amp; privata fester
-          </li>
-          <li>
-            <span class="booking-perks__check" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </span>
-            Anpassat upplägg efter lokal, publik och stämning
-          </li>
-        </ul>
+        <div class="booking-info__note">
+          Baserade i Skåne &middot; Tre röster &amp; två gitarrer &middot; Country, rock &amp; pop
+        </div>
       </div>
 
-      <div class="booking-card">
+      <div class="paper-panel">
         <form class="booking-form" action="https://formspree.io/f/xnnzegyr" method="POST">
           <div class="field">
             <label for="booking-namn">Ditt namn</label>
