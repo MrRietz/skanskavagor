@@ -5,280 +5,381 @@ permalink: /galleri.html
 ---
 
 <style>
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(120deg, #e0f7fa 0%, #f8fafc 100%);
-  padding: 2.5em 1em 2em 1em;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-}
-.hero-title {
-  font-size: 2.2em;
-  font-weight: 700;
-  color: #009688;
-  margin-bottom: 0.7em;
-  letter-spacing: 0.03em;
-  text-align: center;
-}
-.gallery-section-title {
-  font-size: 1.4em;
-  color: #009688;
-  margin: 2em 0 1em 0;
-  text-align: center;
-  font-weight: 600;
-}
-.gallery-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  margin-top: 2em;
-}
-.gallery-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  padding: 1em 1em 1.5em 1em;
-  width: 260px;
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}
-.gallery-card img {
-  max-width: 100%;
-  max-height: 140px;
-  border-radius: 8px;
-  margin-bottom: 0.7em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  cursor: pointer;
-  transition: box-shadow 0.2s;
-}
-.gallery-card img:hover {
-  box-shadow: 0 4px 16px rgba(0,150,136,0.18);
-}
-.gallery-caption {
-  font-size: 1em;
-  color: #333;
-  text-align: center;
-}
-/* Video card styles */
-.video-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  margin-top: 2em;
-}
-.video-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  padding: 1em 1em 1.5em 1em;
-  width: 600px;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}
-.video-card .video-wrapper {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  margin-bottom: 0.7em;
-}
-.video-card iframe {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%; border: 0;
-  border-radius: 8px;
-}
-/* Lightbox styles */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.85);
-  align-items: center;
-  justify-content: center;
-}
-.lightbox.active {
-  display: flex;
-}
-.lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 12px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
-}
-.lightbox-close {
-  position: absolute;
-  top: 2vw;
-  right: 3vw;
-  color: #fff;
-  font-size: 2.5em;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10001;
-  text-shadow: 0 2px 8px #000;
-}
-@media (max-width: 700px) {
-  .hero {
-    padding: 1.2em 0.3em 1.2em 0.3em;
+  .gallery-block {
+    margin-bottom: clamp(2.8rem, 6vw, 4rem);
   }
-  .hero-title {
-    font-size: 1.3em;
+  .gallery-block:last-child {
+    margin-bottom: 0;
   }
-  .gallery-list, .video-list {
+  .video-stage {
+    max-width: 780px;
+    margin: 0 auto;
+    background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-coastal) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(1rem, 3vw, 1.8rem);
+  }
+  .video-carousel {
+    display: flex;
     flex-direction: column;
-    gap: 1em;
+    align-items: center;
+    gap: 1rem;
+  }
+  .controls-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  .carousel-track-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+  .carousel-track {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+  .video-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-  .gallery-card, .video-card {
-    min-width: 0;
-    width: 98vw;
-    max-width: 98vw;
-    padding: 1em 0.5em;
-  }
-  .gallery-card img {
-    max-width: 95vw;
-    max-height: 180px;
-  }
   .video-card .video-wrapper {
+    position: relative;
+    width: 100%;
     padding-bottom: 56.25%;
-    min-height: 180px;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: #000;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    margin-bottom: 0.9rem;
   }
-}
+  .video-card iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--radius-md);
+  }
+  .video-caption {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e0f2f1;
+    text-align: center;
+  }
+  .controls-bottom {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+  .carousel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+  }
+  .carousel-btn:hover:not(:disabled),
+  .carousel-btn:focus-visible:not(:disabled) {
+    background: var(--brand);
+    transform: translateY(-1px);
+    outline: none;
+  }
+  .carousel-btn:disabled {
+    opacity: 0.38;
+    cursor: default;
+  }
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.28);
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    transition: width 0.25s ease, background 0.25s ease;
+  }
+  .carousel-dot.active {
+    width: 24px;
+    background: var(--accent-warm);
+  }
+  .video-swipe-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08));
+    color: #fff;
+    z-index: 3;
+    cursor: grab;
+  }
+  .video-swipe-overlay:active {
+    cursor: grabbing;
+  }
+  .swipe-label {
+    background: rgba(11, 34, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.42rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+  }
+  @media (min-width: 900px) {
+    .video-swipe-overlay {
+      display: none;
+    }
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .gallery-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  }
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-strong);
+  }
+  .gallery-thumb-btn {
+    padding: 0;
+    border: 0;
+    background: var(--bg-deep);
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    cursor: zoom-in;
+    display: block;
+  }
+  .gallery-thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .gallery-thumb-btn--portrait img {
+    object-position: center 20%;
+  }
+  .gallery-card:hover .gallery-thumb-btn img {
+    transform: scale(1.05);
+  }
+  .gallery-caption {
+    padding: 1rem 1.2rem;
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+  }
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    padding: 1.5rem;
+    background: rgba(6, 18, 22, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active {
+    display: flex;
+  }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.4rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+  @media (max-width: 900px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-track,
+    .gallery-card,
+    .gallery-thumb-btn img,
+    .carousel-btn,
+    .carousel-dot {
+      transition: none;
+    }
+    .gallery-card:hover,
+    .gallery-card:hover .gallery-thumb-btn img {
+      transform: none;
+    }
+  }
 </style>
 
-<!-- Carousel styles -->
-<style>
-/* Layout: buttons + track in one row, dots centered below */
-.video-carousel { display:flex; flex-direction:column; align-items:center; gap:12px; justify-content:center; margin-top:1em; }
-.controls-row { display:flex; align-items:center; gap:12px; width:100%; justify-content:center; }
-.carousel-track-wrapper { width: 640px; max-width: 90vw; overflow: hidden; }
-.carousel-track { list-style: none; display:flex; padding:0; margin:0; transition: transform 0.45s ease; }
-.carousel-slide { min-width: 100%; box-sizing: border-box; display:flex; justify-content:center; }
-.carousel-btn { background:#009688; color:#fff; border:0; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:1.1em; }
-.carousel-btn:disabled { opacity:0.5; cursor:default; }
-.carousel-dots { display:flex; gap:8px; justify-content:center; align-items:center; width:100%; margin-top:8px; }
-.carousel-dot { width:10px; height:10px; border-radius:50%; background:#ddd; cursor:pointer; border:0; }
-.carousel-dot.active { background:#009688; }
-
-  .controls-bottom { display:flex; align-items:center; gap:12px; justify-content:center; margin-top:8px; }
-.controls-bottom .carousel-btn { padding:6px 10px; }
-
-@media (max-width:700px) {
-  .video-carousel { gap:8px; }
-  .controls-row { flex-direction:row; }
-  .carousel-btn { padding:6px 10px; }
-  .carousel-track-wrapper { max-width: 95vw; }
-  /* Side buttons removed; bottom controls are always visible */
-}
-</style>
-
-<!-- Swipe overlay styles -->
-<style>
-.video-swipe-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.05));
-  color: #fff;
-  z-index: 3;
-  cursor: grab;
-}
-.video-swipe-overlay:active { cursor: grabbing; }
-.swipe-label {
-  background: rgba(0,0,0,0.55);
-  padding: 0.35em 0.6em;
-  border-radius: 999px;
-  font-size: 0.95em;
-  color: #fff;
-}
-@media (min-width: 900px) {
-  /* Hide overlay on desktop where clicking the iframe is okay */
-  .video-swipe-overlay { display: none; }
-}
-</style>
-
-<div class="hero">
-  <div class="hero-title">Galleri</div>
-  <div class="gallery-section-title">Video</div>
-  <!-- Carousel for embedded YouTube videos -->
-  <div class="video-carousel" id="videoCarousel">
-    <div class="controls-row">
-      <div class="carousel-track-wrapper">
-        <ul class="carousel-track">
-        <li class="carousel-slide">
-          <div class="video-card">
-            <div class="video-wrapper">
-              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
-              <iframe src="https://www.youtube.com/embed/bhsHd3c4Spo?si=UjGOrbrzRnXhtMsn&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="gallery-caption">Liveklipp</div>
-          </div>
-        </li>
-        <li class="carousel-slide">
-          <div class="video-card">
-            <div class="video-wrapper">
-              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
-              <iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw?enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="gallery-caption">Video från Skånska Vågor</div>
-          </div>
-        </li>
-        <li class="carousel-slide">
-          <div class="video-card">
-            <div class="video-wrapper">
-              <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
-              <iframe src="https://www.youtube.com/embed/3AZSVCrPNs8?si=6sGKvnAwxIVJ-nRm&enablejsapi=1" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="gallery-caption">Liveklipp</div>
-          </div>
-        </li>
-      </ul>
-      </div>  
-    </div>
-    <div class="controls-bottom">
-      <button class="carousel-btn prev" aria-label="Föregående">◀</button>
-      <div class="carousel-dots" aria-hidden="false"></div>
-      <button class="carousel-btn next" aria-label="Nästa">▶</button>
-    </div>
-
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-hero__badge">Video &amp; Foto</span>
+    <h1 class="page-hero__title">Galleri</h1>
+    <p class="page-hero__lead">
+      Upplev vår scennärvaro – lyssna på liveklipp från YouTube och klicka på bilderna för att se dem i full storlek.
+    </p>
   </div>
-  <div class="gallery-section-title">Bilder</div>
-  <div class="gallery-list">
-    <div class="gallery-card">
-      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Spelning 1" onclick="openLightbox(this)">
-      <div class="gallery-caption">Bild på hela bandet</div>
+</section>
+
+<section class="page-section page-section--soft">
+  <div class="section-container">
+    <div class="gallery-block">
+      <div class="section-header">
+        <span class="section-eyebrow">YouTube</span>
+        <h2 class="section-title">Liveklipp &amp; Video</h2>
+        <p class="section-subtitle">Bläddra mellan våra inspelade framträdanden.</p>
+      </div>
+      <div class="video-stage">
+        <div class="video-carousel" id="videoCarousel">
+          <div class="controls-row">
+            <div class="carousel-track-wrapper">
+              <ul class="carousel-track">
+                <li class="carousel-slide">
+                  <div class="video-card">
+                    <div class="video-wrapper">
+                      <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
+                      <iframe src="https://www.youtube.com/embed/bhsHd3c4Spo?si=UjGOrbrzRnXhtMsn&enablejsapi=1" title="Skånska Vågor – Liveklipp 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption">Liveklipp</div>
+                  </div>
+                </li>
+                <li class="carousel-slide">
+                  <div class="video-card">
+                    <div class="video-wrapper">
+                      <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
+                      <iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw?enablejsapi=1" title="Video från Skånska Vågor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption">Video från Skånska Vågor</div>
+                  </div>
+                </li>
+                <li class="carousel-slide">
+                  <div class="video-card">
+                    <div class="video-wrapper">
+                      <div class="video-swipe-overlay" aria-hidden="true"><span class="swipe-label">Svep för att byta video · Tryck för att spela</span></div>
+                      <iframe src="https://www.youtube.com/embed/3AZSVCrPNs8?si=6sGKvnAwxIVJ-nRm&enablejsapi=1" title="Skånska Vågor – Liveklipp 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption">Liveklipp</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="controls-bottom">
+            <button class="carousel-btn prev" type="button" aria-label="Föregående video">&#9664;</button>
+            <div class="carousel-dots" aria-hidden="false"></div>
+            <button class="carousel-btn next" type="button" aria-label="Nästa video">&#9654;</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="gallery-card">
-      <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Spelning 2" onclick="openLightbox(this)">
-      <div class="gallery-caption">Bild på hela bandet </div>
+    <div class="gallery-block">
+      <div class="section-header">
+        <span class="section-eyebrow">Fotografier</span>
+        <h2 class="section-title">Bilder från scen &amp; sessioner</h2>
+        <p class="section-subtitle">Klicka på valfri bild för att öppna den i större format.</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-card">
+          <button type="button" class="gallery-thumb-btn" onclick="openLightbox(this.querySelector('img'))" aria-label="Förstora bild: Live på Limhamnsfestivalen">
+            <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg" alt="Skånska Vågor live på Limhamnsfestivalen" />
+          </button>
+          <div class="gallery-caption">Live på Limhamnsfestivalen</div>
+        </article>
+        <article class="gallery-card">
+          <button type="button" class="gallery-thumb-btn gallery-thumb-btn--portrait" onclick="openLightbox(this.querySelector('img'))" aria-label="Förstora bild: Bild på hela bandet med gitarrer">
+            <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Bild på hela bandet med akustiska gitarrer" />
+          </button>
+          <div class="gallery-caption">Bild på hela bandet</div>
+        </article>
+        <article class="gallery-card">
+          <button type="button" class="gallery-thumb-btn gallery-thumb-btn--portrait" onclick="openLightbox(this.querySelector('img'))" aria-label="Förstora bild: Akustisk session med hela bandet">
+            <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Hela bandet tillsammans utomhus" />
+          </button>
+          <div class="gallery-caption">Akustisk session utomhus</div>
+        </article>
+        <!-- Lägg till fler bilder här -->
+      </div>
     </div>
-    <!-- Lägg till fler bilder här -->
   </div>
-</div>
+</section>
 
 <!-- Lightbox markup -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-  <img id="lightbox-img" src="" alt="">
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)" role="dialog" aria-modal="true" aria-label="Bildvisning">
+  <button type="button" class="lightbox-close" onclick="closeLightbox(event)" aria-label="Stäng bild">&times;</button>
+  <img id="lightbox-img" src="" alt="" />
 </div>
 
 <script>
 function openLightbox(img) {
+  if (!img) return;
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
   lightboxImg.src = img.src;
@@ -308,64 +409,48 @@ document.addEventListener('keydown', function(e) {
   var dotsContainer = document.querySelector('.carousel-dots');
   var currentIndex = 0;
   var wrap = document.querySelector('.carousel-track-wrapper');
-  // Touch / pointer drag state
   var isDragging = false;
   var startX = 0;
   var dragDelta = 0;
-
-  // Create dots
   slides.forEach(function(_, i){
     var dot = document.createElement('button');
+    dot.type = 'button';
     dot.className = 'carousel-dot' + (i===0? ' active':'');
     dot.setAttribute('data-index', i);
+    dot.setAttribute('aria-label', 'Visa video ' + (i + 1));
     dot.addEventListener('click', function(){ goToSlide(i); });
     dotsContainer.appendChild(dot);
   });
-
   function update() {
-    var wrap = document.querySelector('.carousel-track-wrapper');
     var width = wrap.clientWidth;
     track.style.transform = 'translateX(' + (-currentIndex * width) + 'px)';
     Array.from(dotsContainer.children).forEach(function(d, i){ d.classList.toggle('active', i===currentIndex); });
-  // enable/disable all prev/next buttons depending on current index
-  prevBtns.forEach(function(b){ b.disabled = currentIndex === 0; });
-  nextBtns.forEach(function(b){ b.disabled = currentIndex === slides.length - 1; });
+    prevBtns.forEach(function(b){ b.disabled = currentIndex === 0; });
+    nextBtns.forEach(function(b){ b.disabled = currentIndex === slides.length - 1; });
   }
-
   function goToSlide(i) {
-    // Pause all YouTube iframes before changing slide
     track.querySelectorAll('iframe').forEach(function(iframe){
       try {
-        // send postMessage to YT iframe to pause
         iframe.contentWindow.postMessage(JSON.stringify({
           event: 'command',
           func: 'pauseVideo',
           args: []
         }), '*');
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
     });
-
     currentIndex = Math.max(0, Math.min(i, slides.length-1));
     update();
     resetAutoplay();
   }
-
   prevBtns.forEach(function(b){ b.addEventListener('click', function(){ goToSlide(currentIndex-1); }); });
   nextBtns.forEach(function(b){ b.addEventListener('click', function(){ goToSlide(currentIndex+1); }); });
-
-  // Autoplay (advance every 7s)
   var autoplayInterval = 300000, autoplayId = null;
   function startAutoplay(){ autoplayId = setInterval(function(){
     currentIndex = (currentIndex + 1) % slides.length; update();
   }, autoplayInterval); }
   function resetAutoplay(){ if (autoplayId) { clearInterval(autoplayId); } startAutoplay(); }
   startAutoplay();
-
-  // Recalculate on resize
   window.addEventListener('resize', update);
-  // Pointer / touch swipe support attached to overlay elements so iframe won't block gestures
   var overlays = document.querySelectorAll('.video-swipe-overlay');
   overlays.forEach(function(overlay){
     overlay.style.touchAction = 'pan-y';
@@ -383,22 +468,16 @@ document.addEventListener('keydown', function(e) {
     function endDragOverlay(e){
       if (!isDragging) return; isDragging = false; track.style.transition = '';
       var width = wrap.clientWidth;
-      // If it's a tap (small move), treat as tap-to-reveal overlay
       if (Math.abs(dragDelta) < 6) {
-        // hide overlay so user can interact with iframe
         overlay.style.display = 'none';
-        // focus iframe if present
         var iframe = overlay.parentElement.querySelector('iframe');
         try { iframe && iframe.focus(); } catch (err) {}
-        // pause autoplay while user interacts
         if (autoplayId) clearInterval(autoplayId);
         return;
       }
-      // threshold at 20% of width
       if (Math.abs(dragDelta) > width * 0.2) {
         if (dragDelta < 0) { goToSlide(currentIndex + 1); } else { goToSlide(currentIndex - 1); }
       } else {
-        // snap back
         update();
         resetAutoplay();
       }
@@ -408,11 +487,9 @@ document.addEventListener('keydown', function(e) {
     overlay.addEventListener('pointercancel', endDragOverlay);
     overlay.addEventListener('pointerleave', endDragOverlay);
   });
-  // Pause autoplay when user focuses any iframe
   track.querySelectorAll('iframe').forEach(function(frm){
     frm.addEventListener('focus', function(){ if (autoplayId) clearInterval(autoplayId); });
   });
-  // Initial layout
   update();
 })();
 </script>

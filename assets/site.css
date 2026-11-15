@@ -1,0 +1,414 @@
+/* ==========================================================================
+   Skånska Vågor – Gemensamt Designsystem
+   BMAD UX/Architect-specifikation anpassad för Jekyll + Minima
+   ========================================================================== */
+
+:root {
+  /* Färgpalett – Kustpetrol, turkos & varm akustisk bärnsten */
+  --bg-deep: #0b2228;
+  --bg-coastal: #10333c;
+  --bg-coastal-mid: #164450;
+
+  --brand: #00897b;
+  --brand-dark: #00695c;
+  --brand-light: #26a69a;
+  --brand-soft: #e0f2f1;
+
+  --accent-warm: #e59849;
+  --accent-warm-dark: #cd7c2b;
+  --accent-sand: #f7f3ec;
+
+  --surface: #ffffff;
+  --surface-soft: #f3f7f7;
+  --surface-tint: #eaf2f2;
+
+  --ink: #16262b;
+  --ink-soft: #485b61;
+  --ink-muted: #697d83;
+
+  --border-soft: rgba(0, 137, 123, 0.15);
+  --border-strong: rgba(0, 137, 123, 0.3);
+
+  --shadow-sm: 0 2px 10px rgba(11, 34, 40, 0.06);
+  --shadow-md: 0 10px 30px rgba(11, 34, 40, 0.09);
+  --shadow-lg: 0 20px 52px rgba(11, 34, 40, 0.14);
+  --shadow-lift: 0 12px 28px rgba(0, 105, 92, 0.28);
+  --shadow-warm: 0 10px 26px rgba(205, 124, 43, 0.32);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --font-display: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --transition-fast: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-smooth: 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Bas & Minima-neutralisering */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1 0 auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* Neutralisera Minima-temats länkstilar på knappar & komponenter */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:visited,
+.nav-brand,
+.nav-brand:hover,
+.nav-brand:focus,
+.nav-brand:visited,
+.nav-link,
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:visited,
+.nav-cta,
+.nav-cta:hover,
+.nav-cta:focus,
+.nav-cta:visited,
+.site-footer a,
+.site-footer a:hover,
+.site-footer a:focus,
+.site-footer a:visited,
+.feature-card,
+.feature-card:hover,
+.feature-card:focus,
+.feature-card:visited,
+.gig-btn,
+.gig-btn:hover,
+.gig-btn:focus,
+.gig-btn:visited {
+  text-decoration: none;
+}
+
+/* ---------- Gemensamma layoutklasser ---------- */
+.section-container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 4vw, 2.4rem);
+}
+
+.page-section {
+  padding: clamp(2.8rem, 6vw, 4.6rem) 0;
+}
+
+.page-section--soft {
+  background: var(--surface-soft);
+}
+
+.page-section--white {
+  background: var(--surface);
+}
+
+.page-section--sand {
+  background: linear-gradient(180deg, var(--accent-sand) 0%, var(--surface-soft) 100%);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem) auto;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--brand-dark);
+  background: rgba(0, 137, 123, 0.1);
+  border: 1px solid rgba(0, 137, 123, 0.18);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.45rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.65rem 0;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ---------- Subpage Hero (.page-hero) ---------- */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 18% 20%, rgba(38, 166, 154, 0.24) 0%, transparent 45%),
+              radial-gradient(circle at 85% 75%, rgba(229, 152, 73, 0.16) 0%, transparent 42%),
+              linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-coastal) 55%, #0f4648 100%);
+  color: #fff;
+  padding: clamp(3rem, 7vw, 4.6rem) 0 clamp(3.4rem, 7vw, 5rem) 0;
+  text-align: center;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 28px;
+  background: var(--surface-soft);
+  clip-path: ellipse(58% 100% at 50% 100%);
+  pointer-events: none;
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.page-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #b2dfdb;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.38rem 0.95rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
+}
+
+.page-hero__lead {
+  font-size: clamp(1rem, 2vw, 1.16rem);
+  color: #d4e8e7;
+  max-width: 58ch;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ---------- Kort & Ytor ---------- */
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.5rem, 3.5vw, 2.4rem);
+}
+
+/* ---------- Knappar ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  padding: 0.84rem 1.55rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast),
+              box-shadow var(--transition-fast), border-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(38, 166, 154, 0.45);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  background: var(--brand-dark);
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(0, 105, 92, 0.25);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--brand);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn--accent {
+  background: linear-gradient(135deg, var(--accent-warm) 0%, var(--accent-warm-dark) 100%);
+  color: var(--bg-deep) !important;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(205, 124, 43, 0.3);
+}
+
+.btn--accent:hover,
+.btn--accent:focus-visible {
+  background: linear-gradient(135deg, #eea75b 0%, var(--accent-warm) 100%);
+  color: var(--bg-deep) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-warm);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--brand-dark);
+  color: var(--brand-dark) !important;
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: rgba(0, 137, 123, 0.08);
+  border-color: var(--brand);
+  color: var(--brand-dark) !important;
+  transform: translateY(-2px);
+}
+
+.btn--glass {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.38);
+  color: #fff !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn--glass:hover,
+.btn--glass:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Gemensamt Bokningsformulär ---------- */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.booking-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.booking-form label {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 0.9rem 1.05rem;
+  border: 1.5px solid #d5e1e2;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: #fbfdfd;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.booking-form input::placeholder,
+.booking-form textarea::placeholder {
+  color: var(--ink-muted);
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus {
+  outline: none;
+  background: #fff;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(0, 137, 123, 0.14);
+}
+
+.booking-form button[type="submit"] {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 1rem 1.6rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn,
+  .surface-card,
+  .booking-form input,
+  .booking-form textarea {
+    transition: none;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: none;
+  }
+}

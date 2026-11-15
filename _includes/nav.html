@@ -1,137 +1,184 @@
-<nav class="nav-bar">
+<header class="site-navbar">
   <style>
-    .nav-bar {
+    .site-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       width: 100%;
-      background: #009688;
-      padding: 0.7em 0;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-      position: relative;
-      z-index: 100;
+      background: rgba(11, 34, 40, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
     }
 
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0.65rem clamp(1rem, 3vw, 2rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
-      padding-left: 2vw;
-      padding-right: 2vw;
+      gap: 1rem;
     }
 
-    .nav-logo {
-      color: #fff;
-      font-size: 1.3em;
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 0.03em;
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      flex-shrink: 0;
+      padding: 0.2rem 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-brand:hover,
+    .nav-brand:focus-visible {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .nav-brand__icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 36px;
+      padding: 4px 5px;
+      border-radius: 10px;
+      background: rgba(244, 248, 248, 0.96);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .nav-brand__icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-brand__wordmark {
+      height: 28px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.5em;
-    }
-
-    .nav-logo img {
-      height: 3em;
-      max-width: 420px;
-      vertical-align: middle;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 4px;
+      gap: 0.35rem;
     }
 
     .nav-link {
-      display: flex;
+      position: relative;
+      display: inline-flex;
       align-items: center;
-      gap: 1em;
-      width: 100%;
-      padding: 1em 2.5em 1em 2.5em;
-      color: #fff;
-      text-decoration: none !important;
+      gap: 0.48rem;
+      padding: 0.56rem 0.95rem;
+      border-radius: 999px;
+      font-family: var(--font-display, 'Outfit', sans-serif);
+      font-size: 0.95rem;
       font-weight: 500;
-      font-size: 1em;
-      background: none;
-      border: none;
-      text-align: left;
-      transition: background 0.2s, color 0.2s;
-      cursor: pointer;
-      outline: none;
-      box-shadow: none;
-    }
-
-    .nav-link:focus,
-    .nav-link:active,
-    .nav-link:visited,
-    .nav-link:hover {
-      text-decoration: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-      color: #fff !important;
-    }
-
-    button:focus,
-    button:active {
-      outline: none !important;
-      box-shadow: none !important;
+      color: rgba(255, 255, 255, 0.86) !important;
+      background: transparent;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
     .nav-link .nav-icon {
-      width: 1.5em;
-      height: 1.5em;
-      margin-right: 0.5em;
-      display: inline-block;
-      vertical-align: middle;
-      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-    }
-
-    .nav-link:visited,
-    .nav-link.selected:visited {
-      color: #fff !important;
-    }
-
-    .nav-link:visited {
-      color: #fff;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.9;
     }
 
     .nav-link:hover,
+    .nav-link:focus-visible {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff !important;
+      outline: none;
+    }
+
     .nav-link.selected {
-      background: #00796b;
-      color: #e0f7fa;
+      background: rgba(38, 166, 154, 0.22);
+      color: #ffffff !important;
+      box-shadow: inset 0 0 0 1px rgba(38, 166, 154, 0.55);
+      font-weight: 600;
+    }
+
+    .nav-link.selected .nav-icon {
+      color: #80cbc4;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 0.55rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-family: var(--font-display, 'Outfit', sans-serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: #0b2228 !important;
+      background: linear-gradient(135deg, #e59849 0%, #d47e28 100%);
+      box-shadow: 0 4px 14px rgba(212, 126, 40, 0.34);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(229, 152, 73, 0.42);
+      filter: brightness(1.06);
+      color: #0b2228 !important;
+      outline: none;
+    }
+
+    .nav-cta.selected {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45), 0 6px 18px rgba(212, 126, 40, 0.4);
     }
 
     .nav-toggle {
       display: none;
-      justify-content: center;
       align-items: center;
-      width: 5em;
-      height: 5em;
-      background: none;
-      border: none;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
       cursor: pointer;
-      margin-left: 1em;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-toggle span {
-      display: none;
+    .nav-toggle:hover,
+    .nav-toggle:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.4);
+      outline: none;
     }
 
-    /* Mobile drawer styles */
+    /* Mobile drawer */
     .nav-overlay {
-      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 98;
+      background: rgba(6, 18, 22, 0.68);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1090;
       opacity: 0;
-      transition: opacity 0.2s ease;
+      visibility: hidden;
       pointer-events: none;
+      transition: opacity 0.24s ease, visibility 0.24s ease;
     }
 
     .nav-overlay.open {
-      display: block;
       opacity: 1;
+      visibility: visible;
       pointer-events: auto;
     }
 
@@ -139,180 +186,313 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: 320px;
-      height: 100vh;
-      background: #009688;
-      box-shadow: -6px 0 24px rgba(0, 0, 0, 0.2);
-      z-index: 99;
-      padding: 1.2em 0.6em;
+      width: min(330px, 86vw);
+      height: 100dvh;
+      background: linear-gradient(180deg, rgba(11, 34, 40, 0.98) 0%, rgba(16, 51, 60, 0.98) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: -12px 0 36px rgba(0, 0, 0, 0.35);
+      z-index: 1100;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.4em;
-      /* hide by translating fully to the right; use transform for smoother, more reliable animation */
-      /* use slightly more than 100% to avoid a visible sliver on some viewports */
-      transform: translateX(110%);
-      transition: transform 0.25s ease;
-      will-change: transform;
-      pointer-events: none;
+      justify-content: space-between;
+      transform: translateX(105%);
       visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.28s ease;
     }
 
     .nav-drawer.open {
       transform: translateX(0);
-      pointer-events: auto;
       visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-drawer__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-drawer__title {
+      font-family: var(--font-display, 'Outfit', sans-serif);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #80cbc4;
     }
 
     .nav-close {
-      background: transparent;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
       color: #fff;
-      font-size: 1.6em;
-      text-align: right;
-      padding: 0.2em 0.4em;
+      font-size: 1.5rem;
+      line-height: 1;
       cursor: pointer;
-      margin-left: auto;
+      transition: background 0.2s ease;
     }
 
-    .nav-drawer .nav-links {
-      position: static;
-      top: auto;
-      right: auto;
-      width: 100%;
-      max-width: none;
-      box-shadow: none;
-      padding: 0;
+    .nav-close:hover,
+    .nav-close:focus-visible {
+      background: rgba(255, 255, 255, 0.18);
+      outline: none;
+    }
+
+    .nav-drawer__links {
       display: flex;
       flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 1.2rem;
     }
 
-    .nav-drawer .nav-link {
-      padding: 0.9em 1em;
+    .nav-drawer__links .nav-link {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1.05rem;
+      border-radius: 12px;
     }
 
-    @media (max-width: 1200px) {
-      .nav-container {
-        flex-wrap: wrap;
-      }
+    .nav-drawer__cta {
+      margin-top: 0.85rem;
+      margin-left: 0;
+      width: 100%;
+      justify-content: center;
+      padding: 0.9rem 1.2rem;
+      font-size: 1.02rem;
+      border-radius: 14px;
+    }
 
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: #009688;
-        flex-direction: column;
-        width: 100vw;
-        max-width: 320px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        padding: 1.2em 0.2em 1.2em 0.2em;
-        align-items: stretch;
+    .nav-drawer__footer {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .nav-drawer__social-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .nav-drawer__socials {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-drawer__social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff !important;
+      text-decoration: none !important;
+      transition: background 0.2s ease;
+    }
+
+    .nav-drawer__social-btn:hover {
+      background: rgba(38, 166, 154, 0.35);
+    }
+
+    @media (max-width: 900px) {
+      .nav-menu {
         display: none;
-        z-index: 99;
-      }
-
-      .nav-links.open {
-        display: flex;
       }
 
       .nav-toggle {
-        display: flex;
+        display: inline-flex;
+      }
+
+      .nav-brand__wordmark {
+        height: 24px;
+      }
+
+      .nav-brand__icon-wrap {
+        width: 40px;
+        height: 32px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-brand,
+      .nav-link,
+      .nav-cta,
+      .nav-overlay,
+      .nav-drawer {
+        transition: none;
       }
     }
   </style>
+
   <div class="nav-container">
-    <a href="{{ site.baseurl }}/" class="nav-logo" style="margin-right:2em;">
-      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor Logo" />
+    <a href="{{ site.baseurl }}/" class="nav-brand" aria-label="Skånska Vågor – Startsida">
+      <span class="nav-brand__icon-wrap">
+        <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_icon.png" alt="" aria-hidden="true"
+          class="nav-brand__icon" />
+      </span>
+      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
+        class="nav-brand__wordmark" />
     </a>
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <button class="nav-toggle" aria-label="Öppna meny">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" width="38" height="38" xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true">
-          <path d="M20 7L4 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-          <path d="M20 12L4 12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
-          <path d="M20 17L4 17" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
+
+    <nav class="nav-menu" aria-label="Huvudmeny">
+      <a href="{{ site.baseurl }}/index.html"
+        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 10.5L12 3l9 7.5" />
+          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
         </svg>
-      </button>
-      <div class="nav-links">
-        <a href="{{ site.baseurl }}/index.html"
-          class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">
-          <svg class="nav-icon" fill="#fff" width="22" height="22" version="1.1" id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 495.398 495.398"
-            xml:space="preserve">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <g>
-                <g>
-                  <g>
-                    <path
-                      d="M487.083,225.514l-75.08-75.08V63.704c0-15.682-12.708-28.391-28.413-28.391c-15.669,0-28.377,12.709-28.377,28.391 v29.941L299.31,37.74c-27.639-27.624-75.694-27.575-103.27,0.05L8.312,225.514c-11.082,11.104-11.082,29.071,0,40.158 c11.087,11.101,29.089,11.101,40.172,0l187.71-187.729c6.115-6.083,16.893-6.083,22.976-0.018l187.742,187.747 c5.567,5.551,12.825,8.312,20.081,8.312c7.271,0,14.541-2.764,20.091-8.312C498.17,254.586,498.17,236.619,487.083,225.514z">
-                    </path>
-                    <path
-                      d="M257.561,131.836c-5.454-5.451-14.285-5.451-19.723,0L72.712,296.913c-2.607,2.606-4.085,6.164-4.085,9.877v120.401 c0,28.253,22.908,51.16,51.16,51.16h81.754v-126.61h92.299v126.61h81.755c28.251,0,51.159-22.907,51.159-51.159V306.79 c0-3.713-1.465-7.271-4.085-9.877L257.561,131.836z">
-                    </path>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg> Hem
-        </a>
-        <a href="{{ site.baseurl }}/spelningar.html"
-          class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">
-          <svg class="nav-icon" fill="#fff" version="1.1" width="22" height="22" id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"
-            xml:space="preserve">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <style type="text/css">
-                .st0 {
-                  fill: none;
-                }
-              </style>
-              <path
-                d="M6,2v2H5C3.9,4,3,4.9,3,6v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6z M5,9h14v11H5V9z">
-              </path>
-              <path
-                d="M15.9,18.3l-2.4-1.5L11,18.3l0.6-2.7l-2.1-1.8l2.8-0.2l1.1-2.6l1.1,2.6l2.8,0.3l-2.1,1.8L15.9,18.3z">
-              </path>
-              <rect class="st0" width="24" height="24"></rect>
-            </g>
-          </svg>Spelningar</a>
-        <a href="{{ site.baseurl }}/bokning.html"
-          class="nav-link{% if page.url == '/bokning.html' %} selected{% endif %}"><svg class="nav-icon" width="22"
-            height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
-            <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
-          </svg>Bokning</a>
-        <a href="{{ site.baseurl }}/medlemmar.html"
-          class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}"><svg class="nav-icon" width="22"
-            height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2" />
-            <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" stroke-width="2" />
-          </svg>Bandmedlemmar</a>
-        <a href="{{ site.baseurl }}/galleri.html"
-          class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}"><svg class="nav-icon" width="22"
-            height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="2" />
-            <circle cx="8" cy="10" r="2" stroke="#fff" stroke-width="2" />
-            <path d="M21 19l-5.5-7-4.5 6-3-4-4 5" stroke="#fff" stroke-width="2" />
-          </svg>Galleri</a>
-      </div>
+        <span>Hem</span>
+      </a>
+      <a href="{{ site.baseurl }}/spelningar.html"
+        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="17" rx="2.5" />
+          <path d="M16 2v4M8 2v4M3 10h18" />
+          <path d="M12 13.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3 1-2z" />
+        </svg>
+        <span>Spelningar</span>
+      </a>
+      <a href="{{ site.baseurl }}/medlemmar.html"
+        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="3.5" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a3.5 3.5 0 0 1 0 6.74" />
+        </svg>
+        <span>Bandmedlemmar</span>
+      </a>
+      <a href="{{ site.baseurl }}/galleri.html"
+        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="16" rx="2.5" />
+          <circle cx="8.5" cy="9.5" r="1.5" />
+          <path d="M21 16l-5-5-4.5 5-2.5-2.5L4 19" />
+        </svg>
+        <span>Galleri</span>
+      </a>
+      <a href="{{ site.baseurl }}/bokning.html"
+        class="nav-cta{% if page.url == '/bokning.html' %} selected{% endif %}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2.5" />
+          <path d="M3 7l9 6 9-6" />
+        </svg>
+        <span>Boka oss</span>
+      </a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-label="Öppna meny" aria-expanded="false"
+      aria-controls="mobile-nav-drawer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div class="nav-overlay" aria-hidden="true"></div>
+<aside class="nav-drawer" id="mobile-nav-drawer" aria-hidden="true" aria-label="Mobilmeny">
+  <div>
+    <div class="nav-drawer__top">
+      <span class="nav-drawer__title">Meny · Skånska Vågor</span>
+      <button class="nav-close" type="button" aria-label="Stäng meny">&times;</button>
     </div>
 
-    <!-- Drawer + overlay for mobile nav -->
-    <div class="nav-overlay" aria-hidden="true"></div>
-    <aside class="nav-drawer" aria-hidden="true">
-      <button class="nav-close" aria-label="Stäng meny">&times;</button>
-      <div class="nav-links">
-        <!-- links are duplicated here via CSS reflow (same markup but kept for simplicity) -->
-        <!-- existing .nav-links element will be used for desktop, this drawer copy is separate for mobile -->
-      </div>
-    </aside>
-</nav>
+    <nav class="nav-drawer__links" aria-label="Mobilnavigering">
+      <a href="{{ site.baseurl }}/index.html"
+        class="nav-link{% if page.url == '/' or page.url == '/index.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 10.5L12 3l9 7.5" />
+          <path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" />
+        </svg>
+        <span>Hem</span>
+      </a>
+      <a href="{{ site.baseurl }}/spelningar.html"
+        class="nav-link{% if page.url == '/spelningar.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="17" rx="2.5" />
+          <path d="M16 2v4M8 2v4M3 10h18" />
+        </svg>
+        <span>Spelningar</span>
+      </a>
+      <a href="{{ site.baseurl }}/medlemmar.html"
+        class="nav-link{% if page.url == '/medlemmar.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="3.5" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        </svg>
+        <span>Bandmedlemmar</span>
+      </a>
+      <a href="{{ site.baseurl }}/galleri.html"
+        class="nav-link{% if page.url == '/galleri.html' %} selected{% endif %}">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="16" rx="2.5" />
+          <circle cx="8.5" cy="9.5" r="1.5" />
+          <path d="M21 16l-5-5-4.5 5-2.5-2.5L4 19" />
+        </svg>
+        <span>Galleri</span>
+      </a>
+      <a href="{{ site.baseurl }}/bokning.html"
+        class="nav-cta nav-drawer__cta{% if page.url == '/bokning.html' %} selected{% endif %}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2.5" />
+          <path d="M3 7l9 6 9-6" />
+        </svg>
+        <span>Boka oss</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="nav-drawer__footer">
+    <span class="nav-drawer__social-label">Följ oss</span>
+    <div class="nav-drawer__socials">
+      <a href="https://www.facebook.com/profile.php?id=61576691256871" target="_blank" rel="noopener noreferrer"
+        aria-label="Facebook" class="nav-drawer__social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" />
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/skanskavagorofficial" target="_blank" rel="noopener noreferrer"
+        aria-label="Instagram" class="nav-drawer__social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</aside>
 
 <script>
   (function () {
@@ -320,77 +500,73 @@
     var overlay = document.querySelector('.nav-overlay');
     var drawer = document.querySelector('.nav-drawer');
     var closeBtn = document.querySelector('.nav-close');
-    // prefer the .nav-links that is inside .nav-container (desktop links)
-    var desktopLinks = document.querySelector('.nav-container .nav-links') || document.querySelector('.nav-links');
-    // We'll move the existing desktopLinks into the drawer when opening on mobile
-    var originalParent = desktopLinks ? desktopLinks.parentElement : null;
-    var originalNext = desktopLinks ? desktopLinks.nextSibling : null;
-    var linksMoved = false;
+    if (!toggle || !overlay || !drawer || !closeBtn) return;
+
     var lastFocused = null;
 
     function open() {
+      lastFocused = document.activeElement;
       overlay.classList.add('open');
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
       drawer.setAttribute('role', 'dialog');
       drawer.setAttribute('aria-modal', 'true');
       overlay.setAttribute('aria-hidden', 'false');
-      if (toggle) toggle.setAttribute('aria-expanded', 'true');
-      // Move nav-links into drawer if not already moved
-      if (desktopLinks && !linksMoved) {
-        drawer.appendChild(desktopLinks);
-        // ensure clicking a link closes the drawer
-        Array.from(desktopLinks.querySelectorAll('.nav-link')).forEach(function (a) { a.addEventListener('click', close); });
-        linksMoved = true;
-      }
-      // save last focused element and move focus into the drawer
-      lastFocused = document.activeElement;
-      // focus the first focusable element inside drawer (prefer the close button then first link)
-      var focusTarget = drawer.querySelector('.nav-close') || drawer.querySelector('.nav-link');
-      if (focusTarget) focusTarget.focus();
-      // add keydown listener to trap focus
+      toggle.setAttribute('aria-expanded', 'true');
       document.addEventListener('keydown', trapTabKey);
       document.body.style.overflow = 'hidden';
+      closeBtn.focus();
     }
+
     function close() {
+      if (!drawer.classList.contains('open')) return;
       overlay.classList.remove('open');
       drawer.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.removeAttribute('role');
+      drawer.removeAttribute('aria-modal');
       overlay.setAttribute('aria-hidden', 'true');
-      if (toggle) toggle.setAttribute('aria-expanded', 'false');
-      // move links back to original place if we moved them
-      if (desktopLinks && linksMoved && originalParent) {
-        originalParent.insertBefore(desktopLinks, originalNext);
-        linksMoved = false;
-      }
-      // remove focus trap listener and restore focus
+      toggle.setAttribute('aria-expanded', 'false');
       document.removeEventListener('keydown', trapTabKey);
-      try { if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus(); } catch (e) { }
       document.body.style.overflow = '';
+      try {
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      } catch (e) { }
     }
 
-    // focus trap handler: keep Tab/Shift+Tab inside the drawer when open
     function trapTabKey(e) {
-      if (!drawer.classList.contains('open')) return;
-      if (e.key !== 'Tab') return;
-      var focusable = Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
-      if (focusable.length === 0) { e.preventDefault(); return; }
+      if (e.key !== 'Tab' || !drawer.classList.contains('open')) return;
+      var focusable = Array.prototype.slice.call(
+        drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+      if (!focusable.length) {
+        e.preventDefault();
+        return;
+      }
       var first = focusable[0];
       var last = focusable[focusable.length - 1];
       if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-      } else {
-        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     }
 
-    if (toggle) {
-      toggle.addEventListener('click', function () {
-        if (drawer.classList.contains('open')) close(); else open();
-      });
-    }
+    toggle.addEventListener('click', function () {
+      if (drawer.classList.contains('open')) close();
+      else open();
+    });
     closeBtn.addEventListener('click', close);
     overlay.addEventListener('click', close);
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    Array.prototype.slice.call(drawer.querySelectorAll('a')).forEach(function (link) {
+      link.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
   })();
 </script>

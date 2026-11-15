@@ -7,11 +7,12 @@
   {%- if site.description -%}
   <meta name="description" content="{{ site.description }}">
   {%- endif -%}
-  <link rel="stylesheet" href="/assets/main.css">
-  <style>
-    body { background: #f8fafc; margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    main { min-height: 80vh; }
-  </style>
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/site.css">
 </head>
 <body>
   {% include nav.html %}

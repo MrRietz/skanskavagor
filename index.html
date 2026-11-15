@@ -3,756 +3,766 @@ layout: default
 title: Hem
 ---
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  /* Make box sizing consistent so widths include padding */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  :root {
-    --brand: #009688;
-    --brand-dark: #00796b;
-    --brand-light: #26a69a;
-    --ink: #2b3338;
-    --ink-soft: #555f66;
-    /* Gemensam hover-skugga i temats turkos */
-    --lift-shadow: rgba(0, 121, 107, 0.35);
-  }
-
-  /* Temat (minima) sätter `a:hover { text-decoration: underline; color: #111 }`
-     på ALLA länkar. Knappar är <a>-taggar och ska aldrig understrykas eller
-     byta textfärg — neutralisera det samlat för alla knapp-liknande länkar. */
-  .stage-banner__cta,
-  .stage-banner__cta:hover,
-  .stage-banner__cta:focus,
-  .stage-banner__cta:visited,
-  .hero-links a,
-  .hero-links a:hover,
-  .hero-links a:focus,
-  .hero-links a:visited,
-  .gig-btn,
-  .gig-btn:hover,
-  .gig-btn:focus,
-  .gig-btn:visited {
-    text-decoration: none;
-  }
-
-  .stage-banner__cta,
-  .stage-banner__cta:visited,
-  .hero-links a,
-  .hero-links a:visited,
-  .gig-btn--primary,
-  .gig-btn--primary:visited {
-    color: #fff;
-  }
-
-  .gig-btn--ghost,
-  .gig-btn--ghost:visited,
-  .gig-btn--ghost:hover {
-    color: var(--brand-dark);
-  }
-
-  /* ---------- Stage banner ---------- */
+  /* ---------- Stage Banner (Split-Hero) ---------- */
   .stage-banner {
     position: relative;
     width: 100%;
-    /* Follow the photo's own 4:3 shape (capped) so cover() crops as little as
-       possible — a short, wide box cut the heads off the outer musicians. */
-    aspect-ratio: 16 / 9;
-    max-height: 78vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
     overflow: hidden;
-    isolation: isolate;
-    background: #0d2b2d;
-  }
-
-  .stage-banner__img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Bias toward the top: heads matter more than the stage floor. */
-    object-position: center 22%;
-    z-index: -2;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(38, 166, 154, 0.24) 0%, transparent 48%),
+      radial-gradient(circle at 86% 78%, rgba(229, 152, 73, 0.16) 0%, transparent 45%),
+      linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-coastal) 55%, #0f4648 100%);
+    padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(3rem, 5.5vw, 4.6rem) 0;
   }
 
   .stage-banner::after {
     content: "";
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg,
-        rgba(0, 40, 42, 0.55) 0%,
-        rgba(0, 40, 42, 0.15) 35%,
-        rgba(0, 30, 32, 0.55) 72%,
-        rgba(0, 25, 27, 0.88) 100%);
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 28px;
+    background: var(--surface-soft);
+    clip-path: ellipse(58% 100% at 50% 100%);
+    pointer-events: none;
   }
 
   .stage-banner__inner {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    max-width: 1100px;
-    padding: 4em 5vw 2.6em 5vw;
-    text-align: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 clamp(1.1rem, 4vw, 2.4rem);
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    gap: clamp(1.8rem, 4vw, 3.2rem);
     color: #fff;
+  }
+
+  .stage-banner__content {
+    text-align: left;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.36rem 0.9rem;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #e0f2f1;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .stage-banner__logo {
-    width: clamp(180px, 34vw, 320px);
+    width: clamp(200px, 26vw, 310px);
     height: auto;
-    margin: 0 auto 1em auto;
+    margin: 0 0 1rem 0;
     display: block;
-    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
   }
 
   .stage-banner__tagline {
-    font-size: clamp(1.05em, 2.4vw, 1.45em);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-    margin: 0 auto 1.4em auto;
-    max-width: 40ch;
+    font-family: var(--font-body);
+    font-size: clamp(1.02rem, 1.9vw, 1.22rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: #d8ecea;
+    margin: 0 0 1.65rem 0;
+    max-width: 46ch;
   }
 
-  .stage-banner__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--brand-dark);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.05em;
-    padding: 0.85em 1.8em;
+  .stage-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.85rem;
+  }
+
+  .stage-banner__media {
+    width: 100%;
+  }
+
+  .stage-banner__frame {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    background: var(--bg-deep);
+  }
+
+  .stage-banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    display: block;
+  }
+
+  .stage-banner__caption {
+    position: absolute;
+    left: 0.9rem;
+    bottom: 0.9rem;
+    padding: 0.42rem 0.9rem;
     border-radius: 999px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(11, 34, 40, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #effaf9;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
 
-  .stage-banner__cta:hover,
-  .stage-banner__cta:focus-visible {
-    background: var(--brand);
-    /* Temat (minima) sätter underline + mörk färg på alla a:hover — knappar
-       ska aldrig få det, så vi återställer det här. */
-    color: #fff;
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  /* ---------- Story & Highlights ---------- */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    align-items: stretch;
+    margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
   }
 
-  .stage-banner__cta:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-  }
-
-  .hero {
+  .story-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(120deg, #e0f7fa 0%, #f8fafc 100%);
-    padding: 3em 4vw 3.5em 4vw;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    justify-content: space-between;
   }
 
-  .hero-title {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--brand);
-    margin-bottom: 0.5em;
-    letter-spacing: 0.03em;
-    text-align: center;
-  }
-
-  .hero-desc {
-    font-size: 1.08em;
-    line-height: 1.7;
+  .story-card h1 {
+    font-size: clamp(1.7rem, 3vw, 2.25rem);
+    font-weight: 800;
     color: var(--ink);
-    max-width: 62ch;
-    margin: 0 auto;
+    margin: 0 0 1rem 0;
   }
 
-  .hero-links {
-    display: flex;
-    gap: 1.2em;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
+  .story-card__text {
+    font-size: 1.04rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 1.4rem 0;
   }
 
-  .hero-links a {
-    background: var(--brand-dark);
-    color: #fff;
-    border-radius: 8px;
+  .story-quote {
+    margin: 0;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid var(--accent-warm);
+    border-radius: 0 12px 12px 0;
+    background: var(--accent-sand);
+    color: var(--ink);
+    font-family: var(--font-display);
     font-weight: 600;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .highlights-stack {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    padding: 0.7rem 1.2rem;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .hero-links a:hover,
-  .hero-links a:focus-visible {
-    background: var(--brand);
-    color: #fff;
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.35rem;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .highlight-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--lift-shadow);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
   }
 
-  .hero-links a:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px var(--lift-shadow);
+  .highlight-item__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(0, 137, 123, 0.1);
+    color: var(--brand-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .hero-links svg {
-    width: 22px;
-    height: 22px;
-    /* Remove existing vertical-align styles */
-    vertical-align: initial !important;
+  .highlight-item__title {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink);
   }
 
-  /* ---------- Photo strip ---------- */
+  .highlight-item__desc {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Photo Strip (3 unika bilder) ---------- */
   .photo-strip {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.2em;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 2.5em auto;
+    gap: 1.3rem;
   }
 
-  .photo-strip figure {
+  .photo-card {
+    position: relative;
     margin: 0;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    background: var(--bg-deep);
+    box-shadow: var(--shadow-md);
     aspect-ratio: 4 / 3;
   }
 
-  .photo-strip img {
+  .photo-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.35s ease;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .photo-strip figure:hover img {
+  .photo-card--portrait img {
+    object-position: center 20%;
+  }
+
+  .photo-card--mia img {
+    object-position: center 14%;
+  }
+
+  .photo-card:hover img {
     transform: scale(1.05);
   }
 
-  .card {
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-    max-width: 650px;
-    /* unified card max width */
-    width: 100%;
-    border-radius: 12px;
-    background: #fff;
-    padding: 1.8em;
-    margin-bottom: 2em;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .card h1 {
-    margin-top: 0;
-    margin-bottom: 0.6em;
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--brand);
-    text-align: center;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    font-size: 1.4em;
-    font-weight: 700;
-    color: var(--brand);
-    text-align: center;
-  }
-
-  .booking-widget {
-    margin-top: 2.5em;
-    max-width: 650px;
-    width: 100%;
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-    padding: 2.5em 4vw 3em 4vw;
-    text-align: center;
-  }
-
-  .booking-widget .widget-title {
-    font-size: 1.5em;
-    color: var(--brand);
-    margin-bottom: 0.7em;
-    font-weight: 700;
-  }
-
-  .booking-widget .widget-desc {
-    font-size: 1.1em;
-    color: var(--ink);
-    margin-bottom: 1.5em;
-  }
-
-  .booking-widget form {
-    margin-top: 1.5em;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2em;
-  }
-
-  .booking-widget .field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35em;
-    text-align: left;
-  }
-
-  .booking-widget label {
-    font-size: 0.95em;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .booking-widget input,
-  .booking-widget textarea {
-    width: 100%;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1em;
-    font-family: inherit;
-    box-sizing: border-box;
-  }
-
-  .booking-widget input:focus,
-  .booking-widget textarea:focus {
-    outline: 2px solid var(--brand);
-    outline-offset: 1px;
-    border-color: var(--brand);
-  }
-
-  .booking-widget button {
-    background: var(--brand-dark);
+  .photo-card__caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 2rem 1.1rem 0.9rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(11, 34, 40, 0.86) 100%);
     color: #fff;
-    border: none;
-    padding: 0.9em 1.5em;
-    border-radius: 8px;
-    font-size: 1.1em;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.01em;
   }
 
-  .booking-widget button:hover,
-  .booking-widget button:focus-visible {
-    background: var(--brand);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--lift-shadow);
+  /* ---------- Spelningar & Snabbnavigering ---------- */
+  .gigs-spotlight {
+    background: linear-gradient(135deg, #ffffff 0%, #f2f9f8 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 2.8rem);
   }
 
-  .booking-widget button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px var(--lift-shadow);
+  .gigs-spotlight__title {
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.7rem 0;
   }
 
-  .gigs-list {
+  .gigs-spotlight__text {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 auto 1.5rem auto;
+    line-height: 1.65;
+  }
+
+  .gigs-spotlight__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 2em;
     justify-content: center;
-    margin-top: 1em;
-    width: 100%;
-    list-style: none;
-    padding-left: 0;
+    gap: 0.85rem;
   }
 
-  .gig-card--centered {
-    align-items: center;
-    text-align: center;
+  .feature-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 
-  .gig-card {
-    /* Use flex-basis with max-width so cards are uniform but responsive */
-    flex: 0 1 400px;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 1em;
+  .feature-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    box-sizing: border-box;
-  }
-
-  .gig-date {
-    font-size: 1.1em;
-    color: var(--brand);
-    font-weight: 600;
-    margin-bottom: 0.3em;
-  }
-
-  .gig-place {
-    font-size: 1.1em;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
     color: var(--ink);
-    margin-bottom: 0.5em;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
   }
 
-  .gig-desc {
-    font-size: 1em;
-    color: var(--ink-soft);
-    margin-top: 0.4rem;
+  .feature-card:hover,
+  .feature-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand);
+    outline: none;
   }
 
-  .gig-card__logo {
-    width: 170px;
-    max-width: 60vw;
-    height: 170px;
-    object-fit: cover;
-    margin-bottom: 12px;
-    border-radius: 8px;
-  }
-
-  .gig-actions {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .gig-btn {
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
+  .feature-card__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 100%);
+    color: #fff;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-      transform 0.2s ease, box-shadow 0.2s ease;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 105, 92, 0.22);
   }
 
-  .gig-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px var(--lift-shadow);
+  .feature-card__title {
+    margin: 0 0 0.35rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
   }
 
-  .gig-btn--primary {
-    background: var(--brand-dark);
-    color: #fff;
-  }
-
-  .gig-btn--primary:hover,
-  .gig-btn--primary:focus-visible {
-    background: var(--brand);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--lift-shadow);
-  }
-
-  .gig-btn--ghost {
-    background: transparent;
-    border: 2px solid var(--brand-dark);
-    color: var(--brand-dark);
-    padding: 0.5rem 0.9rem;
-  }
-
-  /* Sekundär knapp: ska INTE fyllas som primärknappen. Den behåller sin
-     kontur och får en mjuk turkos ton i stället. */
-  .gig-btn--ghost:hover,
-  .gig-btn--ghost:focus-visible {
-    background: rgba(0, 150, 136, 0.1);
-    border-color: var(--brand);
-    color: var(--brand-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.18);
-  }
-
-  .gig-free {
-    color: var(--brand-dark);
-  }
-
-  .no-gigs {
-    text-align: center;
-    padding: 0.5em 0 0.2em 0;
-  }
-
-  .no-gigs__text {
-    font-size: 1.05em;
-    line-height: 1.6;
+  .feature-card__desc {
+    margin: 0;
+    font-size: 0.95rem;
     color: var(--ink-soft);
-    max-width: 46ch;
-    margin: 0 auto 1.4em auto;
+    line-height: 1.55;
   }
 
-  .no-gigs__actions {
+  .feature-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: var(--brand-dark);
+  }
+
+  .feature-card:hover .feature-card__cta {
+    color: var(--brand);
+  }
+
+  /* ---------- Direkt Bokningswidget ---------- */
+  .booking-split {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(1.6rem, 4vw, 3rem);
+    align-items: center;
+  }
+
+  .booking-info h2 {
+    font-size: clamp(1.7rem, 3.3vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 0.8rem 0;
+    color: var(--ink);
+  }
+
+  .booking-info p {
+    font-size: 1.04rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.4rem 0;
+    line-height: 1.68;
+  }
+
+  .booking-perks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 0.7rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .booking-perks li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .booking-perks__check {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(0, 137, 123, 0.14);
+    color: var(--brand-dark);
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
   }
 
-  @media (max-width: 900px) {
-    .photo-strip {
+  .booking-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(1.5rem, 3.5vw, 2.3rem);
+  }
+
+  @media (max-width: 920px) {
+    .story-grid,
+    .booking-split {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-links {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1em;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .stage-banner__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
     }
 
-    /* Förbättra nav-bar i medium-läge */
-    .nav-bar .nav-links {
-      gap: 0.7em;
-      font-size: 1em;
-      padding: 0.5em 0.2em 0.5em 0.2em;
+    .stage-banner__content {
+      text-align: center;
     }
 
-    .nav-bar .nav-link {
-      padding: 0.7em 1.2em 0.7em 1.2em;
-      font-size: 1em;
+    .hero-badges,
+    .stage-banner__actions {
+      justify-content: center;
+    }
+
+    .stage-banner__logo,
+    .stage-banner__tagline {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
   @media (max-width: 700px) {
-    .stage-banner {
-      /* Taller than the photo's 4:3 so the band sits in the upper half and the
-         text below it, instead of the wordmark covering the singer. */
-      aspect-ratio: 3 / 4;
-      max-height: none;
+    .stage-banner__actions .btn {
+      width: 100%;
     }
 
-    .stage-banner__img {
-      /* Anchor the band near the top; the empty stage floor takes the overlay. */
-      object-position: center 12%;
-    }
-
-    .stage-banner::after {
-      background: linear-gradient(180deg,
-          rgba(0, 40, 42, 0.45) 0%,
-          rgba(0, 40, 42, 0.1) 22%,
-          rgba(0, 30, 32, 0.6) 52%,
-          rgba(0, 25, 27, 0.93) 78%);
-    }
-
-    .stage-banner__inner {
-      padding: 2.4em 6vw 2em 6vw;
-    }
-
-    .hero {
-      padding: 2em 3vw 2.5em 3vw;
-    }
-
-    .photo-strip {
+    .photo-strip,
+    .feature-links {
       grid-template-columns: 1fr;
-    }
-
-    .photo-strip figure {
-      aspect-ratio: 16 / 10;
-    }
-
-    .hero-links {
-      flex-direction: column;
-      gap: 1em;
-      width: 100%;
-    }
-
-    .hero-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      box-sizing: border-box;
-      text-align: center;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    /* Make all cards take full width on small screens */
-    .card,
-    .booking-widget {
-      max-width: 100%;
-      width: 100%;
-    }
-
-    .gig-card {
-      flex: 1 1 100%;
-      max-width: 100%;
-      width: 100%;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-
-    .hero-links a,
-    .stage-banner__cta,
-    .gig-btn,
-    .booking-widget button,
-    .photo-strip img {
+    .highlight-item,
+    .photo-card img,
+    .feature-card {
       transition: none;
     }
 
-    .hero-links a:hover,
-    .stage-banner__cta:hover,
-    .gig-btn:hover,
-    .booking-widget button:hover,
-    .photo-strip figure:hover img {
+    .highlight-item:hover,
+    .photo-card:hover img,
+    .feature-card:hover {
       transform: none;
     }
   }
 </style>
 
 <section class="stage-banner">
-  <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
-    alt="Skånska Vågor live på scen – tre sångare med två gitarrer" class="stage-banner__img" />
   <div class="stage-banner__inner">
-    <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
-      class="stage-banner__logo" />
-    <p class="stage-banner__tagline">Musiker som vågar – country, rock och pop med tre röster och två gitarrer.</p>
-    <a href="{{ site.baseurl }}/bokning.html" class="stage-banner__cta">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
-        <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
-      </svg>
-      Boka oss
-    </a>
+    <div class="stage-banner__content">
+      <div class="hero-badges">
+        <span class="hero-badge">Country · Rock · Pop</span>
+        <span class="hero-badge">3 Röster &amp; 2 Gitarrer</span>
+        <span class="hero-badge">Live i Skåne</span>
+      </div>
+      <img src="{{ site.baseurl }}/public/img/skanska_vagor_logo_transparent_text.png" alt="Skånska Vågor"
+        class="stage-banner__logo" />
+      <p class="stage-banner__tagline">
+        Musiker som vågar – stämsång, akustisk energi och tidlösa låtar från Fleetwood Mac till Kal P. Dal.
+      </p>
+      <div class="stage-banner__actions">
+        <a href="{{ site.baseurl }}/bokning.html" class="btn btn--accent">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2.5" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+          Boka oss till ert event
+        </a>
+        <a href="{{ site.baseurl }}/galleri.html" class="btn btn--glass">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="6 4 20 12 6 20 6 4" />
+          </svg>
+          Lyssna &amp; se klipp
+        </a>
+      </div>
+    </div>
+
+    <div class="stage-banner__media">
+      <figure class="stage-banner__frame">
+        <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
+          alt="Skånska Vågor – Robin, Mia och André med akustiska gitarrer" class="stage-banner__img" />
+        <figcaption class="stage-banner__caption">Robin, Mia &amp; André · Akustisk trio</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<div class="hero">
-  <div class="photo-strip">
-    <figure>
-      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
-        alt="Skånska Vågor på scen" loading="lazy" />
-    </figure>
-    <figure>
-      <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
-        alt="Skånska Vågor spelar live utomhus" loading="lazy" />
-    </figure>
-    <figure>
-      <img src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg"
-        alt="Skånska Vågor under en spelning" loading="lazy" />
-    </figure>
-  </div>
-  <div class="card">
-    <h1>Skånska Vågor - Musiker som vågar</h1>
-    <div class="hero-desc">
-      Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
-      en unik blandning av country, rock och pop. Med passion och spelglädje tar
-      vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
-      och moderna countryhits till akustiska tolkningar av välkända låtar. Vi
-      hyllar både legendariska band som Fleetwood Mac och The Cranberries, och ger
-      nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal
-      P. Dal som skånska inspirationskällor visar vi att musik kan förena
-      människor över alla gränser – oavsett genre eller ursprung. Välkommen att
-      uppleva vår musik live!
+<section class="page-section page-section--soft">
+  <div class="section-container">
+    <div class="story-grid">
+      <article class="surface-card story-card">
+        <div>
+          <span class="section-eyebrow">Upplev Skånska Vågor</span>
+          <h1>Skånska Vågor – Musiker som vågar</h1>
+          <p class="story-card__text">
+            Vi är Skånska Vågor – en trio med tre röster och två gitarrer som bjuder på
+            en unik blandning av country, rock och pop. Med passion och spelglädje tar
+            vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker
+            och moderna countryhits till akustiska tolkningar av välkända låtar. Vi
+            hyllar både legendariska band som Fleetwood Mac och The Cranberries, och ger
+            nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal
+            P. Dal som skånska inspirationskällor visar vi att musik kan förena
+            människor över alla gränser – oavsett genre eller ursprung. Välkommen att
+            uppleva vår musik live!
+          </p>
+        </div>
+        <blockquote class="story-quote">
+          ”Tre röster, två gitarrer och en spelglädje som lyfter allt från intima krogkvällar till sommarens festivalscener.”
+        </blockquote>
+      </article>
+
+      <div class="highlights-stack" aria-label="Därför bokar arrangörer oss">
+        <div class="highlight-item">
+          <span class="highlight-item__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="highlight-item__title">Tre röster i harmoni</h2>
+            <p class="highlight-item__desc">Stämsång och stark scennärvaro som skapar både gåshud och feststämning.</p>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <span class="highlight-item__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="highlight-item__title">Bred repertoar som engagerar</h2>
+            <p class="highlight-item__desc">Från country och folkrock till akustiska pophits och skånska klassiker.</p>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <span class="highlight-item__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="highlight-item__title">Krog, festival &amp; privatfest</h2>
+            <p class="highlight-item__desc">Vi anpassar energi och låtval efter publiken – från mingel till full allsång.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-strip">
+      <figure class="photo-card">
+        <img src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg"
+          alt="Skånska Vågor spelar live på Limhamnsfestivalen" loading="lazy" />
+        <figcaption class="photo-card__caption">Live på Limhamnsfestivalen</figcaption>
+      </figure>
+      <figure class="photo-card photo-card--portrait">
+        <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg"
+          alt="Skånska Vågor med akustiska gitarrer utomhus" loading="lazy" />
+        <figcaption class="photo-card__caption">Akustisk spelglädje</figcaption>
+      </figure>
+      <figure class="photo-card photo-card--mia">
+        <img src="{{ site.baseurl }}/public/img/mia.png"
+          alt="Mia från Skånska Vågor med gitarr och mikrofon på scen" loading="lazy" />
+        <figcaption class="photo-card__caption">Närvaro på scen</figcaption>
+      </figure>
     </div>
   </div>
-  <div class="card">
-    <h2 style="
-            color: #009688;
-            font-size: 1.3em;
-            text-align: center;
-          ">
-      Kommande spelningar
-    </h2>
+</section>
 
-    <div class="no-gigs">
-      <p class="no-gigs__text">
+<section class="page-section page-section--white">
+  <div class="section-container">
+    <div class="gigs-spotlight">
+      <span class="section-eyebrow">Livekalender</span>
+      <h2 class="gigs-spotlight__title">Kommande spelningar</h2>
+      <p class="gigs-spotlight__text">
         Just nu har vi inga inbokade spelningar — men vi tar gärna emot fler!
         Vill du ha oss till din fest, krog eller ditt evenemang?
       </p>
-      <div class="no-gigs__actions">
-        <a href="{{ site.baseurl }}/bokning.html" class="gig-btn gig-btn--primary">
-          Boka oss
-        </a>
-        <a href="{{ site.baseurl }}/spelningar.html" class="gig-btn gig-btn--ghost">
-          Se tidigare spelningar
-        </a>
+      <div class="gigs-spotlight__actions">
+        <a href="{{ site.baseurl }}/bokning.html" class="btn btn--primary">Boka oss</a>
+        <a href="{{ site.baseurl }}/spelningar.html" class="btn btn--ghost">Se tidigare spelningar</a>
+      </div>
+    </div>
+
+    <div class="feature-links">
+      <a href="{{ site.baseurl }}/spelningar.html" class="feature-card">
+        <div>
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="17" rx="2.5" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+          </span>
+          <h3 class="feature-card__title" style="margin-top: 1rem;">Se våra spelningar</h3>
+          <p class="feature-card__desc">
+            Utforska tidigare spelningar på bland annat Limhamnsfestivalen och Kollektivkrogen i Malmö.
+          </p>
+        </div>
+        <span class="feature-card__cta">Gå till spelningar &rarr;</span>
+      </a>
+
+      <a href="{{ site.baseurl }}/medlemmar.html" class="feature-card">
+        <div>
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="3.5" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            </svg>
+          </span>
+          <h3 class="feature-card__title" style="margin-top: 1rem;">Läs om bandet</h3>
+          <p class="feature-card__desc">
+            Möt Mia, Robin och André – de tre rösterna och två akustiska gitarrerna bakom Skånska Vågor.
+          </p>
+        </div>
+        <span class="feature-card__cta">Möt medlemmarna &rarr;</span>
+      </a>
+
+      <a href="{{ site.baseurl }}/galleri.html" class="feature-card">
+        <div>
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="6 4 20 12 6 20 6 4" />
+            </svg>
+          </span>
+          <h3 class="feature-card__title" style="margin-top: 1rem;">Se galleri &amp; klipp</h3>
+          <p class="feature-card__desc">
+            Lyssna på liveklipp direkt från YouTube och se fler foton från våra konserter och pressbilder.
+          </p>
+        </div>
+        <span class="feature-card__cta">Öppna galleriet &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="page-section page-section--sand" id="boka">
+  <div class="section-container">
+    <div class="booking-split">
+      <div class="booking-info">
+        <span class="section-eyebrow">Snabb bokningsförfrågan</span>
+        <h2>Boka Skånska Vågor</h2>
+        <p>
+          Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?
+          Kontakta oss gärna via formuläret så återkommer vi så snart vi kan!
+        </p>
+        <ul class="booking-perks">
+          <li>
+            <span class="booking-perks__check" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            Vi svarar normalt inom 24–48 timmar
+          </li>
+          <li>
+            <span class="booking-perks__check" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            Perfekt för krogkvällar, festivaler, företagsevent &amp; privata fester
+          </li>
+          <li>
+            <span class="booking-perks__check" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            Anpassat upplägg efter lokal, publik och stämning
+          </li>
+        </ul>
+      </div>
+
+      <div class="booking-card">
+        <form class="booking-form" action="https://formspree.io/f/xnnzegyr" method="POST">
+          <div class="field">
+            <label for="booking-namn">Ditt namn</label>
+            <input id="booking-namn" type="text" name="namn" placeholder="För- och efternamn" required />
+          </div>
+          <div class="field">
+            <label for="booking-email">Din e-post</label>
+            <input id="booking-email" type="email" name="email" placeholder="namn@exempel.se" required />
+          </div>
+          <div class="field">
+            <label for="booking-meddelande">Meddelande</label>
+            <textarea id="booking-meddelande" name="meddelande" rows="5"
+              placeholder="Berätta om datum, plats och typ av evenemang" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Skicka bokningsförfrågan</button>
+        </form>
       </div>
     </div>
   </div>
-
-
-
-  <div class="hero-links">
-    <a href="{{ site.baseurl }}/spelningar.html">
-      <svg fill="#fff" version="1.1" width="22" height="22" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-        <g id="SVGRepo_iconCarrier">
-          <style type="text/css">
-            .st0 {
-              fill: none;
-            }
-          </style>
-          <path
-            d="M6,2v2H5C3.9,4,3,4.9,3,6v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-1V2h-2v2H8V2H6z M5,9h14v11H5V9z">
-          </path>
-          <path d="M15.9,18.3l-2.4-1.5L11,18.3l0.6-2.7l-2.1-1.8l2.8-0.2l1.1-2.6l1.1,2.6l2.8,0.3l-2.1,1.8L15.9,18.3z">
-          </path>
-          <rect class="st0" width="24" height="24"></rect>
-        </g>
-      </svg>
-      Se våra spelningar
-    </a>
-    <a href="{{ site.baseurl }}/bokning.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="5" width="18" height="14" rx="3" stroke="#fff" stroke-width="2" />
-        <path d="M3 7l9 6 9-6" stroke="#fff" stroke-width="2" />
-      </svg>
-      Boka oss nu
-    </a>
-    <a href="{{ site.baseurl }}/medlemmar.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="2" />
-        <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#fff" stroke-width="2" />
-      </svg>
-      Läs om bandet
-    </a>
-    <a href="{{ site.baseurl }}/galleri.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 0.5em"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="2" />
-        <circle cx="8" cy="10" r="2" stroke="#fff" stroke-width="2" />
-        <path d="M21 19l-5.5-7-4.5 6-3-4-4 5" stroke="#fff" stroke-width="2" />
-      </svg>
-      Se galleri
-    </a>
-  </div>
-
-  <div class="booking-widget">
-    <div class="widget-title">Boka oss</div>
-    <div class="widget-desc">
-      Vill du boka Skånska Vågor till ditt evenemang, fest eller spelning?<br />Kontakta
-      oss gärna via formuläret nedan så återkommer vi så snart vi kan!
-    </div>
-    <form action="https://formspree.io/f/xnnzegyr" method="POST">
-      <div class="field">
-        <label for="booking-namn">Ditt namn</label>
-        <input id="booking-namn" type="text" name="namn" placeholder="Ditt namn" required />
-      </div>
-      <div class="field">
-        <label for="booking-email">Din e-post</label>
-        <input id="booking-email" type="email" name="email" placeholder="Din e-post" required />
-      </div>
-      <div class="field">
-        <label for="booking-meddelande">Meddelande</label>
-        <textarea id="booking-meddelande" name="meddelande" rows="5" placeholder="Berätta om ditt evenemang"
-          required></textarea>
-      </div>
-      <button type="submit">Skicka bokningsförfrågan</button>
-    </form>
-  </div>
-</div>
+</section>
