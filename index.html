@@ -10,19 +10,12 @@ title: Hem
     width: 100%;
     overflow: hidden;
     isolation: isolate;
-    background: linear-gradient(135deg, #0b1f26 0%, #112f38 58%, #164049 100%);
+    background:
+      radial-gradient(ellipse 52% 68% at 74% 50%, rgba(223, 160, 98, 0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 55% 65% at 18% 28%, rgba(43, 138, 143, 0.24) 0%, transparent 65%),
+      linear-gradient(135deg, #0b1f26 0%, #112f38 58%, #164049 100%);
     padding: clamp(2.6rem, 5.5vw, 4.4rem) 0;
     border-bottom: 3px solid rgba(223, 160, 98, 0.35);
-  }
-
-  .stage-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: url("{{ site.baseurl }}/public/img/skanska_profile_bild.png") center center / cover no-repeat;
-    opacity: 0.16;
-    pointer-events: none;
   }
 
   .stage-banner__inner {
@@ -64,21 +57,22 @@ title: Hem
   }
 
   .stage-banner__logo {
-    width: clamp(190px, 24vw, 275px);
+    width: clamp(290px, 40vw, 450px);
     height: auto;
-    margin: 0 0 0.85rem 0;
+    margin: 0 0 1.15rem 0;
     display: block;
     filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
   }
 
   .stage-banner__heading {
     font-family: var(--font-display);
-    font-size: clamp(1.85rem, 3.4vw, 2.65rem);
-    font-weight: 600;
-    line-height: 1.18;
-    color: #fcfaf5;
+    font-size: clamp(1.3rem, 2.2vw, 1.68rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.28;
+    color: #f3e8d8;
     margin: 0 0 1rem 0;
-    max-width: 20ch;
+    max-width: 28ch;
   }
 
   .stage-banner__tagline {
