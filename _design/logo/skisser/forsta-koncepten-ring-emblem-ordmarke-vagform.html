@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><title>Logokoncept</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,900&display=swap">
+<style>
+:root{--deep:#0f3447;--sea:#1d5b73;--mist:#6fb0c8;--sand:#efe2cb;--cream:#f8f2e7;--ink:#14232b;--coral:#e8662f}
+body{margin:0;background:#ddd;font:16px system-ui;padding:24px}
+h2{margin:28px 0 8px;font:600 14px system-ui;letter-spacing:.08em;text-transform:uppercase;color:#333}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.p{display:grid;place-items:center;padding:36px 20px;min-height:300px}
+.l{background:var(--cream)}.d{background:var(--deep)}
+svg{max-width:100%;height:auto}
+.serif{font-family:"Source Serif 4",serif;font-weight:900}
+.cond{font-family:"Barlow Condensed",sans-serif;font-weight:600;letter-spacing:.22em}
+</style></head><body>
+
+<h2>1 · Ringen (ljudhål som ringar i vattnet)</h2>
+<div class="row">
+ <div class="p l"><svg id="a1" viewBox="0 0 520 220" width="520"></svg></div>
+ <div class="p d"><svg id="a2" viewBox="0 0 520 220" width="520"></svg></div>
+</div>
+
+<h2>2 · Emblemet (solnedgång över vågor, för tröjor och affischer)</h2>
+<div class="row">
+ <div class="p l"><svg id="b1" viewBox="0 0 260 260" width="260"></svg></div>
+ <div class="p d"><svg id="b2" viewBox="0 0 260 260" width="260"></svg></div>
+</div>
+
+<h2>3 · Ordmärket (bara typografi, ett vågstreck)</h2>
+<div class="row">
+ <div class="p l"><svg id="c1" viewBox="0 0 520 200" width="520"></svg></div>
+ <div class="p d"><svg id="c2" viewBox="0 0 520 200" width="520"></svg></div>
+</div>
+
+<h2>4 · Vågformen (nuvarande idé, men ren och egen)</h2>
+<div class="row">
+ <div class="p l"><svg id="d1" viewBox="0 0 520 200" width="520"></svg></div>
+ <div class="p d"><svg id="d2" viewBox="0 0 520 200" width="520"></svg></div>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const C={deep:'#0f3447',sea:'#1d5b73',mist:'#6fb0c8',cream:'#f8f2e7',coral:'#e8662f'};
+function wavePath(x0,x1,y,amp,len,phase=0){let d=`M ${x0} ${y}`;const step=len/2;let up=phase?1:-1;for(let x=x0;x<x1;x+=step){d+=` q ${step/2} ${amp*up} ${step} 0`;up*=-1}return d}
+
+/* 1 · Ringen */
+function ring(id,fg,acc,text,sub){
+  const s=document.getElementById(id);
+  s.innerHTML=`
+  <defs><clipPath id="${id}c"><circle cx="110" cy="110" r="100"/></clipPath></defs>
+  <g fill="none" stroke="${fg}">
+    <circle cx="110" cy="110" r="100" stroke-width="12"/>
+    <circle cx="110" cy="110" r="76" stroke-width="7"/>
+    <circle cx="110" cy="110" r="54" stroke-width="5"/>
+    <circle cx="110" cy="110" r="34" stroke-width="3"/>
+  </g>
+  <circle cx="110" cy="110" r="14" fill="${fg}"/>
+  <g clip-path="url(#${id}c)"><path d="${wavePath(-10,230,110,34,70)}" fill="none" stroke="${acc}" stroke-width="10" stroke-linecap="round"/></g>
+  <text x="240" y="112" class="serif" font-size="68" fill="${fg}" letter-spacing="-1">SKÅNSKA</text>
+  <text x="242" y="178" class="serif" font-size="68" fill="${acc==='#e8662f'?acc:acc}" letter-spacing="-1" style="fill:${id==='a1'?C.sea:C.mist}">VÅGOR</text>`;
+}
+ring('a1',C.deep,C.coral);ring('a2',C.cream,C.coral);
+
+/* 2 · Emblem */
+function badge(id,bg,fg,acc,wv){
+  const s=document.getElementById(id);
+  let waves='';
+  [[150,18],[168,20],[186,22],[204,24]].forEach(([y,a],i)=>{waves+=`<path d="${wavePath(-20,300,y,a,60,i%2)} V 300 H -20 Z" fill="${i%2?wv[0]:wv[1]}"/>`});
+  s.innerHTML=`
+  <defs><clipPath id="${id}c"><circle cx="130" cy="130" r="108"/></clipPath>
+  <path id="${id}t" d="M 30 130 A 100 100 0 0 1 230 130"/>
+  <path id="${id}b" d="M 22 130 A 108 108 0 0 0 238 130"/></defs>
+  <circle cx="130" cy="130" r="126" fill="${bg}"/>
+  <circle cx="130" cy="130" r="118" fill="none" stroke="${fg}" stroke-width="2"/>
+  <g clip-path="url(#${id}c)"><circle cx="130" cy="124" r="44" fill="${acc}"/>${waves}</g>
+  <text class="serif" font-size="25" fill="${fg}" letter-spacing="3"><textPath href="#${id}t" startOffset="50%" text-anchor="middle">SKÅNSKA VÅGOR</textPath></text>
+  <text class="cond" font-size="15" fill="${fg}" letter-spacing="5"><textPath href="#${id}b" startOffset="50%" text-anchor="middle" side="left">COUNTRY · ROCK · POP</textPath></text>`;
+}
+badge('b1',C.cream,C.deep,C.coral,[C.mist,C.sea]);
+badge('b2',C.deep,C.cream,C.coral,[C.sea,C.mist]);
+
+/* 3 · Ordmärke */
+function word(id,fg,acc,sub){
+  const s=document.getElementById(id);
+  s.innerHTML=`
+  <text x="8" y="92" class="serif" font-size="104" fill="${fg}" letter-spacing="-3">SKÅNSKA</text>
+  <path d="${wavePath(14,512,122,10,36)}" fill="none" stroke="${acc}" stroke-width="5" stroke-linecap="round"/>
+  <text x="8" y="196" class="serif" font-size="104" fill="${sub}" letter-spacing="-3">VÅGOR</text>
+  <text x="506" y="196" class="cond" font-size="17" fill="${fg}" text-anchor="end" letter-spacing="5">COUNTRY · ROCK · POP</text>`;
+}
+word('c1',C.deep,C.coral,C.sea);word('c2',C.cream,C.coral,C.mist);
+
+/* 4 · Vågform */
+function bars(id,fg,acc,txt,sub){
+  const s=document.getElementById(id);
+  let g='';const n=15;
+  for(let i=0;i<n;i++){const t=i/(n-1);const env=Math.sin(Math.PI*t);const h=26+120*Math.pow(env,1.3)*(0.62+0.38*Math.sin(i*1.7+0.6));
+    const col=i<n*0.35?acc:(i<n*0.7?fg:sub);
+    g+=`<rect x="${8+i*14}" y="${100-h/2}" width="8" height="${h}" rx="4" fill="${col}"/>`}
+  s.innerHTML=g+`
+  <text x="236" y="88" class="serif" font-size="58" fill="${txt}" letter-spacing="-1">SKÅNSKA</text>
+  <text x="238" y="146" class="serif" font-size="58" fill="${sub}" letter-spacing="-1">VÅGOR</text>
+  <text x="238" y="178" class="cond" font-size="15" fill="${txt}" letter-spacing="6">COUNTRY · ROCK · POP</text>`;
+}
+bars('d1',C.sea,C.coral,C.deep,C.mist);bars('d2',C.mist,C.coral,C.cream,C.mist);
+</script></body></html>

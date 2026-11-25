@@ -1,0 +1,13 @@
+<li class="gig">
+  <div class="gig-date"><b>{{ include.g.dag }}</b><i>{{ include.g.manad }} {{ include.g.ar }}</i></div>
+  <div>
+    <h3>{{ include.g.plats }}</h3>
+    <p>{% if include.g.tid %}Kl {{ include.g.tid }}. {% endif %}{{ include.g.text }}</p>
+    {% if include.g.karta or include.g.event %}
+    <div class="links">
+      {% if include.g.karta %}<a href="{{ include.g.karta }}" target="_blank" rel="noopener noreferrer">Vägbeskrivning</a>{% endif %}
+      {% if include.g.event %}<a href="{{ include.g.event }}" target="_blank" rel="noopener noreferrer">Facebook-event</a>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</li>

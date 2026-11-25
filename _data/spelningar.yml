@@ -1,0 +1,46 @@
+# Lägg till nästa spelning under "kommande" (ta bort [] först).
+# Flytta den till "tidigare" när den är spelad. Nyast överst.
+#
+# kommande:
+#   - dag: 12
+#     manad: AUG
+#     ar: 2027
+#     tid: "19:00"
+#     plats: Kollektivkrogen, Malmö
+#     text: Fri entré!
+#     karta: https://maps.app.goo.gl/...
+#     event: https://www.facebook.com/events/...
+kommande: []
+
+tidigare:
+  - dag: 23
+    manad: JUL
+    ar: 2026
+    plats: Limhamnsfestivalen, Dragörkajen
+    text: Spelning på Limhamnsfestivalen vid Dragörkajen.
+  - dag: 18
+    manad: FEB
+    ar: 2026
+    tid: "19:00"
+    plats: Kollektivkrogen, Malmö
+    text: Fri entré!
+    karta: https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8
+    event: https://fb.me/e/bTwYwvACK
+  - dag: 8
+    manad: OKT
+    ar: 2025
+    tid: "19:00"
+    plats: Kollektivkrogen, Malmö
+    text: Fri entré!
+    karta: https://maps.app.goo.gl/36S8BJV8ZkC81QrZ8
+    event: https://www.facebook.com/events/2214161255756309
+  - dag: 24
+    manad: JUL
+    ar: 2025
+    plats: Limhamnsfestivalen, Dragörkajen
+    text: Spelning på Limhamnsfestivalen vid Dragörkajen.
+  - dag: 18
+    manad: JUN
+    ar: 2025
+    plats: Kollektivkrogen
+    text: Spelning på Kollektivkrogen.

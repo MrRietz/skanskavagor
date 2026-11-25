@@ -1,0 +1,30 @@
+<section class="block on-dark{% if include.compact %} tight{% endif %}" id="boka">
+  <div class="wrap book">
+    <div class="reveal">
+      {% if include.compact %}
+      <span class="eyebrow">Mejla direkt</span>
+      <p>Fyll i formuläret eller skriv till oss, så återkommer vi så snart vi kan.</p>
+      {% else %}
+      <span class="eyebrow">Bokning</span>
+      <h2 class="h2">Boka oss</h2>
+      <p>Fest, krog, bröllop eller festival. Berätta vad du har planerat så återkommer vi så snart vi kan.</p>
+      {% endif %}
+      <a class="mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </div>
+    <form class="reveal" action="https://formspree.io/f/xnnzegyr" method="POST">
+      <div>
+        <label for="namn">Ditt namn</label>
+        <input id="namn" type="text" name="namn" autocomplete="name" required>
+      </div>
+      <div>
+        <label for="email">Din e-post</label>
+        <input id="email" type="email" name="email" autocomplete="email" required>
+      </div>
+      <div>
+        <label for="meddelande">Berätta om ditt evenemang</label>
+        <textarea id="meddelande" name="meddelande" rows="4" required></textarea>
+      </div>
+      <button class="btn" type="submit">Skicka förfrågan</button>
+    </form>
+  </div>
+</section>

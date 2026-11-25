@@ -28,7 +28,6 @@ instagram_username: skanskavagorofficial
 facebook_username: profile.php?id=61576691256871
 
 # Build settings
-theme: minima
 plugins:
   - jekyll-feed
 

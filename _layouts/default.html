@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" class="no-js">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} | Skånska Vågor</title>
-  {%- if site.description -%}
-  <meta name="description" content="{{ site.description }}">
-  {%- endif -%}
-  <link rel="stylesheet" href="/assets/main.css">
-  <style>
-    body { background: #f8fafc; margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    main { min-height: 80vh; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != 'Hem' %}{{ page.title }} | {% endif %}Skånska Vågor</title>
+  <meta name="description" content="{{ site.description | strip_newlines | truncate: 200 }}">
+  <meta name="theme-color" content="#0f3447">
+  <meta property="og:title" content="Skånska Vågor – Musiker som vågar">
+  <meta property="og:description" content="Country, rock och pop med tre röster och två gitarrer.">
+  <meta property="og:image" content="{{ site.url }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg">
+  <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/public/img/logo/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/public/img/logo/favicon-32.png">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/public/img/logo/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,900&family=Work+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
+  <script>document.documentElement.className = '';</script>
 </head>
 <body>
+  <a class="skip" href="#innehall">Hoppa till innehållet</a>
   {% include nav.html %}
-  <main>
+  <main id="innehall">
     {{ content }}
   </main>
   {% include footer.html %}
+  <div class="lightbox" aria-hidden="true"><img alt=""></div>
+  <script src="{{ site.baseurl }}/assets/js/site.js" defer></script>
 </body>
 </html>
