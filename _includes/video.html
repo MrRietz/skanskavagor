@@ -1,0 +1,8 @@
+<figure class="video{% if include.stor %} video-stor{% endif %}">
+  <button class="yt" type="button" data-id="{{ include.v.id }}" data-titel="{{ include.v.titel }}">
+    <img src="https://i.ytimg.com/vi/{{ include.v.id }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+    <span class="sr">Spela videon: {{ include.v.titel }}</span>
+  </button>
+  <figcaption>{{ include.v.titel }}</figcaption>
+</figure>

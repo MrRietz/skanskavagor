@@ -12,6 +12,11 @@
       <li><a href="{{ site.baseurl }}/medlemmar.html">Bandet</a></li>
       <li><a href="{{ site.baseurl }}/galleri.html">Galleri</a></li>
       <li class="nav-cta"><a href="{{ site.baseurl }}/bokning.html">Boka oss</a></li>
+      <li class="nav-social">
+        <a href="https://www.facebook.com/{{ site.facebook_username }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">{% include ikoner.html namn='facebook' %}</a>
+        <a href="https://www.instagram.com/{{ site.instagram_username }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">{% include ikoner.html namn='instagram' %}</a>
+        <a href="mailto:{{ site.email }}" aria-label="Mejla oss">{% include ikoner.html namn='mail' %}</a>
+      </li>
     </ul>
   </div>
 </header>

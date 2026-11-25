@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Bandet
+description: "Möt Mia, Robin och André: tre röster och två gitarrer i Skånska Vågor."
 permalink: /medlemmar.html
 ---
 <section class="banner">
@@ -14,24 +15,14 @@ permalink: /medlemmar.html
 
 <section class="block members-wrap">
   <div class="wrap members">
-    <article class="member reveal">
-      <figure><img src="{{ site.baseurl }}/public/img/mia.png" alt="Mia" loading="lazy"></figure>
-      <h2>Mia</h2>
-      <span class="role">Sång</span>
-      <p>Musiken är inte bara något Mia gör, det är något hon är. Med sång, dans och rytm som livslånga följeslagare förmedlar hon känslor och närvaro på scenen. Hon tror på kraften i gemenskap, där varje medlem och publikens energi skapar ett flöde där musiken får tala.</p>
+    {% for m in site.data.bandet %}
+    <article class="member reveal" id="{{ m.namn | slugify }}">
+      <figure><img src="{{ site.baseurl }}{{ m.bild }}" alt="{{ m.namn }}" loading="lazy"></figure>
+      <h2>{{ m.namn }}</h2>
+      <span class="role">{{ m.roll }}</span>
+      <p>{{ m.text }}</p>
     </article>
-    <article class="member reveal">
-      <figure><img src="{{ site.baseurl }}/public/img/robin.png" alt="Robin" loading="lazy"></figure>
-      <h2>Robin</h2>
-      <span class="role">Gitarr &amp; sång</span>
-      <p>Robin är en energisk gitarrist som spelar med hjärtat först. Han är spontan och kreativ, ofta med oväntade infall som ger musiken liv. Sången är intensiv och uttrycksfull, ibland vild, ibland sårbar.</p>
-    </article>
-    <article class="member reveal">
-      <figure><img src="{{ site.baseurl }}/public/img/andre.png" alt="André" loading="lazy"></figure>
-      <h2>André</h2>
-      <span class="role">Gitarr &amp; sång</span>
-      <p>André är en trygg och eftertänksam gitarrist som utgör ett lugn i bandet. Han har ett säkert grepp om tempo och rytm, spelar med känsla snarare än ego och bidrar ibland med sång. En stabil närvaro som håller ihop helheten.</p>
-    </article>
+    {% endfor %}
   </div>
 </section>
 

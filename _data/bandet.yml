@@ -1,0 +1,16 @@
+# Medlemmarna. Används på startsidan och på sidan Bandet.
+- namn: Mia
+  roll: Sång
+  bild: /public/img/band/mia.webp
+  kort: Rösten som bär. Sång, dans och rytm är livslånga följeslagare.
+  text: Musiken är inte bara något Mia gör, det är något hon är. Med sång, dans och rytm som livslånga följeslagare förmedlar hon känslor och närvaro på scenen. Hon tror på kraften i gemenskap, där varje medlem och publikens energi skapar ett flöde där musiken får tala.
+- namn: Robin
+  roll: Gitarr & sång
+  bild: /public/img/band/robin.webp
+  kort: Spelar med hjärtat först. Spontan, kreativ och ibland lite vild.
+  text: Robin är en energisk gitarrist som spelar med hjärtat först. Han är spontan och kreativ, ofta med oväntade infall som ger musiken liv. Sången är intensiv och uttrycksfull, ibland vild, ibland sårbar.
+- namn: André
+  roll: Gitarr & sång
+  bild: /public/img/band/andre.webp
+  kort: Lugnet i bandet. Säkert grepp om tempo, rytm och känsla.
+  text: André är en trygg och eftertänksam gitarrist som utgör ett lugn i bandet. Han har ett säkert grepp om tempo och rytm, spelar med känsla snarare än ego och bidrar ibland med sång. En stabil närvaro som håller ihop helheten.

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Spelningar
+description: "Kommande och tidigare spelningar med Skånska Vågor: Kollektivkrogen, Limhamnsfestivalen och fler."
 permalink: /spelningar.html
 ---
 <section class="banner">
@@ -25,8 +26,10 @@ permalink: /spelningar.html
           {% for g in site.data.spelningar.kommande %}{% include gig.html g=g %}{% endfor %}
         </ul>
         {% else %}
-        <p>Just nu har vi inget inbokat, men vi tar gärna emot fler. Vill du ha oss till din fest, krog eller ditt evenemang?</p>
-        <a class="btn" href="{{ site.baseurl }}/bokning.html">Boka oss</a>
+        <div class="callout">
+          <p><strong>Inget inbokat just nu.</strong> Vi tar gärna fler spelningar: fest, krog, bröllop eller festival.</p>
+          <a class="btn" href="{{ site.baseurl }}/bokning.html">Boka oss</a>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -41,9 +44,15 @@ permalink: /spelningar.html
         <h2 class="h2">Tidigare spelningar</h2>
       </div>
     </div>
-    <ul class="gig-list reveal">
-      {% for g in site.data.spelningar.tidigare %}{% include gig.html g=g %}{% endfor %}
-    </ul>
+    {% assign per_ar = site.data.spelningar.tidigare | group_by: 'ar' %}
+    {% for ar in per_ar %}
+    <div class="year reveal">
+      <h3 class="year-label">{{ ar.name }}</h3>
+      <ul class="gig-list">
+        {% for g in ar.items %}{% include gig.html g=g %}{% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
   </div>
 </section>
 

@@ -1,18 +1,27 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot">
-      <div>
-        <img class="foot-logo" src="{{ site.baseurl }}/public/img/logo/logo-ljus.svg" alt="Skånska Vågor" width="300" height="288" loading="lazy">
-        <div class="social">
-          <a href="https://www.facebook.com/profile.php?id=61576691256871" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://www.instagram.com/skanskavagorofficial" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="{{ site.baseurl }}/bokning.html">Boka oss</a>
-        </div>
+      <div class="foot-brand">
+        <img class="foot-logo" src="{{ site.baseurl }}/public/img/logo/logo-ljus.svg" alt="Skånska Vågor" width="240" height="230" loading="lazy">
+        <p>Country, rock och pop med skånsk själ.</p>
       </div>
-      <div class="partner">
+      <nav class="foot-col" aria-label="Sidfot">
+        <small>Sidor</small>
+        <a href="{{ site.baseurl }}/spelningar.html">Spelningar</a>
+        <a href="{{ site.baseurl }}/medlemmar.html">Bandet</a>
+        <a href="{{ site.baseurl }}/galleri.html">Galleri</a>
+        <a href="{{ site.baseurl }}/bokning.html">Boka oss</a>
+      </nav>
+      <div class="foot-col">
+        <small>Följ oss</small>
+        <a href="https://www.facebook.com/{{ site.facebook_username }}" target="_blank" rel="noopener noreferrer">{% include ikoner.html namn='facebook' %}Facebook</a>
+        <a href="https://www.instagram.com/{{ site.instagram_username }}" target="_blank" rel="noopener noreferrer">{% include ikoner.html namn='instagram' %}Instagram</a>
+        <a href="mailto:{{ site.email }}">{% include ikoner.html namn='mail' %}{{ site.email }}</a>
+      </div>
+      <div class="foot-col partner">
         <small>Samarbetspartner</small>
         <a href="https://kryddafesten.se/artist/" target="_blank" rel="noopener noreferrer">
-          <img src="{{ site.baseurl }}/public/img/kryddafesten.png" alt="Krydda Festen">
+          <img src="{{ site.baseurl }}/public/img/kryddafesten.png" alt="Krydda Festen" loading="lazy">
         </a>
       </div>
     </div>

@@ -5,11 +5,11 @@ title: Hem
 <section class="hero">
   <div class="wrap">
     <span class="eyebrow light">Tre röster. Två gitarrer.</span>
-    <h1 class="hero-logo"><img src="{{ site.baseurl }}/public/img/logo/logo-ljus.svg" alt="Skånska Vågor" width="460" height="442"></h1>
+    <h1 class="hero-logo"><span class="sr">Skånska Vågor</span><img src="{{ site.baseurl }}/public/img/logo/logo-ljus.svg" alt="" width="460" height="442"></h1>
     <p class="lede">Musiker som vågar. Country, rock och pop med skånsk själ.</p>
     <div class="cta">
       <a class="btn" href="{{ site.baseurl }}/bokning.html">Boka oss</a>
-      <a class="link-arrow" href="{{ site.baseurl }}/spelningar.html">Spelningar</a>
+      <a class="link-arrow light" href="#lyssna">Se oss live</a>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 C 120 20 240 20 360 52 S 600 92 720 56 S 960 8 1080 38 S 1320 84 1440 44 V90 H0 Z"/></svg>
@@ -17,17 +17,14 @@ title: Hem
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Country</span><span>Rock</span><span>Pop</span><span>Folkrock</span><span>Akustiskt</span><span>Live</span>
-    <span>Country</span><span>Rock</span><span>Pop</span><span>Folkrock</span><span>Akustiskt</span><span>Live</span>
-    <span>Country</span><span>Rock</span><span>Pop</span><span>Folkrock</span><span>Akustiskt</span><span>Live</span>
-    <span>Country</span><span>Rock</span><span>Pop</span><span>Folkrock</span><span>Akustiskt</span><span>Live</span>
+    {% for i in (1..4) %}<span>Country</span><span>Rock</span><span>Pop</span><span>Folkrock</span><span>Akustiskt</span><span>Live</span>{% endfor %}
   </div>
 </div>
 
 <section class="block">
   <div class="wrap about">
     <div class="photo-frame reveal">
-      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Mia, Robin och André, svartvit selfie med gitarrer" loading="lazy">
+      <img src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Mia, Robin och André, svartvit selfie med gitarrer" loading="lazy" width="1170" height="1560">
     </div>
     <div class="reveal">
       <span class="eyebrow">Om bandet</span>
@@ -45,32 +42,67 @@ title: Hem
   </div>
 </section>
 
-<section class="block sand">
-  <div class="wrap">
-    <div class="next">
-      <div class="reveal">
-        <span class="eyebrow">Live</span>
-        <h2 class="h2">Nästa spelning</h2>
-      </div>
-      <div class="reveal">
-        {% if site.data.spelningar.kommande.size > 0 %}
-        <ul class="gig-list">
-          {% for g in site.data.spelningar.kommande %}{% include gig.html g=g %}{% endfor %}
-        </ul>
-        {% else %}
-        <p>Just nu har vi inget inbokat, men vi tar gärna emot fler. Vill du ha oss till din fest, krog eller ditt evenemang?</p>
+<section class="block sand" id="live">
+  <div class="wrap live">
+    <div class="live-intro reveal">
+      <span class="eyebrow">Live</span>
+      <h2 class="h2">Nästa spelning</h2>
+      {% if site.data.spelningar.kommande.size > 0 %}
+      <ul class="gig-list next-gigs">
+        {% for g in site.data.spelningar.kommande %}{% include gig.html g=g %}{% endfor %}
+      </ul>
+      {% else %}
+      <div class="callout">
+        <p><strong>Inget inbokat just nu.</strong> Vi tar gärna fler spelningar: fest, krog, bröllop eller festival.</p>
         <a class="btn" href="{{ site.baseurl }}/bokning.html">Boka oss</a>
-        {% endif %}
       </div>
+      {% endif %}
     </div>
+    <div class="reveal">
+      <div class="section-head">
+        <h3 class="h3">Senast vi spelade</h3>
+        <a class="link-arrow" href="{{ site.baseurl }}/spelningar.html">Alla spelningar</a>
+      </div>
+      <ul class="gig-list compact">
+        {% for g in site.data.spelningar.tidigare limit: 3 %}{% include gig.html g=g %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <div class="section-head" style="margin-top: clamp(60px, 9vw, 110px)">
-      <h2 class="h2" style="font-size: clamp(2rem, 4.6vw, 3.4rem)">Senast vi spelade</h2>
-      <a class="link-arrow" href="{{ site.baseurl }}/spelningar.html">Alla spelningar</a>
+<section class="block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Bandet</span>
+        <h2 class="h2">Tre röster</h2>
+      </div>
+      <a class="link-arrow" href="{{ site.baseurl }}/medlemmar.html">Möt bandet</a>
     </div>
-    <ul class="gig-list reveal">
-      {% for g in site.data.spelningar.tidigare limit: 3 %}{% include gig.html g=g %}{% endfor %}
-    </ul>
+    <div class="trio">
+      {% for m in site.data.bandet %}
+      <a class="trio-card reveal" href="{{ site.baseurl }}/medlemmar.html#{{ m.namn | slugify }}">
+        <img src="{{ site.baseurl }}{{ m.bild }}" alt="{{ m.namn }}" loading="lazy">
+        <span class="trio-text">
+          <span class="role">{{ m.roll }}</span>
+          <strong>{{ m.namn }}</strong>
+          <span class="kort">{{ m.kort }}</span>
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="block on-dark listen" id="lyssna">
+  <div class="wrap listen-grid">
+    <div class="reveal">
+      <span class="eyebrow">Se och lyssna</span>
+      <h2 class="h2">Så låter vi live</h2>
+      <p>Klipp från Limhamnsfestivalen och Kollektivkrogen. Fler finns i galleriet.</p>
+      <a class="link-arrow light" href="{{ site.baseurl }}/galleri.html">Till galleriet</a>
+    </div>
+    {% assign forsta = site.data.videor | first %}<div class="reveal">{% include video.html v=forsta stor=true %}</div>
   </div>
 </section>
 

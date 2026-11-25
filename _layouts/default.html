@@ -4,11 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title and page.title != 'Hem' %}{{ page.title }} | {% endif %}Skånska Vågor</title>
-  <meta name="description" content="{{ site.description | strip_newlines | truncate: 200 }}">
+  {% capture beskrivning %}{% if page.description %}{{ page.description }}{% else %}Skånska Vågor är en trio med tre röster och två gitarrer. Country, rock och pop med skånsk själ. Boka oss till fest, krog, bröllop eller festival.{% endif %}{% endcapture %}
+  <meta name="description" content="{{ beskrivning | strip }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
   <meta name="theme-color" content="#0f3447">
-  <meta property="og:title" content="Skånska Vågor – Musiker som vågar">
-  <meta property="og:description" content="Country, rock och pop med tre röster och två gitarrer.">
-  <meta property="og:image" content="{{ site.url }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sv_SE">
+  <meta property="og:site_name" content="Skånska Vågor">
+  <meta property="og:title" content="{% if page.title and page.title != 'Hem' %}{{ page.title }} | {% endif %}Skånska Vågor">
+  <meta property="og:description" content="{{ beskrivning | strip }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
+  <meta property="og:image" content="{{ site.url }}/public/img/logo/delning.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/public/img/logo/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/public/img/logo/favicon-32.png">
   <link rel="apple-touch-icon" href="{{ site.baseurl }}/public/img/logo/apple-touch-icon.png">
@@ -17,6 +26,23 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,900&family=Work+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
   <script>document.documentElement.className = '';</script>
+  {% if page.url == '/' or page.url == '/index.html' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Skånska Vågor",
+    "url": "{{ site.url }}/",
+    "logo": "{{ site.url }}/public/img/logo/logo.png",
+    "image": "{{ site.url }}/public/img/logo/delning.jpg",
+    "genre": ["Country", "Rock", "Pop", "Folkrock"],
+    "email": "{{ site.email }}",
+    "foundingLocation": { "@type": "Place", "name": "Skåne" },
+    "member": [{% for m in site.data.bandet %}{ "@type": "Person", "name": "{{ m.namn }}", "roleName": "{{ m.roll }}" }{% unless forloop.last %}, {% endunless %}{% endfor %}],
+    "sameAs": ["https://www.facebook.com/{{ site.facebook_username }}", "https://www.instagram.com/{{ site.instagram_username }}"]
+  }
+  </script>
+  {% endif %}
 </head>
 <body>
   <a class="skip" href="#innehall">Hoppa till innehållet</a>

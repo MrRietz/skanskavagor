@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Galleri
+description: "Liveklipp och bilder med Skånska Vågor från Limhamnsfestivalen och Kollektivkrogen."
 permalink: /galleri.html
 ---
 <section class="banner">
@@ -15,20 +16,10 @@ permalink: /galleri.html
 <section class="block">
   <div class="wrap">
     <span class="eyebrow">Video</span>
-    <h2 class="h2" style="margin-bottom: 36px">Live</h2>
+    <h2 class="h2 spaced">Live</h2>
     <div class="videos">
-      <figure class="video reveal">
-        <div class="frame"><iframe src="https://www.youtube.com/embed/bhsHd3c4Spo" title="Liveklipp med Skånska Vågor" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-        <figcaption>Liveklipp</figcaption>
-      </figure>
-      <figure class="video reveal">
-        <div class="frame"><iframe src="https://www.youtube.com/embed/_L8Fi8Xahaw" title="Video från Skånska Vågor" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-        <figcaption>Video från Skånska Vågor</figcaption>
-      </figure>
-      <figure class="video reveal">
-        <div class="frame"><iframe src="https://www.youtube.com/embed/3AZSVCrPNs8" title="Liveklipp med Skånska Vågor" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-        <figcaption>Liveklipp</figcaption>
-      </figure>
+      {% for v in site.data.videor %}<div class="reveal">{% include video.html v=v %}</div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -36,18 +27,18 @@ permalink: /galleri.html
 <section class="block sand">
   <div class="wrap">
     <span class="eyebrow">Bilder</span>
-    <h2 class="h2" style="margin-bottom: 36px">Hela bandet</h2>
-    <div class="photo-grid" style="margin-top: 0">
+    <h2 class="h2 spaced">Hela bandet</h2>
+    <div class="photo-grid">
       <figure class="reveal">
         <img data-zoom src="{{ site.baseurl }}/public/galleri/501057291_10226767836958236_8478783061480093931_n.jpg" alt="Skånska Vågor, svartvit selfie" loading="lazy">
-        <figcaption>Tryck för att förstora</figcaption>
+        <figcaption>Selfie i gräset</figcaption>
       </figure>
       <figure class="reveal">
         <img data-zoom src="{{ site.baseurl }}/public/galleri/516693477_10227548120584839_2821924789254496156_n.jpg" alt="Skånska Vågor vid ett träd" loading="lazy">
-        <figcaption>Tryck för att förstora</figcaption>
+        <figcaption>Under trädet</figcaption>
       </figure>
       <figure class="reveal">
-        <img data-zoom src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg" alt="Skånska Vågor live på Limhamnsfestivalen" loading="lazy" style="filter: none">
+        <img data-zoom src="{{ site.baseurl }}/public/galleri/756219206_2595398347557718_3045355905677558017_n.jpg" alt="Skånska Vågor live på Limhamnsfestivalen" loading="lazy" class="color">
         <figcaption>Limhamnsfestivalen</figcaption>
       </figure>
     </div>
