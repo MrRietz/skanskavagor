@@ -31,8 +31,8 @@ title: Hem
       <h2 class="h2">Musik som förenar</h2>
       <p>Vi är Skånska Vågor, en trio med tre röster och två gitarrer som bjuder på en unik blandning av country, rock och pop. Med passion och spelglädje tar vi er med på en musikalisk resa genom decennierna: från folkrock-klassiker och moderna countryhits till akustiska tolkningar av välkända låtar.</p>
       <p>Vi hyllar legendariska band som Fleetwood Mac och The Cranberries och ger nytt liv åt elektroniska hits i akustisk tappning. Med Mikael Wiehe och Kal P. Dal som skånska inspirationskällor visar vi att musik kan förena människor över alla gränser, oavsett genre eller ursprung.</p>
+      <p class="influences-label">Vi spelar och älskar</p>
       <ul class="influences">
-        <small>Vi spelar och älskar</small>
         <li>Fleetwood Mac</li>
         <li>The Cranberries</li>
         <li>Mikael Wiehe</li>
@@ -82,9 +82,9 @@ title: Hem
     <div class="trio">
       {% for m in site.data.bandet %}
       <a class="trio-card reveal" href="{{ site.baseurl }}/medlemmar.html#{{ m.namn | slugify }}">
-        <img src="{{ site.baseurl }}{{ m.bild }}" alt="{{ m.namn }}" loading="lazy">
+        <img src="{{ site.baseurl }}{{ m.bild }}" alt="{{ m.namn | escape }}" loading="lazy">
         <span class="trio-text">
-          <span class="role">{{ m.roll }}</span>
+          <span class="role">{{ m.roll | escape }}</span>
           <strong>{{ m.namn }}</strong>
           <span class="kort">{{ m.kort }}</span>
         </span>

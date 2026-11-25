@@ -13,16 +13,22 @@
   var nav = doc.querySelector('.site-nav');
   if (toggle && links) {
     var label = toggle.querySelector('.label');
-    function set(open) {
+    var set = function (open) {
       links.classList.toggle('open', open);
       nav.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
       label.textContent = open ? 'Stäng' : 'Meny';
       doc.body.style.overflow = open ? 'hidden' : '';
-    }
+    };
     toggle.addEventListener('click', function () { set(!links.classList.contains('open')); });
     links.addEventListener('click', function (e) { if (e.target.tagName === 'A') set(false); });
-    doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('open')) { set(false); toggle.focus(); }
+    });
+    // Stäng mobilmenyn om fönstret blir brett (t.ex. när mobilen vänds)
+    var wide = window.matchMedia('(min-width: 901px)');
+    var onWide = function () { if (wide.matches) set(false); };
+    if (wide.addEventListener) wide.addEventListener('change', onWide); else if (wide.addListener) wide.addListener(onWide);
   }
 
   // Menyn får fast bakgrund när man scrollat
@@ -46,14 +52,23 @@
   // Bildvisning (klick eller Enter)
   var box = doc.querySelector('.lightbox');
   if (box) {
-    var big = box.querySelector('img');
+    var big = doc.createElement('img');
+    box.appendChild(big);
     var last = null;
-    var close = function () { if (!box.classList.contains('open')) return; box.classList.remove('open'); if (last) last.focus(); };
+    var close = function () {
+      if (box.hidden) return;
+      box.hidden = true; box.classList.remove('open'); doc.body.style.overflow = '';
+      if (last) last.focus();
+    };
     doc.querySelectorAll('[data-zoom]').forEach(function (img) {
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
       img.setAttribute('aria-label', 'Förstora bild: ' + img.alt);
-      var open = function () { last = img; big.src = img.src; big.alt = img.alt; box.classList.add('open'); };
+      var open = function () {
+        last = img; big.src = img.src; big.alt = img.alt;
+        box.hidden = false; box.classList.add('open'); doc.body.style.overflow = 'hidden';
+        box.setAttribute('tabindex', '-1'); box.focus();
+      };
       img.addEventListener('click', open);
       img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     });

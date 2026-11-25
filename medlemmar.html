@@ -19,7 +19,7 @@ permalink: /medlemmar.html
     <article class="member reveal" id="{{ m.namn | slugify }}">
       <figure><img src="{{ site.baseurl }}{{ m.bild }}" alt="{{ m.namn }}" loading="lazy"></figure>
       <h2>{{ m.namn }}</h2>
-      <span class="role">{{ m.roll }}</span>
+      <span class="role">{{ m.roll | escape }}</span>
       <p>{{ m.text }}</p>
     </article>
     {% endfor %}
